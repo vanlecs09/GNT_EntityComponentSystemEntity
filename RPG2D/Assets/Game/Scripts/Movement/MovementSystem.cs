@@ -6,7 +6,6 @@ public class MovementSystem : IExecuteSystem
 
     public MovementSystem()
     {
-        Debug.LogError("movement sysmte create");
     }
     public void Execute()
     {
@@ -16,7 +15,7 @@ public class MovementSystem : IExecuteSystem
             var trans = e.Get<TransformComponent>();
             var move = e.Modify<MoveComponent>();
             trans.position += move.velocity * Time.deltaTime;
-            Debug.Log("position " + trans.position);
+            Debug.Log("position " + trans.position + " velocity " + move.velocity);
         }
     }
 }
