@@ -22,6 +22,11 @@ public class App : MonoBehaviour
         _feature = new Feature(null);
 #endif
         _feature.Initialize();
+
+
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<MoveComponent>().Initiazlize(new Vector3(1,1,1), Vector3.zero);
+        entity.AddComponent<TransformComponent>().Initiazlize(Vector3.zero, Quaternion.identity, new Vector3(1,1,1));
     }
 
     private void Update()
