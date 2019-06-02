@@ -1,26 +1,25 @@
 using UnityEngine;
 using Entitas;
 using Entitas.VisualDebugging.Unity;
+using RPG.View;
 
 public class App : MonoBehaviour
 {
-
+    private Contexts _contexts;
     private Systems _feature;
     private void Awake()
     {
+        _contexts = Contexts.sharedInstance;
 #if UNITY_EDITOR
-        var contexts = Contexts.sharedInstance;
-        ContextObserverHelper.ObserveAll(contexts);
+        ContextObserverHelper.ObserveAll(_contexts);
 #endif
     }
 
     private void Start()
     {
-#if UNITY_EDITOR
-        _feature = FeatureObserverHelper.CreateFeature(null);
-#else
-        _feature = new Feature(null);
-#endif
+        _feature = new FeatureObserverExt("Game Feature")
+        .Add(new TestViewFeature(_contexts));
+
         _feature.Initialize();
     }
 
