@@ -8,4 +8,10 @@ public static class InputContext
         Entity entity = Contexts.sharedInstance.GetContext<Input>().CreateEntity();
         entity.AddComponent<JoyStickInputComponent>().Initialize(joyStickDirection);
     }
+
+    public static void CreateCollisionInputEntity(string name)
+    {
+        Entity entity = Contexts.sharedInstance.GetContext<Input>().CreateEntity();
+        entity.AddComponent<CollisionInputComponent>().Initialize(null, null);
+    }
 }
