@@ -5,25 +5,28 @@ using System.Collections.Generic;
 
 namespace RPG.View
 {
-    [ViewFeature]
+    // [ViewFeatureAttribute]
     public class TransformSystem: ReactiveSystem {
-        public TransformSystem () {
-            monitors += Context<Game>.AllOf<TransformComp>().OnAdded(Execute);
+        public TransformSystem (Contexts contexts) {
+            monitors += Context<Game>.AllOf<TransformComp>().OnAdded(Execute).Where(Filter);
+        }
+
+        private bool Filter(Entity entity)
+        {
+            return entity.Has<ViewComp>();
         }
 
         private void Execute(List<Entity> entities)
         {
-            GameObject go = null;
-            TransformComp tf = null;
+            TransformComp tfc = null;
+            ITransform tf = null;
             foreach (var e in entities)
             {
-                if (e.Has<ViewComp>()) {
-                    go = e.Get<ViewComp>().gameObject;
-                    tf = e.Get<TransformComp>();
-                    go.transform.position = tf.position;
-                    go.transform.localScale = tf.scale;
-                    go.transform.rotation = tf.rotation;
-                }
+                tf = e.Get<ViewComp>().transform;
+                tfc = e.Get<TransformComp>();
+                tf.Position = tfc.position;
+                tf.Rotation = tfc.rotation;
+                tf.Scale = tfc.scale;
             }
         }
     }

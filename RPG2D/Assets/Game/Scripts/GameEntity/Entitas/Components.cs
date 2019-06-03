@@ -10,9 +10,7 @@ namespace RPG.GameEntity
 
     [Game]
     public class PlayerComp: IComponent {
-        public void Load(IPlayerLoader loader, IPlayerData data) {
-            loader.Load(data);
-        }
+
     }
 
     [Game]

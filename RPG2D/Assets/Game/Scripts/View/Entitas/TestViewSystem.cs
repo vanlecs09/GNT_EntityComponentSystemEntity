@@ -3,14 +3,19 @@ using Entitas;
 
 namespace RPG.View
 {
-    [ViewFeature]
+    // [ViewFeatureAttribute]
     public class TestViewSystem : IInitializeSystem
     {
+        Context _gameContext;
+        public TestViewSystem (Contexts contexts) {
+            _gameContext = contexts.GetContext<Game>();
+        }
+
         public void Initialize()
         {
-            var e = Contexts.Get<Game>().CreateEntity();
+            var e = _gameContext.CreateEntity();
             e.Add<ViewComp>();
-            e.Add<TransformComp>();
+            e.Add<PositionComp>().value = new Vector3(2f, 0f, 0f);
         }
     }
 }

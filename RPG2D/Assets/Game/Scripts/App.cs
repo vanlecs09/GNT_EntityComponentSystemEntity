@@ -2,9 +2,12 @@ using UnityEngine;
 using Entitas;
 using Entitas.VisualDebugging.Unity;
 using RPG.View;
+using RPG.Asset;
 
 public class App : MonoBehaviour
 {
+    public UnityAssetLibrary assetLibrary;
+
     private Contexts _contexts;
     private Systems _feature;
     private void Awake()
@@ -13,12 +16,18 @@ public class App : MonoBehaviour
 #if UNITY_EDITOR
         ContextObserverHelper.ObserveAll(_contexts);
 #endif
+        assetLibrary.GenerateGameEntityDictionary();
     }
 
     private void Start()
     {
-        _feature = new FeatureObserverExt("Game Feature")
-        .Add(new TestViewFeature(_contexts));
+        #if UNITY_EDITOR
+        _feature = new FeatureObserverExt("Game Features")
+        #else
+        _feature = new FeatureExt("Game Features")
+        #endif
+        .Add(new TestSceneFeature(_contexts, assetLibrary))
+        .Add(new ViewFeature(_contexts));
 
         _feature.Initialize();
     }

@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 using Entitas;
-using RPG.GameEntity;
+using RPG.Asset;
 using RPG.View;
 using RPG.Rendering;
+using RPG.GameEntity;
 
-namespace RPG.GameEntity
+namespace RPG.Asset
 {
-    public class UnityCharacterLoader : ICharacterLoader
+    public partial class UnityCharacterLoader: IViewEntityLoader
     {
-        public Entity Load (ICharacterData data)
+        public Entity Load (IViewEntityData data)
         {
             var entity = GameContextExtension.CreateEntity();
-            var go = GameObject.Instantiate((GameObject)data.CharacterPrefab);
+            var go = GameObject.Instantiate((GameObject)data.GetPrefab());
             var ch = go.GetComponent<UnityCharacter>();
-            entity.Add<ViewComp>().gameObject = go;
+            entity.Add<ViewComp>().transform = new UnityTransform(go.transform);
             entity.Add<TransformComp>();
             entity.Add<SpriteRendererComp>().spriteRenderer = new UnitySpriteRenderer(ch.spriteRenderer);
             entity.Add<AnimatorComp>().animator = new UnityAnimator(ch.animator);
@@ -25,9 +26,9 @@ namespace RPG.GameEntity
 }
 
 public partial class GameContextExtension {
-    static ICharacterLoader _characterLoader;
+    static IViewEntityLoader _characterLoader;
 
-    public static ICharacterLoader CharacterLoader {
+    public static IViewEntityLoader CharacterLoader {
         get {
             if (_characterLoader == null)
                 _characterLoader = new UnityCharacterLoader();
@@ -35,7 +36,7 @@ public partial class GameContextExtension {
         }
     }
 
-    public static Entity LoadCharacter (ICharacterData data) {
+    public static Entity LoadCharacter (IViewEntityData data) {
         return CharacterLoader.Load(data);
     }
 }

@@ -6,6 +6,8 @@ namespace RPG.Rendering
     [Game]
     public class SpriteRendererComp: IComponent {
         public ISpriteRenderer spriteRenderer;
+        public ISprite sprite;
+        public Color color;
 
         public void SetSpriteRenderer(ISpriteRenderer newSpriteRenderer) {
             spriteRenderer = newSpriteRenderer;
@@ -33,6 +35,11 @@ namespace RPG.Rendering
 
     [Game]
     public class BillboardComp: IComponent {
+
+    }
+
+    [Game]
+    public class DropShadowComp: IComponent {
 
     }
 }
