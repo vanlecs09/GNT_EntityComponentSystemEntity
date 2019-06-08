@@ -292,14 +292,9 @@ public partial class EntitySaveLoader
                     throw new Exception("{componentLookUpName} is not in GameComponentsLookup");
                 }
 
-                // int componentLookUpIndex = (int)typeof(GameComponentsLookup).GetField(componentLookUpName).GetValue(null);
-                // var componentType = GameComponentsLookup.componentTypes[componentLookUpIndex];
-
                 Type componentType = Type.GetType(componentLookUpName.AddComponentSuffix());
                 var componentLookUpIndex = contextInfo.componentNames.IndexOf(componentLookUpName);
                 var tagComponent = Activator.CreateInstance(componentType);
-
-                //Debug.Log($"componentLookUpIndex : {componentLookUpIndex}");
 
                 ((Entity)newEntity).AddComponent(componentLookUpIndex, tagComponent as IComponent);
             }
