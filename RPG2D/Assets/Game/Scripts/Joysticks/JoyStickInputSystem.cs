@@ -18,6 +18,7 @@ public class JoyStickInputSystem : ReactiveSystem
         _players = Context<Game>.AllOf<PlayerComponent>().GetEntities();
         foreach (var player in _players)
         {
+            Debug.Log("modifire");
             player.ReplaceNewComponent<MoveComponent>().Initiazlize(new Vector3(input.joyStickDirection.x * 10, input.joyStickDirection.y * 10, 0), Vector3.zero);
         }
 

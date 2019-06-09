@@ -26,13 +26,7 @@ namespace RPG.View
             this.rotation = rotation;
         }
     }
-
-    [Game]
-    public class TransformListener : IComponent
-    {
-
-    }
-
+    
     [Game]
     public class PositionComponent : IComponent
     {
