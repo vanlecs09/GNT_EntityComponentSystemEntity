@@ -23,7 +23,7 @@ public class AssetSystem: ReactiveSystem
                 var unityCompoenntCache = gameObject.GetComponent<UnityComponentsCache>();
                 if(unityCompoenntCache)
                 {
-
+                    
                 }
             }
             else
