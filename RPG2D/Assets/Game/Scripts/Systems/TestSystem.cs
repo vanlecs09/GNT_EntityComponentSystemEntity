@@ -7,6 +7,6 @@ public class TestSystem : IExecuteSystem
 {
     public void Execute()
     {
-        Debug.Log("test system execute");
+        // Debug.Log("test system execute");
     }
 }

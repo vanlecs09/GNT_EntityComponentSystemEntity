@@ -1,0 +1,49 @@
+{
+  "Name": "character",
+  "Context": "Game",
+  "Tags": "Player,RPG.GameEntity.Character,",
+  "Components": {
+    "assset": {
+      "path" : "asset path ",
+    },
+    "RPG.Rendering.Animator": {
+      "animator name " : ""
+    },
+    "RPG.Rendering.SpriteRenderer": {
+      "color": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0,
+        "grayscale": 0.0,
+        "maxColorComponent": 0.0
+      }
+    },
+    "RPG.View.View": {
+      "prefabName": " ??? "
+    },
+    "Transform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0,
+        "eulerAngles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "scale": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
+  }
+}
