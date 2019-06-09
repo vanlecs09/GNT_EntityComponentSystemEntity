@@ -13,18 +13,3 @@ public class MoveComponent : IComponent
         this.acceleration = acceleration_;
     }
 }
-
-[Game]
-public class TransformComponent : IComponent
-{
-    public Vector3 position;
-    public Quaternion rotation;
-    public Vector3 scale;
-    
-     public void Initiazlize(Vector3 position_, Quaternion rotation_, Vector3 scale_)
-    {
-        this.position = position_;
-        this.rotation = rotation_;
-        this.scale = scale_;
-    }
-}

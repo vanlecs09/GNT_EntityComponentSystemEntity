@@ -6,7 +6,7 @@ using RPG.Asset;
 
 public class App : MonoBehaviour
 {
-    public UnityAssetLibrary assetLibrary;
+    // public UnityAssetLibrary assetLibrary;
 
     private Contexts _contexts;
     private Systems _feature;
@@ -16,7 +16,9 @@ public class App : MonoBehaviour
 #if UNITY_EDITOR
         ContextObserverHelper.ObserveAll(_contexts);
 #endif
-        assetLibrary.GenerateGameEntityDictionary();
+        // assetLibrary.GenerateGameEntityDictionary();
+
+        // GameContext.CreatePlayerEntity();
     }
 
     private void Start()
@@ -27,7 +29,10 @@ public class App : MonoBehaviour
         _feature = new FeatureExt("Game Features")
         #endif
         .Add(new AssetSystem())
-        .Add(new ViewSystem(_contexts));
+        .Add(new JoyStickInputSystem())
+        .Add(new MovementSystem())
+        .Add(new ViewSystem(_contexts))
+        .Add(new TransformSystem(_contexts));
         // .Add(new TestSceneFeature(_contexts, assetLibrary))
         // .Add(new ViewFeature(_contexts));
 
