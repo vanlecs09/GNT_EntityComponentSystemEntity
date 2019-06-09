@@ -1,0 +1,34 @@
+{
+  "Name": "c2",
+  "Context": "Game",
+  "Tags": null,
+  "Components": {
+    "Asset": {
+      "assetName": "Prefabs/Characters/Player"
+    },
+    "RPG.View.Transform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0,
+        "eulerAngles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    },
+    "RPG.View.View": {}
+  }
+}

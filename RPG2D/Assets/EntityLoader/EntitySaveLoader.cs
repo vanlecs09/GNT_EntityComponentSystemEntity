@@ -101,10 +101,20 @@ public partial class EntitySaveLoader
         {
             return nameOfComponent.Remove(nameOfComponent.Length - 9, 9);
         }
-
         return nameOfComponent;
     }
 
+
+    public string RemoveComponentSubfixWhenLoad(string nameOfComponent)
+    {
+        var arrNameSpace =  nameOfComponent.Split('.');
+        nameOfComponent = arrNameSpace[arrNameSpace.Length - 1];
+        if (nameOfComponent.EndsWith("Component"))
+        {
+            return nameOfComponent.Remove(nameOfComponent.Length - 9, 9);
+        }
+        return nameOfComponent;
+    }
     public bool IsFlagComponent(IComponent component)
     {
         return component.GetType().GetFields().Length == 0;
@@ -202,7 +212,7 @@ public partial class EntitySaveLoader
     public void SaveEntityTemplateToSingleFile(IEntity entity, string templateName)
     {
         var json = MakeEntityInfoJson(entity, Formatting.Indented, templateName);
-        var path = $"Assets/Resources/Game/EntityTemplate/SingleEntity/{templateName}.json";
+        var path = $"Assets/Game/Resources/EntityTemplate/SingleEntity/{templateName}.json";
 
         if (!File.Exists(path))
         {
@@ -252,18 +262,18 @@ public partial class EntitySaveLoader
         //deserialized componentValue is JObject. Jobject can be casted with dynamic (ToObject)
         foreach (KeyValuePair<string, dynamic> componentInfo in EntityTemplate.Components)
         {
-            var componentLookUpName = RemoveComponentSubfix(componentInfo.Key);
-
+            var componentLookUpName = RemoveComponentSubfixWhenLoad(componentInfo.Key);
+            var typeName = componentInfo.Key;
             // Contexts\
             var contextInfo = Contexts.Get<Game>().contextInfo;
             var componentNames = contextInfo.componentNames;
 
             if (!componentNames.Contains(componentLookUpName))
             {
-                throw new Exception($"{componentLookUpName} is not in GameComponentsLookup");
+                throw new Exception("{componentLookUpName} is not in GameComponentsLookup " + componentLookUpName);
             }
 
-            Type componentType = Type.GetType(componentLookUpName.AddComponentSuffix());
+            Type componentType = Type.GetType(typeName.AddComponentSuffix());
             var component = componentInfo.Value.ToObject(componentType);
             var componentLookUpIndex = contextInfo.componentNames.IndexOf(componentLookUpName);
             ((Entity)newEntity).AddComponent(componentLookUpIndex, component as IComponent);
@@ -283,16 +293,19 @@ public partial class EntitySaveLoader
                 {
                     continue;
                 }
-                var componentLookUpName = RemoveComponentSubfix(tagName);
+                 UnityEngine.Debug.Log("tagName " + tagName );
+                var componentLookUpName = RemoveComponentSubfixWhenLoad(tagName);
                 var contextInfo = Contexts.Get<Game>().contextInfo;
                 var componentNames = contextInfo.componentNames;
 
+               
+
                 if (!componentNames.Contains(componentLookUpName))
                 {
-                    throw new Exception("{componentLookUpName} is not in GameComponentsLookup");
+                    throw new Exception("{componentLookUpName} is not in GameComponentsLookup " + componentLookUpName);
                 }
 
-                Type componentType = Type.GetType(componentLookUpName.AddComponentSuffix());
+                Type componentType = Type.GetType(tagName.AddComponentSuffix());
                 var componentLookUpIndex = contextInfo.componentNames.IndexOf(componentLookUpName);
                 var tagComponent = Activator.CreateInstance(componentType);
 
