@@ -15,7 +15,6 @@ public class MovementSystem : IExecuteSystem
             var trans = e.Modify<TransformComponent>();
             var move = e.Get<MoveComponent>();
             trans.position += move.velocity * Time.deltaTime;
-            Debug.Log("position " + trans.position + " velocity " + move.velocity);
         }
     }
 }

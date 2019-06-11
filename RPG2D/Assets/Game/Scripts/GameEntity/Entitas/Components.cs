@@ -14,7 +14,7 @@ namespace RPG.GameEntity
     }
 
     [Game]
-    public class EnemyComponent: IComponent {
+    public class BotComponent: IComponent {
 
     }
 

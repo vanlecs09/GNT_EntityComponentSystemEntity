@@ -32,6 +32,7 @@ public class App : MonoBehaviour
         .Add(new JoyStickInputSystem())
         .Add(new MovementSystem())
         .Add(new ViewSystem(_contexts))
+        .Add(new FireSkilLSystem())
         .Add(new TransformSystem(_contexts));
         // .Add(new TestSceneFeature(_contexts, assetLibrary))
         // .Add(new ViewFeature(_contexts));

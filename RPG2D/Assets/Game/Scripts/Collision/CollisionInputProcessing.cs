@@ -13,7 +13,6 @@ public class CollisionInputProcessing : ReactiveSystem
     {
         foreach (var colliEntity in entities)
         {
-            Debug.Log("collision occur");
             colliEntity.Destroy();
         }
         

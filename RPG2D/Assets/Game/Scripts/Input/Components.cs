@@ -8,6 +8,5 @@ public class JoyStickInputComponent: IComponent
     public void Initialize(Vector2 joyStickDirection_)
     {
         this.joyStickDirection = joyStickDirection_;
-
     }
 }
