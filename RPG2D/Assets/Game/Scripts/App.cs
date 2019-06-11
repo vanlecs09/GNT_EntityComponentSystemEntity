@@ -28,11 +28,12 @@ public class App : MonoBehaviour
         #else
         _feature = new FeatureExt("Game Features")
         #endif
-        .Add(new AssetSystem())
+        .Add(new AssetSystem(_contexts))
         .Add(new JoyStickInputSystem())
         .Add(new MovementSystem())
         .Add(new ViewSystem(_contexts))
         .Add(new FireSkilLSystem())
+        .Add(new CollisionInputProcessingSystem())
         .Add(new TransformSystem(_contexts));
         // .Add(new TestSceneFeature(_contexts, assetLibrary))
         // .Add(new ViewFeature(_contexts));

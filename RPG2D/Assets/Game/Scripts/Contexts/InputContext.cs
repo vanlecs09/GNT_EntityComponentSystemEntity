@@ -9,10 +9,10 @@ public static class InputContext
         entity.AddComponent<JoyStickInputComponent>().Initialize(joyStickDirection);
     }
 
-    public static void CreateCollisionInputEntity(string name)
+    public static void CreateCollisionInputEntity(Entity from, Entity to)
     {
         Entity entity = Contexts.sharedInstance.GetContext<Input>().CreateEntity();
-        entity.AddComponent<CollisionInputComponent>().Initialize(null, null);
+        entity.AddComponent<CollisionInputComponent>().Initialize(from, to);
     }
 
     public static void CreateFireSkillEntity()

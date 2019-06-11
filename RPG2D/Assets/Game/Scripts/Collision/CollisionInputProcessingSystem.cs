@@ -1,10 +1,10 @@
 using Entitas;
 using System.Collections.Generic;
 using UnityEngine;
-public class CollisionInputProcessing : ReactiveSystem
+public class CollisionInputProcessingSystem : ReactiveSystem
 {
     Entity[] _collisionEntities;
-    public CollisionInputProcessing()
+    public CollisionInputProcessingSystem()
     {
         monitors += Context<Input>.AllOf<CollisionInputComponent>().OnAdded(Process);
     }
@@ -13,6 +13,7 @@ public class CollisionInputProcessing : ReactiveSystem
     {
         foreach (var colliEntity in entities)
         {
+            Debug.Log("colliison ");
             colliEntity.Destroy();
         }
         

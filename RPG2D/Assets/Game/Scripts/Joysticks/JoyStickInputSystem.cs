@@ -28,7 +28,6 @@ public class JoyStickInputSystem : ReactiveSystem
             {
                 dir.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
                 dir.direction.Normalize();
-                Debug.Log(dir.direction);
             }
         };
         e.Destroy();

@@ -12,7 +12,9 @@ public class CollisionReporter : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        // Debug.Log(other.gameObject.tag);
-        InputContext.CreateCollisionInputEntity(other.gameObject.tag);
+        Debug.Log("on collision enter");
+        var thisEntity = gameObject.GetEntityLink().entity;
+        var otherEntity = gameObject.GetEntityLink().entity;
+        InputContext.CreateCollisionInputEntity((Entity)thisEntity, (Entity)otherEntity);
     }
 }

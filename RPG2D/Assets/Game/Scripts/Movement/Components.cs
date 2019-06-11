@@ -13,3 +13,8 @@ public class MoveComponent : IComponent
         this.acceleration = acceleration_;
     }
 }
+
+public class MoveAroundTarget: IComponent
+{
+    
+}

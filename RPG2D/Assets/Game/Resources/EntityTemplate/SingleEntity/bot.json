@@ -1,0 +1,11 @@
+{
+  "Name": "bot",
+  "Context": "Game",
+  "Tags": "RPG.GameEntity.Bot,",
+  "Components": {
+    "Asset": {
+      "assetName": "Prefabs/Characters/Bot"
+    },
+    "RPG.View.View": {}
+  }
+}

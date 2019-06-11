@@ -31,7 +31,7 @@ public partial class EntitySaveLoader
         }
 
         var json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
-        var path = $"Assets/Resources/Game/EntityTemplate/SaveFile/{saveFileName}.json";
+        var path = $"Assets/Game/Resources/EntityTemplate/SaveFile/{saveFileName}.json";
 
         File.WriteAllText(path, json);
         Debug.WriteLine("SaveEntitiesInScene done!");
