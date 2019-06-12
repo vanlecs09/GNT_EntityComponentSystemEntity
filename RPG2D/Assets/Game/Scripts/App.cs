@@ -23,23 +23,22 @@ public class App : MonoBehaviour
 
     private void Start()
     {
+
+        // _feature =  new Feature("Systems")
         #if UNITY_EDITOR
         _feature = new FeatureObserverExt("Game Features")
         #else
         _feature = new FeatureExt("Game Features")
         #endif
-        .Add(new AssetSystem(_contexts))
-        .Add(new JoyStickInputSystem())
-        .Add(new MovementSystem())
-        .Add(new ViewSystem(_contexts))
-        .Add(new FireSkilLSystem())
-        .Add(new CollisionInputProcessingSystem())
-        .Add(new TransformSystem(_contexts));
-        // .Add(new TestSceneFeature(_contexts, assetLibrary))
-        // .Add(new ViewFeature(_contexts));
-
+       .Add(new TestFeature(_contexts));
         _feature.Initialize();
-        // GameContext.CreatePlayerEntity();
+
+        for(var i = 0; i < 10000 ;i++)
+        {
+            TestContext.CreateTestEntity1();
+            TestContext.CreateTestEntity2();
+            TestContext.CreateTestEntity3();
+        }
     }
 
     private void Update()
