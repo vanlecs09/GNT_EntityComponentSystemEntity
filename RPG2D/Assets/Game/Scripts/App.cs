@@ -30,15 +30,8 @@ public class App : MonoBehaviour
         #else
         _feature = new FeatureExt("Game Features")
         #endif
-       .Add(new TestFeature(_contexts));
+       .Add(new GameFeature(_contexts));
         _feature.Initialize();
-
-        for(var i = 0; i < 10000 ;i++)
-        {
-            TestContext.CreateTestEntity1();
-            TestContext.CreateTestEntity2();
-            TestContext.CreateTestEntity3();
-        }
     }
 
     private void Update()

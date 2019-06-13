@@ -15,8 +15,13 @@ public class GameHUBController: MonoBehaviour
         }
     }
 
+    public void SimpleSkill()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.SIMPLE);
+    }
+
     public void FireSkill()
     {
-        InputContext.CreateFireSkillEntity();
+        InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_SOULS);
     }
 }

@@ -14,7 +14,34 @@ public class MoveComponent : IComponent
     }
 }
 
-public class MoveAroundTarget: IComponent
+[Game]
+public class FollowTargetComponent: IComponent
 {
-    
+    public Entity targetEntity;
+    public Vector3 offset;
+
+    public void Initialize(Entity targetEntity_, Vector3 offset_)
+    {
+        this.targetEntity = targetEntity_;
+        this.offset = offset_;
+    }
+}
+
+[Game]
+public class FollowAroundTargetComponent: IComponent
+{
+    public Entity targetEntity;
+    public Vector3 offset;
+    public float spinSpeed;
+
+    public float currentAngle;
+
+    public void Initialize(Entity targetEntity_, Vector3 offset_, float spinSpeed_, float angle_)
+    {
+        this.targetEntity = targetEntity_;
+        this.offset = offset_;
+        this.spinSpeed = spinSpeed_;
+        this.currentAngle = angle_;
+        Debug.Log("current angle " + this.currentAngle);
+    }
 }
