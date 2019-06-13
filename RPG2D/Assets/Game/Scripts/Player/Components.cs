@@ -15,19 +15,6 @@ public class ManaComponent: IComponent
 }
 
 [Game]
-public class HealthComponent: IComponent
-{
-    public int minHP;
-    public int currentHP;
-}
-
-[Game]
-public class DamageComponent: IComponent
-{
-
-}
-
-[Game]
 public class DirectionComponent: IComponent
 {
     public Vector3 direction;

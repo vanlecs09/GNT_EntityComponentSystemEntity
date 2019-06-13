@@ -22,7 +22,7 @@ public static class GameContext
     public static void CreateCollisionEntity()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<CollisionComponent>();
+        // entity.AddComponent<CollisionComponent>();
     }
 
     public static void CreateSkillSimpleEntity(Vector3 position, Vector3 direction_)
@@ -32,6 +32,8 @@ public static class GameContext
         entity.AddComponent<SkillComponent>();
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero);
+        entity.AddComponent<CollisionEnterComponent>().Initialize();  
+        entity.AddComponent<DamageComponent>().Initialize(10);
     }
 
     public static void CreateSkillFireEntity(Entity targetEntity_, Vector3 offsetToTarget)
@@ -45,6 +47,7 @@ public static class GameContext
             entity.AddComponent<SkillFireComponent>();
             entity.AddComponent<FollowAroundTargetComponent>().Initialize(targetEntity_, new Vector3(1, 0, 1), 50.0f, 360.0f/numerEntity * i);
             entity.AddComponent<TransformComponent>().Initialize(targetPosition - offsetToTarget, new Vector3(1, 1, 1), Quaternion.identity);
+            entity.AddComponent<CollisionEnterComponent>().Initialize();        
         }
     }
 

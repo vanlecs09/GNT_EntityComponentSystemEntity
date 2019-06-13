@@ -6,6 +6,10 @@
     "Asset": {
       "assetName": "Prefabs/Characters/Bot"
     },
+    "Health": {
+      "currentHealth": 0.0,
+      "maxHealth": 0.0
+    },
     "RPG.View.View": {}
   }
 }

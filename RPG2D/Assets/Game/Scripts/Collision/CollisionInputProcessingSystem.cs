@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CollisionInputProcessingSystem : ReactiveSystem
 {
-    Entity[] _collisionEntities;
     public CollisionInputProcessingSystem()
     {
         monitors += Context<Input>.AllOf<CollisionInputComponent>().OnAdded(Process);
@@ -14,9 +13,15 @@ public class CollisionInputProcessingSystem : ReactiveSystem
         foreach (var colliEntity in entities)
         {
             Debug.Log("colliison ");
-            colliEntity.Destroy();
-        }
-        
+            var enitty1 = colliEntity.GetComponent<CollisionInputComponent>().from;
+            var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
+            var collisionEnter = enitty1.Modify<CollisionEnterComponent>();
+            if (collisionEnter != null)
+            {
+                collisionEnter.listColliEntity.Add(entity2);
+                colliEntity.Destroy();
+            }
 
+        }
     }
 }
