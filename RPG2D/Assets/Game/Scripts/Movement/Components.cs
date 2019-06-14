@@ -52,6 +52,5 @@ public class FollowAroundTargetComponent: IComponent
         this.offset = offset_;
         this.spinSpeed = spinSpeed_;
         this.currentAngle = angle_;
-        Debug.Log("current angle " + this.currentAngle);
     }
 }
