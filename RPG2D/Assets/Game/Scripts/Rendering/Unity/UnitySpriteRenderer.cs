@@ -21,5 +21,12 @@ namespace RPG.Rendering
         {
             throw new System.NotImplementedException();
         }
+
+        public SpriteRenderer SpriteRenderer {
+            get => _spriteRenderer;
+            set {
+                _spriteRenderer = value;
+            }
+        }
     }
 }

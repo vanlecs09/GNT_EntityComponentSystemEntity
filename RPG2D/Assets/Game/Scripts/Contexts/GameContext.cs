@@ -45,9 +45,10 @@ public static class GameContext
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
             entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1");
             entity.AddComponent<SkillFireComponent>();
-            entity.AddComponent<FollowAroundTargetComponent>().Initialize(targetEntity_, new Vector3(1, 0, 1), 50.0f, 360.0f/numerEntity * i);
+            entity.AddComponent<FollowAroundTargetComponent>().Initialize(targetEntity_, new Vector3(0.5f, 0, 0.5f), 50.0f, 360.0f/numerEntity * i);
             entity.AddComponent<TransformComponent>().Initialize(targetPosition - offsetToTarget, new Vector3(1, 1, 1), Quaternion.identity);
-            entity.AddComponent<CollisionEnterComponent>().Initialize();        
+            entity.AddComponent<CollisionEnterComponent>().Initialize();      
+            entity.AddComponent<DamageComponent>().Initialize(10);  
         }
     }
 

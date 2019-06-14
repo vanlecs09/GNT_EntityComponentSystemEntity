@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Entitas.Unity;
 using RPG.View;
+using RPG.Rendering;
 public class AssetSystem: ReactiveSystem
 {
     Context _gameContext;
@@ -28,7 +29,13 @@ public class AssetSystem: ReactiveSystem
                 var unityCompoenntCache = gameObject.GetComponent<UnityComponentsCache>();
                 if(unityCompoenntCache)
                 {
-                    
+                    // entity
+                    if(unityCompoenntCache.HasSpriteRenderer())
+                    {
+                        var spriteRendererComp = entity.Add<SpriteRendererComponent>();
+                        spriteRendererComp.spriteRenderer = unityCompoenntCache.GetSpriteRender();
+                        spriteRendererComp.color =  Color.white;
+                    }
                 }
             }
             else

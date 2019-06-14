@@ -4,11 +4,8 @@ using Entitas;
 
 public class CollisionReporter : MonoBehaviour
 {
-    Entity _entity;
     private void Start()
     {   
-       var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-       _entity = entity;
     }
     private void OnCollisionEnter(Collision other)
     {

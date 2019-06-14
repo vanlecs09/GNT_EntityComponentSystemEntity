@@ -28,6 +28,16 @@ public class FollowTargetComponent: IComponent
 }
 
 [Game]
+public class MoveToTargetComponent: IComponent
+{
+    public Entity targetEntity;
+    public void Initialize(Entity targetEntity_)
+    {
+        this.targetEntity = targetEntity_;
+    }
+}
+
+[Game]
 public class FollowAroundTargetComponent: IComponent
 {
     public Entity targetEntity;

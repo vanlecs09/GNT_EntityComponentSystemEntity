@@ -1,6 +1,8 @@
 using Entitas;
 using UnityEngine;
 using System.Collections.Generic;
+using RPG.Rendering;
+
 public class DamageSystem: ReactiveSystem
 {
     public DamageSystem()
@@ -19,7 +21,12 @@ public class DamageSystem: ReactiveSystem
                 Debug.Log(coliEntity);
                 if(coliEntity.GetComponent<HealthComponent>() != null)
                 {
-                    Debug.Log("damanage >>>> ");
+                    
+                    if(coliEntity.GetComponent<SpriteRendererComponent>() != null)
+                    {
+                        coliEntity.Get<SpriteRendererComponent>().ActionDamange();
+                    }
+                        
                 }   
             }
         }

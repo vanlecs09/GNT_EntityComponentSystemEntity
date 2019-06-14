@@ -3,10 +3,6 @@ using UnityEngine;
 using RPG.View;
 public class MovementSystem : IExecuteSystem
 {
-
-    public MovementSystem()
-    {
-    }
     public void Execute()
     {
         var entities = Context<Game>.AllOf<TransformComponent, MoveComponent>().GetEntities();
