@@ -23,27 +23,27 @@ namespace RPG.GameEntity
         public int value;
     }
 
-    // [Game]
-    // public class HeathComponent: IComponent {
-    //     public float maxHealthPoint;
-    //     public float healthPoint;
+    [Game]
+    public class HeathComponent: IComponent {
+        public float maxHealthPoint;
+        public float healthPoint;
 
-    //     public void Initialize (float maxHP) {
-    //         maxHealthPoint = maxHP;
-    //         healthPoint = maxHP;
-    //     }
+        public void Initialize (float maxHP) {
+            maxHealthPoint = maxHP;
+            healthPoint = maxHP;
+        }
 
-    //     public void SetMaxHealthPoint (float maxHP) {
-    //         maxHealthPoint = maxHP;
-    //         healthPoint = Mathf.Min(maxHP, healthPoint);
-    //     }
+        public void SetMaxHealthPoint (float maxHP) {
+            maxHealthPoint = maxHP;
+            healthPoint = Mathf.Min(maxHP, healthPoint);
+        }
 
-    //     public void TakeDamage (float value) {
-    //         healthPoint = Mathf.Max(0f, healthPoint - value);
-    //     }
+        public void TakeDamage (float value) {
+            healthPoint = Mathf.Max(0f, healthPoint - value);
+        }
 
-    //     public void Heal (float value) {
-    //         healthPoint = Mathf.Min(maxHealthPoint, healthPoint + value);
-    //     }
-    // }
+        public void Heal (float value) {
+            healthPoint = Mathf.Min(maxHealthPoint, healthPoint + value);
+        }
+    }
 }

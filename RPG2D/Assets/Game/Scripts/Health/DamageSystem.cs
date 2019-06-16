@@ -3,32 +3,29 @@ using UnityEngine;
 using System.Collections.Generic;
 using RPG.Rendering;
 
-public class DamageSystem: ReactiveSystem
+public class DamageSystem : ReactiveSystem
 {
     public DamageSystem()
     {
-        monitors += Context<Game>.AllOf<DamageComponent, CollisionEnterComponent>().OnAdded(Process);
+        monitors += Context<Game>.AllOf<DamageComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
         foreach (var entity in entities)
         {
-            var listColliEnity = entity.GetComponent<CollisionEnterComponent>().listColliEntity;
-            foreach(var coliEntity in listColliEnity)
+            var listTargetEntities = entity.GetComponent<DamageComponent>().listEntityTarget;
+            foreach (var targetEntity in listTargetEntities)
             {
-                Debug.Log("damanage 1 ");
-                Debug.Log(coliEntity);
-                if(coliEntity.GetComponent<HealthComponent>() != null)
+                Debug.Log(targetEntity);
+                if (targetEntity.GetComponent<HealthComponent>() != null && targetEntity.GetComponent<SpriteRendererComponent>() != null)
                 {
-                    
-                    if(coliEntity.GetComponent<SpriteRendererComponent>() != null)
-                    {
-                        coliEntity.Get<SpriteRendererComponent>().ActionDamange();
-                    }
-                        
-                }   
+                    targetEntity.Get<SpriteRendererComponent>().ActionDamange();
+
+                }
             }
+
+            listTargetEntities.Clear();
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 651577405133255373}
   - component: {fileID: 651577405133255372}
   - component: {fileID: 651577405133255362}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spelunker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 8736209987187118974}
   - component: {fileID: 5130753640876917911}
   - component: {fileID: 3141680525029222214}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,5 +1,6 @@
 using Entitas;
-
+using System.Collections.Generic;
+using Newtonsoft.Json;
 [Game]
 public class HealthComponent : IComponent
 {
@@ -11,9 +12,11 @@ public class HealthComponent : IComponent
 public class DamageComponent : IComponent
 {
     public float damage;
-    // public Entity applyEntity;
+    [JsonIgnore]
+    public List<Entity> listEntityTarget;
     public void Initialize(float damage_)
     {
         this.damage = damage_;
+        listEntityTarget = new List<Entity>();
     }
 }

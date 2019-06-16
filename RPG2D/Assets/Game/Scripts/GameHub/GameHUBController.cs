@@ -1,15 +1,16 @@
 using UnityEngine;
 using Entitas;
 
-public class GameHUBController: MonoBehaviour
+public class GameHUBController : MonoBehaviour
 {
     void Start()
     {
 
     }
 
-    private void Update() {
-        if(UnityEngine.Input.GetKeyDown(KeyCode.F))
+    private void Update()
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.F))
         {
             FireSkill();
         }
@@ -23,5 +24,10 @@ public class GameHUBController: MonoBehaviour
     public void FireSkill()
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_SOULS);
+    }
+
+    public void SkillFireBome()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_BOMB);
     }
 }

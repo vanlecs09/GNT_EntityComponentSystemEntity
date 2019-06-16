@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651577405133255373}
   - component: {fileID: 651577405133255372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spelunker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6632066200173905101}
   - component: {fileID: 5244119434306510748}
   - component: {fileID: 8033531121325488747}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skill_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

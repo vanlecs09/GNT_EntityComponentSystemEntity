@@ -20,12 +20,13 @@ FeatureExt
         .Add(new FollowAroundTargetSystem())
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
-        .Add(new SkillFireSoulSystem())
+        .Add(new SkillFireSoulsSystem())
+        .Add(new SkillFireBombSystem())
         .Add(new CollisionInputProcessingSystem())
 
         .Add(new DamageSystem())
 
-        .Add(new CollisionCleanUpSystem())
+        // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))
         .Add(new TransformSystem(contexts));
     }

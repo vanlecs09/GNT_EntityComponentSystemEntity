@@ -12,16 +12,19 @@ public class CollisionInputProcessingSystem : ReactiveSystem
     {
         foreach (var colliEntity in entities)
         {
-            Debug.Log("colliison ");
             var enitty1 = colliEntity.GetComponent<CollisionInputComponent>().from;
             var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
-            var collisionEnter = enitty1.Modify<CollisionEnterComponent>();
-            if (collisionEnter != null)
+            if (enitty1.HasComponent<DamageComponent>())
             {
-                collisionEnter.listColliEntity.Add(entity2);
-                colliEntity.Destroy();
+                var damange = enitty1.Modify<DamageComponent>();
+                damange.listEntityTarget.Add(entity2);
             }
 
+            if(enitty1.HasComponent<SkillFireBombComponent>())
+            {
+                var skillFireBomb = enitty1.Modify<SkillFireBombComponent>();
+                skillFireBomb.isTrigger = true;
+            }
         }
     }
 }

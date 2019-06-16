@@ -1,5 +1,6 @@
 using Entitas;
 using UnityEngine;
+using Newtonsoft.Json;
 
 [Game]
 public class MoveComponent : IComponent
@@ -40,6 +41,7 @@ public class MoveToTargetComponent: IComponent
 [Game]
 public class FollowAroundTargetComponent: IComponent
 {
+    [JsonIgnore]
     public Entity targetEntity;
     public Vector3 offset;
     public float spinSpeed;

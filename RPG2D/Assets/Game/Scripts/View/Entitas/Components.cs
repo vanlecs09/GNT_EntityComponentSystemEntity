@@ -1,6 +1,5 @@
 using UnityEngine;
 using Entitas;
-using Entitas.Unity;
 using System;
 
 namespace RPG.View

@@ -1,5 +1,6 @@
 using Entitas;
 using System.Collections.Generic;
+
 [Input]
 public class CollisionInputComponent: IComponent
 {
@@ -21,5 +22,15 @@ public class CollisionEnterComponent: IComponent
     public void Initialize()
     {
         listColliEntity = new List<Entity>();
+    }
+}
+
+[Game]
+public class CollisionTriggerComponent: IComponent
+{
+    public List<int> a;
+    public void Initialize()
+    {
+        a = new List<int>();
     }
 }

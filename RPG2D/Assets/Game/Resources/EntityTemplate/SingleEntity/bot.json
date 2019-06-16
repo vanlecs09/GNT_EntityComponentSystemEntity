@@ -10,6 +10,10 @@
       "currentHealth": 0.0,
       "maxHealth": 0.0
     },
+    "RPG.GameEntity.Heath": {
+      "maxHealthPoint": 0.0,
+      "healthPoint": 0.0
+    },
     "RPG.Rendering.SpriteRenderer": {
       "color": {
         "r": 1.0,

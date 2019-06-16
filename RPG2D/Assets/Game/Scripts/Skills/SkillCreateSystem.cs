@@ -27,7 +27,12 @@ public class SkillCreateSystem : ReactiveSystem
                     }
                 case SKILL_TYPE.FIRE_SOULS:
                     {
-                        GameContext.CreateSkillFireEntity(playerEntity, new Vector3(2, 0, 2));
+                        GameContext.CreateSkillFireSoulsEntity(playerEntity, new Vector3(1, 0, 1));
+                        break;
+                    }
+                case SKILL_TYPE.FIRE_BOMB:
+                    {
+                        GameContext.CreateSkillFireBombEntity(playerPos, playerDir);
                         break;
                     }
             }

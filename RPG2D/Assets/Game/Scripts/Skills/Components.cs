@@ -5,7 +5,7 @@ public enum SKILL_TYPE
 {
     SIMPLE,
     FIRE_SOULS,
-    FIRE_BURN,
+    FIRE_BOMB,
 }
 
 [Game, Input]
@@ -19,28 +19,43 @@ public class SkillComponent: IComponent
     }
 }
 
-[Game, Input]
-public class SkillFireComponent: IComponent
+public class SimpleSKill: IComponent
 {
+
 }
 
-[Game]
-public class RadiusAffectComponent: IComponent // after explode
+[Game, Input]
+public class SkillFireSoulsComponent: IComponent
 {
     public float radius;
+    public void Initialize(float radius_)
+    {
+        this.radius = radius_;
+    }
 }
+
+[Game, Input]
+public class SkillFireBombComponent: IComponent
+{
+    public float radius;
+    public bool isTrigger;
+    public void Initialize(float radius_)
+    {
+        this.radius = radius_;
+        this.isTrigger = false;
+    }
+}
+
 
 [Game]
-public class TargetEffectComponent: IComponent // who is affected by skill
+public class ActiveComponent: IComponent
 {
-    public List<IComponent> targetList; 
+    public bool active;
+     public void Initialize(bool active_)
+    {
+        this.active = active_;
+    }
 }
-
-public class IntervalComponent: IComponent
-{
-
-}
-
 
 
 
