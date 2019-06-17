@@ -20,7 +20,7 @@ FeatureExt
         .Add(new FollowAroundTargetSystem())
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
-        .Add(new SkillFireSoulsSystem())
+        .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new SkillFireBombSystem())
         .Add(new CollisionInputProcessingSystem())
 

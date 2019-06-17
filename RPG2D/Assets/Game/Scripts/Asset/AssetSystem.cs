@@ -17,7 +17,7 @@ public class AssetSystem: ReactiveSystem
     {
         foreach (var entity in entities)
         {
-            var assetName = entity.Get<AssetComponent>().assetName;
+            var assetName = entity.GetComponent<AssetComponent>().assetName;
             var assetObject = Resources.Load<GameObject>(assetName);
             
             if(assetObject != null)
@@ -25,11 +25,9 @@ public class AssetSystem: ReactiveSystem
                 var gameObject = GameObject.Instantiate(assetObject);
                 gameObject.Link(entity, _gameContext);
                 entity.Add<ViewComponent>().transform = new UnityTransform(gameObject.transform);
-                // entity.li
                 var unityCompoenntCache = gameObject.GetComponent<UnityComponentsCache>();
                 if(unityCompoenntCache)
                 {
-                    // entity
                     if(unityCompoenntCache.HasSpriteRenderer())
                     {
                         var spriteRendererComp = entity.Add<SpriteRendererComponent>();

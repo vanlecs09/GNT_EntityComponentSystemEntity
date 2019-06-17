@@ -6,7 +6,7 @@ public class SkillFireBombSystem : ReactiveSystem
 {
     public SkillFireBombSystem()
     {
-        monitors += Context<Game>.AnyOf<SkillFireBombComponent, CollisionEnterComponent, DamageComponent>().OnAdded(Process);
+        monitors += Context<Game>.AnyOf<TriggerComponent, DamageComponent, InRadiusRangeComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
@@ -14,16 +14,20 @@ public class SkillFireBombSystem : ReactiveSystem
         var botEntities = Context<Game>.AllOf<BotComponent, TransformComponent>().GetEntities();
         foreach (var skillEntity in entities)
         {
-            if(skillEntity.GetComponent<SkillFireBombComponent>().isTrigger == false) 
+            if (!skillEntity.HasComponent<TriggerComponent>() || !skillEntity.HasComponent<DamageComponent>() || !skillEntity.HasComponent<InRadiusRangeComponent>())
+            {
+
+            }
+            else if (skillEntity.HasComponent<TriggerComponent>() && skillEntity.GetComponent<TriggerComponent>().isTrigger == false)
             {
 
             }
             else
             {
                 var skillPos = skillEntity.GetComponent<TransformComponent>().position;
-                var skillFireBomb = skillEntity.GetComponent<SkillFireBombComponent>();
+                var skillFireBomb = skillEntity.GetComponent<TriggerComponent>();
                 var damage = skillEntity.GetComponent<DamageComponent>();
-                var radius = skillFireBomb.radius;
+                var radius = skillEntity.GetComponent<InRadiusRangeComponent>().radius;
                 foreach (var botEntity in botEntities)
                 {
                     var botPos = botEntity.Get<TransformComponent>().position;
@@ -32,7 +36,7 @@ public class SkillFireBombSystem : ReactiveSystem
                         if (!damage.listEntityTarget.Contains(botEntity))
                             damage.listEntityTarget.Add(botEntity);
                     }
-                    
+
                 }
                 skillEntity.Destroy();
             }

@@ -20,9 +20,9 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                 damange.listEntityTarget.Add(entity2);
             }
 
-            if(enitty1.HasComponent<SkillFireBombComponent>())
+            if(enitty1.HasComponent<TriggerComponent>())
             {
-                var skillFireBomb = enitty1.Modify<SkillFireBombComponent>();
+                var skillFireBomb = enitty1.Modify<TriggerComponent>();
                 skillFireBomb.isTrigger = true;
             }
         }

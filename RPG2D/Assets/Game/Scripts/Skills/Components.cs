@@ -25,7 +25,7 @@ public class SimpleSKill: IComponent
 }
 
 [Game, Input]
-public class SkillFireSoulsComponent: IComponent
+public class InRadiusRangeComponent: IComponent
 {
     public float radius;
     public void Initialize(float radius_)
@@ -35,13 +35,11 @@ public class SkillFireSoulsComponent: IComponent
 }
 
 [Game, Input]
-public class SkillFireBombComponent: IComponent
+public class TriggerComponent: IComponent
 {
-    public float radius;
     public bool isTrigger;
-    public void Initialize(float radius_)
+    public void Initialize()
     {
-        this.radius = radius_;
         this.isTrigger = false;
     }
 }

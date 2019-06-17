@@ -28,17 +28,20 @@ public static class GameContext
         entity.AddComponent<DamageComponent>().Initialize(10);
     }
 
-    public static void CreateSkillFireSoulsEntity(Entity targetEntity_, Vector3 offsetToTarget)
+    public static void CreateSkillFireSoulsEntity(Entity targetEntity_, Vector3 offsetToTarget_)
     {
         var numerEntity = 3;
         for (var i = 0; i < numerEntity; i++)
         {
-            var targetPosition = targetEntity_.GetComponent<TransformComponent>().position;
+            Debug.Log("create eneity");
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
             entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1");
-            entity.AddComponent<SkillFireSoulsComponent>().Initialize(3.0f);
-            entity.AddComponent<FollowAroundTargetComponent>().Initialize(targetEntity_, new Vector3(0.5f, 0, 0.5f), 50.0f, 360.0f/numerEntity * i);
-            entity.AddComponent<TransformComponent>().Initialize(targetPosition - offsetToTarget, new Vector3(1, 1, 1), Quaternion.identity);  
+            entity.AddComponent<InRadiusRangeComponent>().Initialize(3.0f);
+            FollowAroundTargetComponent followAround = entity.AddComponent<FollowAroundTargetComponent>();
+            followAround.Initialize(targetEntity_, offsetToTarget_, 50.0f, 360.0f/numerEntity * i);
+            var direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * followAround.currentAngle), 0, Mathf.Cos(Mathf.Deg2Rad * followAround.currentAngle));
+            var targetPos = targetEntity_.Get<TransformComponent>().position;
+            entity.AddComponent<TransformComponent>().Initialize(targetPos - offsetToTarget_.magnitude * direction.normalized, new Vector3(1, 1, 1), Quaternion.identity);  
             entity.AddComponent<DamageComponent>().Initialize(10);  
         }
     }
@@ -47,7 +50,8 @@ public static class GameContext
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1");
-        entity.AddComponent<SkillFireBombComponent>().Initialize(3);
+        entity.AddComponent<TriggerComponent>().Initialize();
+        entity.AddComponent<InRadiusRangeComponent>().Initialize(3.0f);
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 1, Vector3.zero);
         entity.AddComponent<DamageComponent>().Initialize(10);
