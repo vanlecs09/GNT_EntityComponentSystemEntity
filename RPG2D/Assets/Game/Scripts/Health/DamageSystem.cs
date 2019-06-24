@@ -1,5 +1,4 @@
 using Entitas;
-using UnityEngine;
 using System.Collections.Generic;
 using RPG.Rendering;
 
@@ -17,15 +16,18 @@ public class DamageSystem : ReactiveSystem
             var listTargetEntities = entity.GetComponent<DamageComponent>().listEntityTarget;
             foreach (var targetEntity in listTargetEntities)
             {
-                Debug.Log(targetEntity);
-                if (targetEntity.GetComponent<HealthComponent>() != null && targetEntity.GetComponent<SpriteRendererComponent>() != null)
+                if (targetEntity.Has<HealthComponent>())
                 {
-                    targetEntity.Get<SpriteRendererComponent>().ActionDamange();
-
+                    if (targetEntity.Has<SpriteRendererComponent>())
+                    {
+                        targetEntity.Get<SpriteRendererComponent>().ActionDamange();
+                    }
+                    var health = targetEntity.Modify<HealthComponent>();
+                    health.current -= 20;
                 }
             }
-
             listTargetEntities.Clear();
+
         }
     }
 }

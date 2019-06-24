@@ -1,6 +1,6 @@
 using UnityEngine;
 using RPG.View;
-
+using Entitas.Unity;
 namespace RPG.View
 {
     public class UnityTransform: ITransform {
@@ -26,6 +26,7 @@ namespace RPG.View
         }
 
         public void Destroy() {
+            _transform.gameObject.Unlink();
             GameObject.Destroy(_transform.gameObject);
         }
     }

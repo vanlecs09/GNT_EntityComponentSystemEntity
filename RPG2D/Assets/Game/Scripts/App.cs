@@ -1,8 +1,6 @@
 using UnityEngine;
 using Entitas;
 using Entitas.VisualDebugging.Unity;
-using RPG.View;
-using RPG.Asset;
 
 public class App : MonoBehaviour
 {
@@ -21,14 +19,10 @@ public class App : MonoBehaviour
 
     private void Awake()
     {
-        // 
         _contexts = Contexts.sharedInstance;
 #if UNITY_EDITOR
         ContextObserverHelper.ObserveAll(_contexts);
 #endif
-        // assetLibrary.GenerateGameEntityDictionary();
-
-        // GameContext.CreatePlayerEntity();
     }
 
     private void Start()
@@ -55,7 +49,6 @@ public class App : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("delta time"  + Time.deltaTime);   
         _feature.Execute();
         _feature.Cleanup();
     }

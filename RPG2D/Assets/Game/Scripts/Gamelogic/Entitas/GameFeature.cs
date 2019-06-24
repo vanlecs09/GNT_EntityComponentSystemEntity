@@ -1,6 +1,5 @@
 using Entitas;
 using Entitas.VisualDebugging.Unity;
-using RPG.Asset;
 using RPG.View;
 using RPG.Rendering;
 public class GameFeature :
@@ -13,23 +12,28 @@ FeatureExt
     public GameFeature(Contexts contexts) : base("GameFeature")
     {
         Add(new AssetSystem(contexts))
-        .Add(new InitializeLevelSystem())
+        // .Add(new InitializeLevelSystem())
         .Add(new JoyStickInputSystem())
+        
         .Add(new MovementSystem())
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
+        .Add(new LeaveOwnerToFollowTargetSystem())
+
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
-        .Add(new LeaveOwnerToFollowTargetSystem())
+        
         .Add(new SkillFireBombSystem())
         .Add(new CollisionInputProcessingSystem())
 
         .Add(new DamageSystem())
+        .Add(new HealthSystem())
 
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))
-        .Add(new TransformSystem(contexts));
+        .Add(new TransformSystem(contexts))
+        .Add(new DestroySystem());
         // .Add(new CameraSystem());
     }
-}
+}   

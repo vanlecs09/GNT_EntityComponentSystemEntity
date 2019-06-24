@@ -1,11 +1,23 @@
 using Entitas;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 [Game]
 public class HealthComponent : IComponent
 {
-    public float currentHealth;
-    public float maxHealth;
+    [JsonIgnore, NonSerialized]
+    public ISlider Slider;
+    public float current;
+    public float max;
+}
+
+[Game]
+public class ManaCoponent : IComponent
+{
+    [JsonIgnore, NonSerialized]
+    public ISlider Slider;
+    public float current;
+    public float max;
 }
 
 [Game, Input]

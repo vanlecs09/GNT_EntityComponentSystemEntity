@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using RPG.View;
 public class SkillCreateSystem : ReactiveSystem
 {
+
+    List<IComponent> _playerTarget;
     public SkillCreateSystem()
     {
         monitors += Context<Input>.AllOf<SkillComponent>().OnAdded(Process);
+        _playerTarget = new List<IComponent>();
+        _playerTarget.Add(new BotComponent());
     }
 
     protected void Process(List<Entity> entities)

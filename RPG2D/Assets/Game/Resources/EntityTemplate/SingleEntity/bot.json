@@ -7,12 +7,8 @@
       "assetName": "Prefabs/Characters/Bot"
     },
     "Health": {
-      "currentHealth": 0.0,
-      "maxHealth": 0.0
-    },
-    "RPG.GameEntity.Heath": {
-      "maxHealthPoint": 0.0,
-      "healthPoint": 0.0
+      "current": 100.0,
+      "max": 100.0
     },
     "RPG.Rendering.SpriteRenderer": {
       "color": {
