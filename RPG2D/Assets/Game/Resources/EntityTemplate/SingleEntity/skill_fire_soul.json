@@ -1,0 +1,49 @@
+{
+  "Name": "skill_fire_soul",
+  "Context": "Game",
+  "Tags": "SkillFire,",
+  "Components": {
+    "Asset": {
+      "assetName": "Prefabs/Skills/Skill_1"
+    },
+    "CollisionTrigger": {
+      "a": []
+    },
+    "Damage": {
+      "damage": 10.0
+    },
+    "FollowAroundTarget": {
+      "offset": {
+        "x": 0.5,
+        "y": 0.0,
+        "z": 0.5
+      },
+      "spinSpeed": 50.0,
+      "currentAngle": 431.440674
+    },
+    "RPG.View.Transform": {
+      "position": {
+        "x": 0.331884146,
+        "y": 0.0,
+        "z": 0.369545937
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0,
+        "eulerAngles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    },
+    "RPG.View.View": {}
+  }
+}

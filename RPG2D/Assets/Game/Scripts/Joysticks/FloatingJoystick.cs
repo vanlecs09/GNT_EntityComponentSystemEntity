@@ -30,11 +30,7 @@ public class FloatingJoystick : Joystick
     {
         if (dirtyFlag)
         {
-            // Debug.Log(Horizontal);
-            // Debug.Log(Vertical);
              InputContext.CreateJoyStickEntity(new Vector2(Horizontal, Vertical));
-            // Contexts.sharedInstance.GetContext<Input>().CreateJoyStickEntity(new Vector2(Horizontal, Vertical));
-            // InputContext.CreateJoyStickEntity(new Vector2(Horizontal, Vertical));
         }
 
     }

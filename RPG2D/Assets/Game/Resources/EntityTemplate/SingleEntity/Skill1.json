@@ -1,0 +1,46 @@
+{
+  "Name": "Skill1",
+  "Context": "Game",
+  "Tags": "Skill,",
+  "Components": {
+    "Asset": {
+      "assetName": "Prefabs/Skills/Skill_1"
+    },
+    "Move": {
+      "velocity": {
+        "x": -4.799821,
+        "y": 0.0,
+        "z": -8.772782
+      },
+      "acceleration": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "RPG.View.Transform": {
+      "position": {
+        "x": -229.933777,
+        "y": 0.0,
+        "z": -419.3178
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0,
+        "eulerAngles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    },
+    "RPG.View.View": {}
+  }
+}

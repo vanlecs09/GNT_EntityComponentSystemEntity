@@ -1,0 +1,109 @@
+{
+  "EntityInfos": [
+    {
+      "Name": null,
+      "Context": "Game",
+      "Tags": "Player,SavingData,",
+      "Components": {
+        "Asset": {
+          "assetName": "Prefabs/Characters/Player"
+        },
+        "Direction": {
+          "direction": {
+            "x": 0.6470903,
+            "y": 0.0,
+            "z": -0.762413263
+          }
+        },
+        "Move": {
+          "velocity": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "acceleration": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "RPG.View.Transform": {
+          "position": {
+            "x": 1.00221753,
+            "y": 0.0,
+            "z": 0.5946084
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          }
+        },
+        "RPG.View.View": {}
+      }
+    },
+    {
+      "Name": null,
+      "Context": "Game",
+      "Tags": "RPG.GameEntity.Bot,SavingData,",
+      "Components": {
+        "Asset": {
+          "assetName": "Prefabs/Characters/Bot"
+        },
+        "Health": {
+          "currentHealth": 0.0,
+          "maxHealth": 0.0
+        },
+        "RPG.GameEntity.Heath": {
+          "maxHealthPoint": 0.0,
+          "healthPoint": 0.0
+        },
+        "RPG.Rendering.SpriteRenderer": {
+          "color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0,
+            "grayscale": 1.0,
+            "maxColorComponent": 1.0
+          }
+        },
+        "RPG.View.Transform": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0,
+            "eulerAngles": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          }
+        },
+        "RPG.View.View": {}
+      }
+    }
+  ]
+}

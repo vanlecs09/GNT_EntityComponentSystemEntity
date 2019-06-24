@@ -11,6 +11,7 @@ FeatureExt
 {
     public TestSceneFeature (Contexts contexts, IAssetLibrary assetLibrary): base("TestScene")
     {
-        Add(new TestSceneInitSystem(contexts, assetLibrary));
+        Add(new TestSceneInitSystem(contexts, assetLibrary))
+        .Add(new GameFeature(contexts));
     }
 }

@@ -6,8 +6,10 @@ using System.Collections.Generic;
 namespace RPG.View
 {
     // [ViewFeatureAttribute]
-    public class TransformSystem: ReactiveSystem {
-        public TransformSystem (Contexts contexts) {
+    public class TransformSystem : ReactiveSystem
+    {
+        public TransformSystem(Contexts contexts)
+        {
             monitors += Context<Game>.AllOf<TransformComponent>().OnAdded(Execute).Where(Filter);
         }
 
@@ -22,11 +24,14 @@ namespace RPG.View
             ITransform tf = null;
             foreach (var e in entities)
             {
-                tf = e.Get<ViewComponent>().transform;
-                tfc = e.Get<TransformComponent>();
-                tf.Position = tfc.position;
-                tf.Rotation = tfc.rotation;
-                tf.Scale = tfc.scale;
+                if (e.HasComponent<TransformComponent>() && e.HasComponent<ViewComponent>())
+                {
+                    tf = e.Get<ViewComponent>().transform;
+                    tfc = e.Get<TransformComponent>();
+                    tf.Position = tfc.position;
+                    tf.Rotation = tfc.rotation;
+                    tf.Scale = tfc.scale;
+                }
             }
         }
     }

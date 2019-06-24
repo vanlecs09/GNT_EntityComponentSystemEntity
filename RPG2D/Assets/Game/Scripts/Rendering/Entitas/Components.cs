@@ -1,15 +1,17 @@
 using Entitas;
 using UnityEngine;
 using System;
+using Newtonsoft.Json;
+using DG.Tweening;
 
 namespace RPG.Rendering
 {
     [Game]
     public class SpriteRendererComponent : IComponent
     {
-        // [NonSerialized]
+        [JsonIgnore]
         public ISpriteRenderer spriteRenderer;
-        // [NonSerialized]
+        [JsonIgnore]
         public ISprite sprite;
         public Color color;
 
@@ -28,6 +30,14 @@ namespace RPG.Rendering
             var color = spriteRenderer.Color;
             color.a = alpha;
             spriteRenderer.Color = color;
+        }
+
+        public void ActionDamange()
+        {
+            Sequence mySequence = DOTween.Sequence();
+            mySequence.Append(spriteRenderer.SpriteRenderer.DOColor(Color.red, 0.4f))
+            .Append(spriteRenderer.SpriteRenderer.DOColor(Color.white, 0.4f));
+
         }
     }
 

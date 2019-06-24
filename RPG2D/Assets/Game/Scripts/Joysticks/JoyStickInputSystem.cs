@@ -16,17 +16,20 @@ public class JoyStickInputSystem : ReactiveSystem
         var e = entities[0];
         var input = e.Get<JoyStickInputComponent>();
         _players = Context<Game>.AllOf<PlayerComponent>().GetEntities();
+        var joyStickDirection = input.joyStickDirection;
         foreach (var player in _players)
         {
-            Debug.Log("modifire");
-            player.ReplaceNewComponent<MoveComponent>().Initiazlize(new Vector3(input.joyStickDirection.x * 10, input.joyStickDirection.y * 10, 0), Vector3.zero);
-        }
+            var move = player.Modify<MoveComponent>();
+            move.velocity = new Vector3(joyStickDirection.x, 0 , joyStickDirection.y);
+            move.acceleration = Vector3.zero;
 
-        // Debug.Log(
-        //     "Entity" + e.creationIndex + ": input joystick direction =" + input.joyStickDirection);
-
+            var dir = player.Modify<DirectionComponent>();
+            if(joyStickDirection.x != 0 && joyStickDirection.y != 0)
+            {
+                dir.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
+                dir.direction.Normalize();
+            }
+        };
         e.Destroy();
-
-
     }
 }
