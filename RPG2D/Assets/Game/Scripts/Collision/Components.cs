@@ -14,6 +14,7 @@ public class CollisionInputComponent: IComponent
     }
 }
 
+
 [Game]
 
 public class CollisionEnterComponent: IComponent

@@ -10,6 +10,7 @@ public class CollisionInputProcessingSystem : ReactiveSystem
 
     protected void Process(List<Entity> entities)
     {
+        Debug.Log("colliison");
         foreach (var colliEntity in entities)
         {
             var enitty1 = colliEntity.GetComponent<CollisionInputComponent>().from;

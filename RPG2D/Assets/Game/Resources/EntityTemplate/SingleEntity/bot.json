@@ -4,7 +4,8 @@
   "Tags": "RPG.GameEntity.Bot,",
   "Components": {
     "Asset": {
-      "assetName": "Prefabs/Characters/Bot"
+      "assetName": "Prefabs/Characters/Bot",
+      "layerMask": -1
     },
     "Health": {
       "current": 100.0,
@@ -43,6 +44,18 @@
         }
       }
     },
-    "RPG.View.View": {}
+    "RPG.View.View": {},
+    "RandomMove": {
+      "velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -1.0
+      },
+      "acceleration": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
   }
 }

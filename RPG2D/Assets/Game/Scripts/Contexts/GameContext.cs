@@ -22,8 +22,7 @@ public static class GameContext
     public static void CreateSkillSimpleEntity(Vector3 position, Vector3 direction_)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSKill"));
-        entity.AddComponent<SkillComponent>();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero);
         entity.AddComponent<DamageComponent>().Initialize(10);
@@ -35,7 +34,7 @@ public static class GameContext
         for (var i = 0; i < numerEntity; i++)
         {
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSKill"));
+            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
             entity.AddComponent<InRadiusRangeComponent>().Initialize(3.0f);
             FollowAroundTargetComponent followAround = entity.AddComponent<FollowAroundTargetComponent>();
             followAround.Initialize(targetEntity_, offsetToTarget_, 50.0f, 360.0f/numerEntity * i);
@@ -49,9 +48,9 @@ public static class GameContext
     public static void CreateSkillFireBombEntity(Vector3 position_, Vector3 direction_)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSKill"));
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TriggerComponent>().Initialize();
-        entity.AddComponent<InRadiusRangeComponent>().Initialize(3.0f);
+        entity.AddComponent<InRadiusRangeComponent>().Initialize(5.0f);
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 1, Vector3.zero);
         entity.AddComponent<DamageComponent>().Initialize(10);

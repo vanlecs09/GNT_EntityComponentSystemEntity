@@ -20,6 +20,7 @@ FeatureExt
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
+        .Add(new RandomMoveSystem())
 
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())

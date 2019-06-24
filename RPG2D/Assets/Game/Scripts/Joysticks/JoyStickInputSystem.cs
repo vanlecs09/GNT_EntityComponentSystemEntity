@@ -24,9 +24,14 @@ public class JoyStickInputSystem : ReactiveSystem
             move.velocity = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
             move.acceleration = Vector3.zero;
 
-            var dir = player.Modify<DirectionComponent>();
-            dir.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
-            dir.direction.Normalize();
+
+            if (joyStickDirection.x != 0 && joyStickDirection.y != 0)
+            {
+                var dir = player.Modify<DirectionComponent>();
+                dir.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
+                dir.direction.Normalize();
+            }
+
         };
         e.Destroy();
     }
