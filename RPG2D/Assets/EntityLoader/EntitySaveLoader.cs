@@ -30,7 +30,10 @@ public partial class EntitySaveLoader
             saveData.EntityInfos.Add(MakeEntityInfo(savingEntity, null));
         }
 
-        var json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+        var json = JsonConvert.SerializeObject(saveData, Formatting.Indented, new JsonSerializerSettings()
+        {
+            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        });
         var path = $"Assets/Game/Resources/EntityTemplate/SaveFile/{saveFileName}.json";
 
         File.WriteAllText(path, json);

@@ -3,7 +3,7 @@ using Entitas.VisualDebugging.Unity;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
 public class EntityTemplateSaveLoadWindow : EditorWindow
 {
     private string _assetNameForSave = "";
@@ -95,3 +95,4 @@ public class EntityTemplateSaveLoadWindow : EditorWindow
         }
     }
 }
+#endif
