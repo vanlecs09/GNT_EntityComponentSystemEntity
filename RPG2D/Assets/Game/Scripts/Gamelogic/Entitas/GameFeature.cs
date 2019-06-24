@@ -13,6 +13,7 @@ FeatureExt
     public GameFeature(Contexts contexts) : base("GameFeature")
     {
         Add(new AssetSystem(contexts))
+        .Add(new InitializeLevelSystem())
         .Add(new JoyStickInputSystem())
         .Add(new MovementSystem())
         .Add(new MoveToTargetSystem())
@@ -29,5 +30,6 @@ FeatureExt
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))
         .Add(new TransformSystem(contexts));
+        // .Add(new CameraSystem());
     }
 }

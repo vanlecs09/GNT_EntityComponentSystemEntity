@@ -1,6 +1,7 @@
 using Entitas;
 using UnityEngine;
 using System;
+using Newtonsoft.Json;
 using DG.Tweening;
 
 namespace RPG.Rendering
@@ -8,9 +9,9 @@ namespace RPG.Rendering
     [Game]
     public class SpriteRendererComponent : IComponent
     {
-        [NonSerialized]
+        [JsonIgnore]
         public ISpriteRenderer spriteRenderer;
-        [NonSerialized]
+        [JsonIgnore]
         public ISprite sprite;
         public Color color;
 

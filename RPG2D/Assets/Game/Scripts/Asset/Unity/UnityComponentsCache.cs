@@ -21,7 +21,7 @@ public class UnityComponentsCache : MonoBehaviour
 
     public ISpriteRenderer GetSpriteRender()
     {
-        if(spriteRenderer != null)
+        if (spriteRenderer != null)
         {
             return new UnitySpriteRenderer(spriteRenderer);
         }

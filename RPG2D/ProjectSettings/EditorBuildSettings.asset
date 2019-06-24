@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Game/Scenes/van_test.unity
+    guid: 0c53f20af52c04c9db47b75fadd678ab
   m_configObjects: {}

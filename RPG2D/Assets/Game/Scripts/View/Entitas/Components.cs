@@ -25,7 +25,7 @@ namespace RPG.View
             this.rotation = rotation;
         }
     }
-    
+
     [Game]
     public class PositionComponent : IComponent
     {
@@ -42,5 +42,36 @@ namespace RPG.View
     public class ScaleComponent : IComponent
     {
         public Vector3 value;
+    }
+
+    public struct TransformData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 scale;
+
+        public TransformData(Vector3 position, Quaternion rotation, Vector3 scale)
+        {
+            this.position = position;
+            this.rotation = rotation;
+            this.scale = scale;
+        }
+    }
+
+
+    [Game]
+    public class InterpolateTransformComponent : IComponent
+    {
+        public TransformData[] m_lastTransforms;
+        public int m_newTransformIndex;
+
+        public void Initialize(TransformComponent transComponent)
+        {
+            m_lastTransforms = new TransformData[2];
+            TransformData t = new TransformData(transComponent.position, transComponent.rotation, transComponent.scale);
+            m_lastTransforms[0] = t;
+            m_lastTransforms[1] = t;
+            m_newTransformIndex = 0;
+        }
     }
 }
