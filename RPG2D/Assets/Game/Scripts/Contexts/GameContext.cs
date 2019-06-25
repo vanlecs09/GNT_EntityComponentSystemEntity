@@ -26,6 +26,7 @@ public static class GameContext
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero);
         entity.AddComponent<DamageComponent>().Initialize(10);
+        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.SIMPLE);
     }
 
     public static void CreateSkillFireSoulsEntity(Entity targetEntity_, Vector3 offsetToTarget_)
@@ -41,7 +42,8 @@ public static class GameContext
             var direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * followAround.currentAngle), 0, Mathf.Cos(Mathf.Deg2Rad * followAround.currentAngle));
             var targetPos = targetEntity_.Get<TransformComponent>().position;
             entity.AddComponent<TransformComponent>().Initialize(targetPos - offsetToTarget_.magnitude * direction.normalized, new Vector3(1, 1, 1), Quaternion.identity);  
-            entity.AddComponent<DamageComponent>().Initialize(10);  
+            entity.AddComponent<DamageComponent>().Initialize(10);
+            entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_SOULS);
         }
     }
 
@@ -49,11 +51,21 @@ public static class GameContext
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
-        entity.AddComponent<TriggerComponent>().Initialize();
         entity.AddComponent<InRadiusRangeComponent>().Initialize(5.0f);
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 1, Vector3.zero);
         entity.AddComponent<DamageComponent>().Initialize(10);
+        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_BOMB);
+    }
+
+    public static void CreateSkillBubblePrison(Vector3 position_, Vector3 direction_)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
+        entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero);
+        entity.AddComponent<FreezeComponent>().Initialize(1);
+        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.BUBBLE_PRISON);
     }
 
     public static void CreateDamageAreaEntity(float radius, float interval)

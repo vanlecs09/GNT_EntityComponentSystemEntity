@@ -11,7 +11,6 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("on pointer down");
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);
@@ -20,7 +19,6 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("on pointer up");
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
         InputContext.CreateJoyStickEntity(new Vector2(0, 0));
@@ -30,7 +28,6 @@ public class FloatingJoystick : Joystick
     {
         if (dirtyFlag)
         {
-            Debug.Log("update abc .com ");
              InputContext.CreateJoyStickEntity(new Vector2(Horizontal, Vertical));
         }
     }

@@ -13,19 +13,40 @@ public class CollisionInputProcessingSystem : ReactiveSystem
         Debug.Log("colliison");
         foreach (var colliEntity in entities)
         {
-            var enitty1 = colliEntity.GetComponent<CollisionInputComponent>().from;
+            var entity1 = colliEntity.GetComponent<CollisionInputComponent>().from;
             var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
-            if (enitty1.HasComponent<DamageComponent>())
+            if (entity1.HasComponent<SkillComponent>())
             {
-                var damange = enitty1.Modify<DamageComponent>();
-                damange.listEntityTarget.Add(entity2);
-                enitty1.AddComponent<DestroyComponent>();
-            }
-
-            if (enitty1.HasComponent<TriggerComponent>())
-            {
-                var skillFireBomb = enitty1.Modify<TriggerComponent>();
-                skillFireBomb.isTrigger = true;
+                var skill = entity1.GetComponent<SkillComponent>();
+                switch (skill.skillType)
+                {
+                    case SKILL_TYPE.SIMPLE:
+                        {
+                            var damange = entity1.Modify<DamageComponent>();
+                            damange.listEntityTarget.Add(entity2);
+                            entity1.AddComponent<DestroyComponent>();
+                            break;
+                        }
+                    case SKILL_TYPE.FIRE_SOULS:
+                        {
+                            var damange = entity1.Modify<DamageComponent>();
+                            damange.listEntityTarget.Add(entity2);
+                            entity1.AddComponent<DestroyComponent>();
+                            break;
+                        }
+                    case SKILL_TYPE.FIRE_BOMB:
+                        {
+                            entity1.Add<TriggerComponent>();
+                            break;
+                        }
+                    case SKILL_TYPE.BUBBLE_PRISON:
+                        {
+                            entity1.Add<TriggerComponent>();
+                            var freeze = entity1.Modify<FreezeComponent>();
+                            freeze.targetEntities.Add(entity2);
+                            break;
+                        }
+                }
             }
         }
     }

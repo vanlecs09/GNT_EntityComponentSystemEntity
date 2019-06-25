@@ -14,20 +14,22 @@ FeatureExt
         Add(new AssetSystem(contexts))
         // .Add(new InitializeLevelSystem())
         .Add(new JoyStickInputSystem())
-        
+
+
+        .Add(new ViewSystem(contexts))
+        .Add(new SkillCreateSystem())
+        .Add(new TriggerAreaExplodeSystem())
+        .Add(new TriggerFreezeSystem())
+        .Add(new FrozenSystem())
+        .Add(new CollisionInputProcessingSystem())
+
         .Add(new MovementSystem())
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
-
-        .Add(new ViewSystem(contexts))
-        .Add(new SkillCreateSystem())
         
-        .Add(new SkillFireBombSystem())
-        .Add(new CollisionInputProcessingSystem())
-
         .Add(new DamageSystem())
         .Add(new HealthSystem())
 
@@ -37,4 +39,4 @@ FeatureExt
         .Add(new DestroySystem());
         // .Add(new CameraSystem());
     }
-}   
+}

@@ -17,7 +17,6 @@ public class JoyStickInputSystem : ReactiveSystem
         var input = e.Get<JoyStickInputComponent>();
         _players = Context<Game>.AllOf<PlayerComponent>().GetEntities();
         var joyStickDirection = input.joyStickDirection;
-        Debug.Log(joyStickDirection);
         foreach (var player in _players)
         {
             var move = player.Modify<MoveComponent>();

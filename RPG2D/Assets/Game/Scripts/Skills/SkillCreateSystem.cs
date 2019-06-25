@@ -39,6 +39,11 @@ public class SkillCreateSystem : ReactiveSystem
                         GameContext.CreateSkillFireBombEntity(playerPos, playerDir);
                         break;
                     }
+                case SKILL_TYPE.BUBBLE_PRISON:
+                    {
+                        GameContext.CreateSkillBubblePrison(playerPos, playerDir);
+                        break;
+                    }
             }
             entity.Destroy();
         }

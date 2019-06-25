@@ -6,12 +6,13 @@ public enum SKILL_TYPE
     SIMPLE,
     FIRE_SOULS,
     FIRE_BOMB,
+    BUBBLE_PRISON,
 }
 
 [Game, Input]
 
-public class SkillComponent: IComponent
-{   
+public class SkillComponent : IComponent
+{
     public SKILL_TYPE skillType;
     public void Initialize(SKILL_TYPE skillType_)
     {
@@ -19,13 +20,13 @@ public class SkillComponent: IComponent
     }
 }
 
-public class SimpleSKill: IComponent
+public class SimpleSKill : IComponent
 {
 
 }
 
 [Game, Input]
-public class InRadiusRangeComponent: IComponent
+public class InRadiusRangeComponent : IComponent
 {
     public float radius;
     public void Initialize(float radius_)
@@ -35,26 +36,39 @@ public class InRadiusRangeComponent: IComponent
 }
 
 [Game, Input]
-public class TriggerComponent: IComponent
+public class TriggerComponent : IComponent
 {
-    public bool isTrigger;
-    public void Initialize()
-    {
-        this.isTrigger = false;
-    }
+    // public bool isTrigger;
+    // public void Initialize()
+    // {
+    //     this.isTrigger = false;
+    // }
 }
 
 
 [Game]
-public class ActiveComponent: IComponent
+public class FreezeComponent: IComponent
 {
-    public bool active;
-     public void Initialize(bool active_)
+    public HashSet<Entity> targetEntities;
+    public float timeFreeze;
+    public void Initialize(float timeFreeze_)
     {
-        this.active = active_;
+        this.timeFreeze = timeFreeze_;
+        this.targetEntities = new HashSet<Entity>();
     }
 }
 
+[Game]
+public class FrozenComponent: IComponent
+{
+    public float currentTime;
+    public float timeFreeze;
+    public void Initialize(float timeFreeze_)
+    {
+        this.timeFreeze = timeFreeze_;
+        this.currentTime = 0;
+    }
+}
 
 
 

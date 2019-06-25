@@ -30,4 +30,9 @@ public class GameHUBController : MonoBehaviour
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_BOMB);
     }
+
+    public void SkillBubblePrison()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.BUBBLE_PRISON);
+    }
 }
