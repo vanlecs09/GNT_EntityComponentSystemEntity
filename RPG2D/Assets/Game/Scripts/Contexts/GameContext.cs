@@ -1,7 +1,6 @@
 using Entitas;
 using UnityEngine;
 using RPG.View;
-using System.Collections.Generic;
 public static class GameContext
 {
     public static void CreateMovingEntity()

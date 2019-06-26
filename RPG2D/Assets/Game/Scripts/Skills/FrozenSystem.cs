@@ -13,16 +13,6 @@ public class FrozenSystem : IExecuteSystem
             {
                 entity.RemoveComponent<FrozenComponent>();
             }
-
-            if(entity.HasComponent<MoveComponent>())
-            {
-                entity.GetComponent<MoveComponent>().velocity = Vector3.zero;
-            }
-
-            if(entity.HasComponent<RandomMoveComponent>())
-            {
-                entity.GetComponent<RandomMoveComponent>().velocity = Vector3.zero;
-            }
         }
     }
 }

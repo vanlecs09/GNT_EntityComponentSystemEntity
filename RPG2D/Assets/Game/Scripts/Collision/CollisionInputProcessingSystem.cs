@@ -15,6 +15,8 @@ public class CollisionInputProcessingSystem : ReactiveSystem
         {
             var entity1 = colliEntity.GetComponent<CollisionInputComponent>().from;
             var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
+            if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>())
+                return;
             if (entity1.HasComponent<SkillComponent>())
             {
                 var skill = entity1.GetComponent<SkillComponent>();
@@ -41,13 +43,14 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                         }
                     case SKILL_TYPE.BUBBLE_PRISON:
                         {
-                            entity1.Add<TriggerComponent>();
                             var freeze = entity1.Modify<FreezeComponent>();
                             freeze.targetEntities.Add(entity2);
+                            entity1.Add<TriggerComponent>();
                             break;
                         }
                 }
             }
+            colliEntity.Destroy();
         }
     }
 }
