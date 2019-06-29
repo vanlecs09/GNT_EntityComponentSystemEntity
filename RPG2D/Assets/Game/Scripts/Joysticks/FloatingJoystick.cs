@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using Entitas;
 
 public class FloatingJoystick : Joystick
 {
@@ -17,6 +14,7 @@ public class FloatingJoystick : Joystick
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);
+        InputContext.CreateJoyStickEntity(new Vector2(0, 0));
     }
 
     public override void OnPointerUp(PointerEventData eventData)
@@ -32,6 +30,5 @@ public class FloatingJoystick : Joystick
         {
              InputContext.CreateJoyStickEntity(new Vector2(Horizontal, Vertical));
         }
-
     }
 }

@@ -5,7 +5,6 @@ public class InitializeLevelSystem : IInitializeSystem
     EntitySaveLoader _entitySaveLoader;
     public void Initialize()
     {
-        return;
         if (_entitySaveLoader == null)
         {
             _entitySaveLoader = new EntitySaveLoader(new TemplateLoader());

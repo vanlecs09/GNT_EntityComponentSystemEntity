@@ -9,13 +9,21 @@ public class MoveToTargetSystem : IExecuteSystem
         foreach (var e in entities)
         {
             var targetEntity = e.Get<MoveToTargetComponent>().targetEntity;
-            var targetPosition = targetEntity.GetComponent<TransformComponent>().position;
-            var myTrans = e.Modify<TransformComponent>();
-            myTrans.position +=  (targetPosition - myTrans.position).normalized  * 2 * Time.deltaTime;
-            if((myTrans.position  - targetPosition).magnitude < 0.1)
+            if (targetEntity.isEnabled)
             {
-                e.RemoveComponent<MoveToTargetComponent>();
+                var targetPosition = targetEntity.GetComponent<TransformComponent>().position;
+                var myTrans = e.Modify<TransformComponent>();
+                myTrans.position += (targetPosition - myTrans.position).normalized * 2 * Time.deltaTime;
+                if ((myTrans.position - targetPosition).magnitude < 0.1)
+                {
+                    e.RemoveComponent<MoveToTargetComponent>();
+                }
             }
+            else
+            {
+                e.AddComponent<DestroyComponent>();
+            }
+
         }
     }
 }

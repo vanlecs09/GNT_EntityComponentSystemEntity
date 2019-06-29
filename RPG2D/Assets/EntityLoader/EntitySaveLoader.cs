@@ -296,12 +296,9 @@ public partial class EntitySaveLoader
                 {
                     continue;
                 }
-                 UnityEngine.Debug.Log("tagName " + tagName );
                 var componentLookUpName = RemoveComponentSubfixWhenLoad(tagName);
                 var contextInfo = Contexts.Get<Game>().contextInfo;
                 var componentNames = contextInfo.componentNames;
-
-               
 
                 if (!componentNames.Contains(componentLookUpName))
                 {

@@ -1,22 +1,42 @@
 using Entitas;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 [Game]
 public class HealthComponent : IComponent
 {
-    public float currentHealth;
-    public float maxHealth;
+    [JsonIgnore, NonSerialized]
+    public ISlider Slider;
+    public float current;
+    public float max;
 }
 
-[Game, Input]
+[Game]
+public class ManaCoponent : IComponent
+{
+    [JsonIgnore, NonSerialized]
+    public ISlider Slider;
+    public float current;
+    public float max;
+}
+
+[Game, Input, Damage, Skill]
 public class DamageComponent : IComponent
 {
     public float damage;
-    [JsonIgnore]
-    public List<Entity> listEntityTarget;
     public void Initialize(float damage_)
     {
         this.damage = damage_;
-        listEntityTarget = new List<Entity>();
+    }
+}
+
+[Damage, Skill]
+public class TargetsComponent : IComponent
+{
+    [JsonIgnore]
+    public List<Entity> listEntityTarget;
+    public void Initialize(List<Entity> targets)
+    {
+        listEntityTarget = targets;
     }
 }

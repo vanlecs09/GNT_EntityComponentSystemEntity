@@ -1,5 +1,4 @@
 using Entitas;
-using UnityEngine;
 using System.Collections.Generic;
 using RPG.Rendering;
 
@@ -7,24 +6,29 @@ public class DamageSystem : ReactiveSystem
 {
     public DamageSystem()
     {
-        monitors += Context<Game>.AllOf<DamageComponent>().OnAdded(Process);
+        monitors += Context<Damage>.AllOf<DamageComponent, TargetsComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
+        UnityEngine.Debug.Log("damange system react");
         foreach (var entity in entities)
         {
-            var listTargetEntities = entity.GetComponent<DamageComponent>().listEntityTarget;
+            var listTargetEntities = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            var damange = entity.GetComponent<DamageComponent>().damage;
             foreach (var targetEntity in listTargetEntities)
             {
-                Debug.Log(targetEntity);
-                if (targetEntity.GetComponent<HealthComponent>() != null && targetEntity.GetComponent<SpriteRendererComponent>() != null)
+                if (targetEntity.Has<HealthComponent>())
                 {
-                    targetEntity.Get<SpriteRendererComponent>().ActionDamange();
-
+                    if (targetEntity.Has<SpriteRendererComponent>())
+                    {
+                        UnityEngine.Debug.Log("asdlkjasdlkjsad");
+                        targetEntity.Get<SpriteRendererComponent>().ActionDamange();
+                    }
+                    var health = targetEntity.Modify<HealthComponent>();
+                    health.current -= damange;
                 }
             }
-
             listTargetEntities.Clear();
         }
     }

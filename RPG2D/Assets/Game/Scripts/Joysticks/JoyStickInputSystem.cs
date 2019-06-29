@@ -20,15 +20,17 @@ public class JoyStickInputSystem : ReactiveSystem
         foreach (var player in _players)
         {
             var move = player.Modify<MoveComponent>();
-            move.velocity = new Vector3(joyStickDirection.x, 0 , joyStickDirection.y);
+            move.velocity = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
             move.acceleration = Vector3.zero;
 
-            var dir = player.Modify<DirectionComponent>();
-            if(joyStickDirection.x != 0 && joyStickDirection.y != 0)
+
+            if (joyStickDirection.x != 0 && joyStickDirection.y != 0)
             {
+                var dir = player.Modify<DirectionComponent>();
                 dir.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
                 dir.direction.Normalize();
             }
+
         };
         e.Destroy();
     }
