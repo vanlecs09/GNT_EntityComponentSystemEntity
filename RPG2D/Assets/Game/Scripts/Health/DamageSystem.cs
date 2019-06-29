@@ -6,28 +6,30 @@ public class DamageSystem : ReactiveSystem
 {
     public DamageSystem()
     {
-        monitors += Context<Game>.AllOf<DamageComponent>().OnAdded(Process);
+        monitors += Context<Damage>.AllOf<DamageComponent, TargetsComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
+        UnityEngine.Debug.Log("damange system react");
         foreach (var entity in entities)
         {
-            var listTargetEntities = entity.GetComponent<DamageComponent>().listEntityTarget;
+            var listTargetEntities = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            var damange = entity.GetComponent<DamageComponent>().damage;
             foreach (var targetEntity in listTargetEntities)
             {
                 if (targetEntity.Has<HealthComponent>())
                 {
                     if (targetEntity.Has<SpriteRendererComponent>())
                     {
+                        UnityEngine.Debug.Log("asdlkjasdlkjsad");
                         targetEntity.Get<SpriteRendererComponent>().ActionDamange();
                     }
                     var health = targetEntity.Modify<HealthComponent>();
-                    health.current -= 20;
+                    health.current -= damange;
                 }
             }
             listTargetEntities.Clear();
-
         }
     }
 }

@@ -26,10 +26,14 @@ namespace RPG.View
         }
     }
 
-    [Game]
+    [Game, Skill]
     public class PositionComponent : IComponent
     {
         public Vector3 value;
+        public void Initialize(Vector3 position)
+        {
+            this.value = position;
+        }
     }
 
     [Game]

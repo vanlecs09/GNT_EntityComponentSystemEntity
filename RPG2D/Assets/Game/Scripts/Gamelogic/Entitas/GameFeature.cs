@@ -18,8 +18,8 @@ FeatureExt
 
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
-        .Add(new TriggerAreaExplodeSystem())
-        .Add(new TriggerFreezeSystem())
+        .Add(new AreaExplodeSystem())
+        .Add(new FreezeSystem())
         .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
 
@@ -36,6 +36,8 @@ FeatureExt
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))
         .Add(new TransformSystem(contexts))
+
+        .Add(new DebugDrawCircleSystem())
         .Add(new DestroySystem());
         // .Add(new CameraSystem());
     }

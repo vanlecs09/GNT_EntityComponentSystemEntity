@@ -25,8 +25,8 @@ public class SimpleSKill : IComponent
 
 }
 
-[Game, Input]
-public class InRadiusRangeComponent : IComponent
+[Game, Input, Damage, Skill]
+public class RadiusRangeComponent : IComponent
 {
     public float radius;
     public void Initialize(float radius_)
@@ -38,23 +38,21 @@ public class InRadiusRangeComponent : IComponent
 [Game, Input]
 public class TriggerComponent : IComponent
 {
-    // public bool isTrigger;
-    // public void Initialize()
-    // {
-    //     this.isTrigger = false;
-    // }
 }
 
+[Game, Skill]
+public class ExplodeComponent: IComponent
+{
+    
+}
 
-[Game]
+[Game, Skill]
 public class FreezeComponent: IComponent
 {
-    public HashSet<Entity> targetEntities;
     public float timeFreeze;
     public void Initialize(float timeFreeze_)
     {
         this.timeFreeze = timeFreeze_;
-        this.targetEntities = new HashSet<Entity>();
     }
 }
 

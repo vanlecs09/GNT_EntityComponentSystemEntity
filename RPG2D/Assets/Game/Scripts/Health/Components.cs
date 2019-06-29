@@ -20,15 +20,23 @@ public class ManaCoponent : IComponent
     public float max;
 }
 
-[Game, Input]
+[Game, Input, Damage, Skill]
 public class DamageComponent : IComponent
 {
     public float damage;
-    [JsonIgnore]
-    public List<Entity> listEntityTarget;
     public void Initialize(float damage_)
     {
         this.damage = damage_;
-        listEntityTarget = new List<Entity>();
+    }
+}
+
+[Damage, Skill]
+public class TargetsComponent : IComponent
+{
+    [JsonIgnore]
+    public List<Entity> listEntityTarget;
+    public void Initialize(List<Entity> targets)
+    {
+        listEntityTarget = targets;
     }
 }

@@ -10,9 +10,19 @@ public class GameHUBController : MonoBehaviour
 
     private void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.F))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
         {
-            FireSkill();
+            SkillFireBome();
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.W))
+        {
+            SkillBubblePrison();
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+        {
+            SkillFireSouls();
         }
     }
 
@@ -21,7 +31,7 @@ public class GameHUBController : MonoBehaviour
         InputContext.CreateSkillEntity(SKILL_TYPE.SIMPLE);
     }
 
-    public void FireSkill()
+    public void SkillFireSouls()
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_SOULS);
     }

@@ -1,6 +1,7 @@
 using Entitas;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.View;
 public class CollisionInputProcessingSystem : ReactiveSystem
 {
     public CollisionInputProcessingSystem()
@@ -24,28 +25,39 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                 {
                     case SKILL_TYPE.SIMPLE:
                         {
-                            var damange = entity1.Modify<DamageComponent>();
-                            damange.listEntityTarget.Add(entity2);
+                            var damange = entity1.GetComponent<DamageComponent>();
+                            var listTarget = new List<Entity>();
+                            listTarget.Add(entity2);
+                            GameContext.CreateDamangeEntity(listTarget, damange.damage);
                             entity1.AddComponent<DestroyComponent>();
                             break;
                         }
                     case SKILL_TYPE.FIRE_SOULS:
                         {
                             var damange = entity1.Modify<DamageComponent>();
-                            damange.listEntityTarget.Add(entity2);
+                            var listTarget = new List<Entity>();
+                            listTarget.Add(entity2);
+                            GameContext.CreateDamangeEntity(listTarget, damange.damage);
                             entity1.AddComponent<DestroyComponent>();
                             break;
                         }
                     case SKILL_TYPE.FIRE_BOMB:
                         {
-                            entity1.Add<TriggerComponent>();
+                            var damage = entity1.GetComponent<DamageComponent>();
+                            var range = entity1.GetComponent<RadiusRangeComponent>();
+                            var position = entity1.GetComponent<TransformComponent>().position;
+                            GameContext.CreateExplodeEntity(damage.damage, range.radius, position);
+                            entity1.AddComponent<DestroyComponent>();
                             break;
                         }
                     case SKILL_TYPE.BUBBLE_PRISON:
                         {
-                            var freeze = entity1.Modify<FreezeComponent>();
-                            freeze.targetEntities.Add(entity2);
-                            entity1.Add<TriggerComponent>();
+
+                            var freeze = entity1.GetComponent<FreezeComponent>();
+                            var listTarget = new List<Entity>();
+                            listTarget.Add(entity2);
+                            GameContext.CreateFreezeEntity(listTarget, freeze.timeFreeze);
+                            entity1.AddComponent<DestroyComponent>();
                             break;
                         }
                 }
