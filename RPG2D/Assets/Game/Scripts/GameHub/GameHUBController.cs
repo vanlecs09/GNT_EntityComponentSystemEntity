@@ -12,7 +12,10 @@ public class GameHUBController : MonoBehaviour
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
         {
-            SkillFireBome();
+            UnityEngine.Debug.Log("q press ");
+            // SkillFireBome();
+            // GameContext.CreateWallEntity(Vector3.zero, 2.0f, 5.0f);
+            SkillEarchSpike();
         }
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.W))
@@ -45,4 +48,18 @@ public class GameHUBController : MonoBehaviour
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.BUBBLE_PRISON);
     }
+
+    public void SkillEarthPrison()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.EARTH_PRISON);
+    }
+
+    public void SkillEarchSpike()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.EARTH_SPIKE);
+    }
+}
+
+internal class UnityEnDebug
+{
 }

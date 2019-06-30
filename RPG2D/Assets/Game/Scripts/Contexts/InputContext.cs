@@ -15,6 +15,12 @@ public static class InputContext
         entity.AddComponent<CollisionInputComponent>().Initialize(from, to);
     }
 
+    public static void CreateCollisionExitInputEntity(Entity from, Entity to)
+    {
+         Entity entity = Contexts.sharedInstance.GetContext<Input>().CreateEntity();
+        entity.AddComponent<CollisionExitInputComponent>().Initialize(from, to);
+    }
+
     public static void CreateSkillEntity(SKILL_TYPE skillType)
     {
         var entity = Contexts.sharedInstance.GetContext<Input>().CreateEntity();

@@ -44,6 +44,17 @@ public class SkillCreateSystem : ReactiveSystem
                         GameContext.CreateSkillBubblePrison(playerPos, playerDir);
                         break;
                     }
+                case SKILL_TYPE.EARTH_SPIKE:
+                    {
+                        GameContext.CreateSkillEarthSpike(Vector2.zero, 2.0f);
+                        break;
+                    }
+                case SKILL_TYPE.EARTH_PRISON:
+                    {
+                        GameContext.CreateWallEntity(playerPos, 2.0f, 5.0f);
+                        break;
+                    }
+
             }
             entity.Destroy();
         }

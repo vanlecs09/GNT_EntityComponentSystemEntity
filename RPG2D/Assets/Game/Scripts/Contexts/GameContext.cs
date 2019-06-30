@@ -66,12 +66,36 @@ public static class GameContext
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero);
         entity.AddComponent<FreezeComponent>().Initialize(1);
-        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.BUBBLE_PRISON);
     }
 
-    public static void CreateDamageAreaEntity(float radius, float interval)
+    public static void CreateSkillEarthSpike(Vector3 position_, float range)
     {
+        Debug.Log("cretea skill earth spike");
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<DamageComponent>().Initialize(10.0f);
+        entity.AddComponent<FreezeComponent>().Initialize(range);
+        entity.AddComponent<RadiusRangeComponent>().Initialize(range);
+        entity.AddComponent<DebugDrawCircleComponent>().Initialize(range, Color.red);
+    }
 
+
+    public static void CreateWallEntity(Vector3 position_, float radius_, float countDown)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/skill_earth_prison", LayerMask.NameToLayer("PlayerSkill"));
+            Vector2 dir2D = Utils.Math.DegreeToVector2(360.0f / 20.0f * (i + 1));
+            // Vector2 dir2DPer = Vector2.Perpendicular(dir2D);
+            // float angleY = Vector2.Angle(new Vector2(1,0), dir2DPer);
+            Vector3 dir3D = new Vector3(dir2D.x, 0, dir2D.y);
+            var position = position_ + dir3D * radius_;
+            entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+            //Quaternion.AngleAxis(angleY, new Vector3(0,1,0)));
+            entity.AddComponent<WallAroundComponent>();
+            entity.AddComponent<CountDownComponent>().Initialize(countDown);
+        }
     }
 
     public static void CreateDamangeEntity(List<Entity> targets, float damange)

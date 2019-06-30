@@ -18,6 +18,12 @@ public class CollisionInputProcessingSystem : ReactiveSystem
             var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
             if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>())
                 return;
+
+            if (entity1.HasComponent<WallAroundComponent>() && entity2.HasComponent<BotComponent>())
+            {
+                entity2.AddComponent<FrozenComponent>().Initialize(entity1.GetComponent<CountDownComponent>().time);
+            }
+
             if (entity1.HasComponent<SkillComponent>())
             {
                 var skill = entity1.GetComponent<SkillComponent>();

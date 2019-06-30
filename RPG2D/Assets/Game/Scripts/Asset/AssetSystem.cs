@@ -27,6 +27,8 @@ public class AssetSystem : ReactiveSystem
                 var gameObject = GameObject.Instantiate(assetObject);
                 gameObject.Link(entity, _gameContext);
                 entity.Add<ViewComponent>().transform = new UnityTransform(gameObject.transform);
+                if (entity.HasComponent<TransformComponent>())
+                    entity.Modify<TransformComponent>();
                 var unityCompoenntCache = gameObject.GetComponent<UnityComponentsCache>();
                 if (unityCompoenntCache)
                 {
@@ -36,6 +38,11 @@ public class AssetSystem : ReactiveSystem
                         spriteRendererComp.spriteRenderer = unityCompoenntCache.GetSpriteRender();
                         spriteRendererComp.color = Color.white;
                     }
+                    // if(unityCompoenntCache.HasRigidBody())
+                    // {
+                    //     var rigidBodyComp = entity.AddComponent<RigidBodyCompoennt>();
+                    //     rigidBodyComp.value = unityCompoenntCache.GetRigidbody();
+                    // }
                 }
 
                 if (entity.Has<HealthComponent>() && entity.Has<PlayerComponent>())
@@ -57,17 +64,15 @@ public class AssetSystem : ReactiveSystem
                         }
                 }
 
-                if(layerMask != -1)
+                if (layerMask != -1)
                 {
                     gameObject.layer = layerMask;
                 }
             }
             else
             {
-                Debug.LogError("Game Object Can not null");
+                Debug.LogError("Game Object Can not null " + assetName);
             }
-
-
         }
     }
 }

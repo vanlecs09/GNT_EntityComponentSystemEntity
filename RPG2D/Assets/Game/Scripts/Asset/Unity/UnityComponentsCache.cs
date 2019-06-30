@@ -7,6 +7,8 @@ public class UnityComponentsCache : MonoBehaviour
     public Animator animator = null;
     public SpriteRenderer spriteRenderer = null;
 
+    public Rigidbody rigidBody = null;
+
     public IAnimator GetAnimator()
     {
         if (animator == null) return new UnityDummyAimator();
@@ -19,6 +21,11 @@ public class UnityComponentsCache : MonoBehaviour
         return spriteRenderer != null;
     }
 
+    public bool HasRigidBody()
+    {
+        return rigidBody != null;
+    }
+
     public ISpriteRenderer GetSpriteRender()
     {
         if (spriteRenderer != null)
@@ -27,4 +34,15 @@ public class UnityComponentsCache : MonoBehaviour
         }
         return null;
     }
+
+    public IRigidbody GetRigidbody()
+    {
+         if (rigidBody != null)
+        {
+            return new UnityRigidbody(rigidBody);
+        }
+        return null;
+    }
+
+
 }

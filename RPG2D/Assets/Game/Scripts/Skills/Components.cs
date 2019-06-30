@@ -7,6 +7,8 @@ public enum SKILL_TYPE
     FIRE_SOULS,
     FIRE_BOMB,
     BUBBLE_PRISON,
+    EARTH_SPIKE,
+    EARTH_PRISON,
 }
 
 [Game, Input]
@@ -35,15 +37,27 @@ public class RadiusRangeComponent : IComponent
     }
 }
 
-[Game, Input]
-public class TriggerComponent : IComponent
-{
-}
-
 [Game, Skill]
 public class ExplodeComponent: IComponent
 {
     
+}
+
+[Game, Skill]
+public class CountDownComponent: IComponent
+{
+    public float currentTime;
+    public float time;
+    public void Initialize(float time_)
+    {
+        this.time = time_;
+        currentTime = 0;
+    }
+}
+
+[Game, Skill]
+public class WallAroundComponent: IComponent
+{
 }
 
 [Game, Skill]
@@ -54,6 +68,12 @@ public class FreezeComponent: IComponent
     {
         this.timeFreeze = timeFreeze_;
     }
+}
+
+[Game]
+public class StunComponent: IComponent
+{
+    
 }
 
 [Game]

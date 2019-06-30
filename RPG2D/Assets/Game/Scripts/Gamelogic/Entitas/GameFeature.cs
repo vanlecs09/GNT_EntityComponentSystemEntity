@@ -19,9 +19,11 @@ FeatureExt
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
         .Add(new AreaExplodeSystem())
+        .Add(new AreaFreezeSystem())
         .Add(new FreezeSystem())
         .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
+        .Add(new CollisionExitInputProcessingSystem())
 
         .Add(new MovementSystem())
         .Add(new MoveToTargetSystem())
@@ -33,8 +35,10 @@ FeatureExt
         .Add(new DamageSystem())
         .Add(new HealthSystem())
 
+        .Add(new WallAroundSystem())
+
         // .Add(new CollisionCleanUpSystem())
-        .Add(new SpriteRendererSystem(contexts))
+        .Add(new SpriteRendererSystem(contexts))    
         .Add(new TransformSystem(contexts))
 
         .Add(new DebugDrawCircleSystem())
