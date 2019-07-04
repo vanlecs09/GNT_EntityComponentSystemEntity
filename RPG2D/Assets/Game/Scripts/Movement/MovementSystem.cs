@@ -1,6 +1,7 @@
 using Entitas;
 using UnityEngine;
 using RPG.View;
+using RPG.Rendering;
 public class MovementSystem : IExecuteSystem
 {
     public void Execute()
@@ -11,7 +12,7 @@ public class MovementSystem : IExecuteSystem
             if(e.Has<FrozenComponent>()) continue;
             var trans = e.Modify<TransformComponent>();
             var move = e.Get<MoveComponent>();
-            trans.position += move.velocity.normalized * 5 * Time.smoothDeltaTime;
+            trans.position += move.velocity.normalized * move.speed * Time.smoothDeltaTime;
         }
     }
 }

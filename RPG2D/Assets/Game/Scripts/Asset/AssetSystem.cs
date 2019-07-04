@@ -38,11 +38,12 @@ public class AssetSystem : ReactiveSystem
                         spriteRendererComp.spriteRenderer = unityCompoenntCache.GetSpriteRender();
                         spriteRendererComp.color = Color.white;
                     }
-                    // if(unityCompoenntCache.HasRigidBody())
-                    // {
-                    //     var rigidBodyComp = entity.AddComponent<RigidBodyCompoennt>();
-                    //     rigidBodyComp.value = unityCompoenntCache.GetRigidbody();
-                    // }
+
+                    if(unityCompoenntCache.HasAnimator())
+                    {
+                        var animatorComp = entity.Add<AnimatorComponent>();
+                        animatorComp.value = unityCompoenntCache.GetAnimator(); 
+                    }
                 }
 
                 if (entity.Has<HealthComponent>() && entity.Has<PlayerComponent>())

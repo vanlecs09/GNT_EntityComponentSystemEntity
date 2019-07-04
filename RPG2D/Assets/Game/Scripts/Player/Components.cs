@@ -9,7 +9,7 @@ public class PlayerComponent: IComponent
 [Game]
 public class DirectionComponent: IComponent
 {
-    public Vector3 direction;
+    public Vector3 value;
 }
 
 [Game]

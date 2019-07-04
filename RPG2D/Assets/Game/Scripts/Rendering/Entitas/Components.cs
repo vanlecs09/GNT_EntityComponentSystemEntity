@@ -45,11 +45,11 @@ namespace RPG.Rendering
     public class AnimatorComponent : IComponent
     {
         [NonSerialized]
-        public IAnimator animator;
+        public IAnimator value;
 
         public void SetAnimator(IAnimator animator)
         {
-            this.animator = animator;
+            this.value = animator;
         }
     }
 

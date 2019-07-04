@@ -18,7 +18,7 @@ public class SkillCreateSystem : ReactiveSystem
         var playerEntities = Context<Game>.AllOf<PlayerComponent>().GetEntities();
         var playerEntity = playerEntities[0];
         var playerPos = playerEntity.Get<TransformComponent>().position;
-        var playerDir = playerEntity.Get<DirectionComponent>().direction;
+        var playerDir = playerEntity.Get<DirectionComponent>().value;
         foreach (var entity in entities)
         {
             var skill = entity.GetComponent<SkillComponent>();

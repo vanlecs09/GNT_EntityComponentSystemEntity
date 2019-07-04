@@ -40,6 +40,8 @@ FeatureExt
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))    
         .Add(new TransformSystem(contexts))
+        .Add(new MoveAnimationSystem())
+        .Add(new UpdateFacingSystem())
 
         .Add(new DebugDrawCircleSystem())
         .Add(new DestroySystem());

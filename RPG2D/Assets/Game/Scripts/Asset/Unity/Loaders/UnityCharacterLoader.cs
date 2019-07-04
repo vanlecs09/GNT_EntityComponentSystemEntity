@@ -18,7 +18,7 @@ namespace RPG.Asset
             entity.Add<ViewComponent>().transform = new UnityTransform(go.transform);
             entity.Add<TransformComponent>();
             entity.Add<SpriteRendererComponent>().spriteRenderer = new UnitySpriteRenderer(ch.spriteRenderer);
-            entity.Add<AnimatorComponent>().animator = new UnityAnimator(ch.animator);
+            entity.Add<AnimatorComponent>().value = new UnityAnimator(ch.animator);
             entity.Add<CharacterComponent>();
             return entity;
         }

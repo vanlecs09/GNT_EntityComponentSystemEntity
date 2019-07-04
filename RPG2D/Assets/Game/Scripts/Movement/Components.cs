@@ -7,11 +7,13 @@ public class MoveComponent : IComponent
 {
     public Vector3 velocity;
     public Vector3 acceleration;
+    public float speed;
 
-    public void Initialize(Vector3 velocity_, Vector3 acceleration_)
+    public void Initialize(Vector3 velocity_, Vector3 acceleration_, float speed_)
     {
         this.velocity = velocity_;
         this.acceleration = acceleration_;
+        this.speed = speed_;
     }
 }
 

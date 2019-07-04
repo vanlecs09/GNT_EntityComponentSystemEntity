@@ -13,5 +13,15 @@ namespace Utils
         {
             return RadianToVector2(degree * Mathf.Deg2Rad);
         }
+
+        public static float Vector2ToDegree(Vector2 vec)
+        {
+            return Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+        }
+
+        public static float Vector2ToRadian(Vector2 vec)
+        {
+            return 0.0f;
+        }
     }
 }
