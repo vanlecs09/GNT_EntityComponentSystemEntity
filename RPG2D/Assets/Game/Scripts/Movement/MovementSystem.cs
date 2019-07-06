@@ -1,7 +1,6 @@
 using Entitas;
 using UnityEngine;
 using RPG.View;
-using RPG.Rendering;
 public class MovementSystem : IExecuteSystem
 {
     public void Execute()
@@ -11,8 +10,13 @@ public class MovementSystem : IExecuteSystem
         {
             if(e.Has<FrozenComponent>()) continue;
             var trans = e.Modify<TransformComponent>();
-            var move = e.Get<MoveComponent>();
-            trans.position += move.velocity.normalized * move.speed * Time.smoothDeltaTime;
+            var move = e.Modify<MoveComponent>();
+            move.velocity = move.direction.normalized * move.speed;
+            trans.position += move.velocity * Time.smoothDeltaTime;
+            if(e.HasComponent<DirectionComponent>() == true && (move.direction.sqrMagnitude != 0))
+            {
+                e.Modify<DirectionComponent>().value =  move.direction;
+            }
         }
     }
 }

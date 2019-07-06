@@ -1,5 +1,6 @@
 using Entitas;
 using RPG.View;
+using UnityEngine;
 public class LeaveOwnerToFollowTargetSystem : IExecuteSystem
 {
     public void Execute()
@@ -18,6 +19,7 @@ public class LeaveOwnerToFollowTargetSystem : IExecuteSystem
                 {
                     skillEntity.RemoveComponent<FollowAroundTargetComponent>();
                     skillEntity.AddComponent<MoveToTargetComponent>().Initialize(bot);
+                    skillEntity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, Vector3.zero);
                 }
             }   
         }

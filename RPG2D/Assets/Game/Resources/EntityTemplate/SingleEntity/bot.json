@@ -1,16 +1,42 @@
 {
   "Name": "bot",
   "Context": "Game",
-  "Tags": "RPG.GameEntity.Bot,",
+  "Tags": "RPG.GameEntity.Bot,Random,",
   "Components": {
     "Asset": {
       "assetName": "Prefabs/Characters/Bot",
       "layerMask": -1
     },
+    "Direction": {
+      "value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
     "Health": {
       "current": 100.0,
       "max": 100.0
     },
+    "Move": {
+      "direction": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -1.0
+      },
+      "velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -1.0
+      },
+      "acceleration": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "speed": 1.0
+    },
+    "RPG.Rendering.Animator": {},
     "RPG.Rendering.SpriteRenderer": {
       "color": {
         "r": 1.0,
@@ -44,18 +70,6 @@
         }
       }
     },
-    "RPG.View.View": {},
-    "RandomMove": {
-      "velocity": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "acceleration": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      }
-    }
+    "RPG.View.View": {}
   }
 }

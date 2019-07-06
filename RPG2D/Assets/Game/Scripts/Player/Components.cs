@@ -12,7 +12,7 @@ public class DirectionComponent: IComponent
     public Vector3 value;
 }
 
-[Game]
+[Game, Skill]
 public class DestroyComponent: IComponent
 {
 }

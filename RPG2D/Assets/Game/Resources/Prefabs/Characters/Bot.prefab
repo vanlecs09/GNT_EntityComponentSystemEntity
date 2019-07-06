@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0.400397, y: 0, z: 0, w: 0.9163418}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5097920701129454226}
   m_Father: {fileID: 651577405281958014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 47.206, y: 0, z: 0}
@@ -131,7 +132,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 651577405133255373}
-  - {fileID: 5097920701129454226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b3dbff9e724403eb38034a76a6310a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 651577405133255362}
   spriteRenderer: {fileID: 651577405133255372}
   rigidBody: {fileID: 8736209987187118974}
 --- !u!1 &784502129612793355
@@ -214,14 +214,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784502129612793355}
-  m_LocalRotation: {x: 0.400397, y: 0, z: 0, w: 0.9163418}
-  m_LocalPosition: {x: 0, y: 0.591, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4015044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4116271090291497263}
   - {fileID: 4851200015825389790}
-  m_Father: {fileID: 651577405281958014}
-  m_RootOrder: 1
+  m_Father: {fileID: 651577405133255373}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 47.206, y: 0, z: 0}
 --- !u!1 &1862325462218868677
 GameObject:
@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 3601566112552355462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.396, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 0.20000002, z: 1}
   m_Children: []
   m_Father: {fileID: 4116271090291497263}
   m_RootOrder: 0
@@ -323,7 +323,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.22590709, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -402,7 +402,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 0.005681753, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.17973852, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1

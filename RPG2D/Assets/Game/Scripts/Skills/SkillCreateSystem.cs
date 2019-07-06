@@ -41,7 +41,7 @@ public class SkillCreateSystem : ReactiveSystem
                     }
                 case SKILL_TYPE.BUBBLE_PRISON:
                     {
-                        GameContext.CreateSkillBubblePrison(playerPos, playerDir);
+                        GameContext.CreateSkillBubblePrisonComponent(playerPos, playerDir);
                         break;
                     }
                 case SKILL_TYPE.EARTH_SPIKE:

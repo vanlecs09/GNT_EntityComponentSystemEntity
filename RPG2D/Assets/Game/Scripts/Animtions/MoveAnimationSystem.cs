@@ -11,6 +11,7 @@ public class MoveAnimationSystem : ReactiveSystem
     {
         foreach (var e in entities)
         {
+            if(!e.HasComponent<AnimatorComponent>()) continue;
             var move = e.Get<MoveComponent>();
             var animator = e.GetComponent<AnimatorComponent>();
             if (move.velocity.sqrMagnitude > 0)

@@ -7,14 +7,14 @@ public static class GameContext
     public static void CreateMovingEntity()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.zero);
         entity.AddComponent<TransformComponent>().Initialize(Vector3.zero, new Vector3(1, 1, 1), Quaternion.identity);
     }
 
     public static void CreatePlayerEntity()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.zero);
         entity.AddComponent<TransformComponent>().Initialize(Vector3.zero, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<PlayerComponent>();
     }
@@ -24,7 +24,7 @@ public static class GameContext
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero, 3.0f);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2.0f, direction_);
         entity.AddComponent<DamageComponent>().Initialize(10);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.SIMPLE);
     }
@@ -53,24 +53,24 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<RadiusRangeComponent>().Initialize(2.0f);
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<MoveComponent>().Initialize(direction_ * 1, Vector3.zero, 3.0f);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, direction_);
         entity.AddComponent<DamageComponent>().Initialize(10.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_BOMB);
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
     }
 
-    public static void CreateSkillBubblePrison(Vector3 position_, Vector3 direction_)
+    public static void CreateSkillBubblePrisonComponent(Vector3 position_, Vector3 direction_)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<MoveComponent>().Initialize(direction_ * 2, Vector3.zero, 3.0f);
-        entity.AddComponent<FreezeComponent>().Initialize(1);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction_);
+        entity.AddComponent<FreezeComponent>().Initialize(3.0f);
+        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.BUBBLE_PRISON);
     }
 
     public static void CreateSkillEarthSpike(Vector3 position_, float range)
     {
-        Debug.Log("cretea skill earth spike");
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<DamageComponent>().Initialize(10.0f);
@@ -85,7 +85,7 @@ public static class GameContext
         for (int i = 0; i < 20; i++)
         {
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/skill_earth_prison", LayerMask.NameToLayer("PlayerSkill"));
+            entity.AddComponent<AssetComponent>().Initialize("Prefabs/uls/skill_earth_prison", LayerMask.NameToLayer("PlayerSkill"));
             Vector2 dir2D = Utils.Math.DegreeToVector2(360.0f / 20.0f * (i + 1));
             // Vector2 dir2DPer = Vector2.Perpendicular(dir2D);
             // float angleY = Vector2.Angle(new Vector2(1,0), dir2DPer);
@@ -112,13 +112,6 @@ public static class GameContext
         entity.AddComponent<RadiusRangeComponent>().Initialize(range);
         entity.AddComponent<ExplodeComponent>();
         entity.AddComponent<PositionComponent>().Initialize(position);
-    }
-
-    public static void CreateFreezeEntity(List<Entity> targets, float time)
-    {
-        var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
-        entity.AddComponent<FreezeComponent>().Initialize(time);
-        entity.AddComponent<TargetsComponent>().Initialize(targets);
     }
 
     public static void CreateBotEntity()

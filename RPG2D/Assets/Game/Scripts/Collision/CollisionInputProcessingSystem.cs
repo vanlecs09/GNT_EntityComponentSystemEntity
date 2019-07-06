@@ -11,7 +11,6 @@ public class CollisionInputProcessingSystem : ReactiveSystem
 
     protected void Process(List<Entity> entities)
     {
-        Debug.Log("colliison");
         foreach (var colliEntity in entities)
         {
             var entity1 = colliEntity.GetComponent<CollisionInputComponent>().from;
@@ -58,11 +57,11 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                         }
                     case SKILL_TYPE.BUBBLE_PRISON:
                         {
-
                             var freeze = entity1.GetComponent<FreezeComponent>();
                             var listTarget = new List<Entity>();
                             listTarget.Add(entity2);
-                            GameContext.CreateFreezeEntity(listTarget, freeze.timeFreeze);
+                            SkillContext.CreateFreezeEntity(listTarget, freeze.timeFreeze);
+                            SkillContext.CreatePrisonBubbleEntity(listTarget, freeze.timeFreeze);
                             entity1.AddComponent<DestroyComponent>();
                             break;
                         }

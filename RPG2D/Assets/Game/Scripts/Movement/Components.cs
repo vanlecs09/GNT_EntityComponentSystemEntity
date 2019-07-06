@@ -2,19 +2,29 @@ using Entitas;
 using UnityEngine;
 using Newtonsoft.Json;
 
+
+
 [Game]
 public class MoveComponent : IComponent
 {
+    public Vector3 direction;
     public Vector3 velocity;
     public Vector3 acceleration;
     public float speed;
 
-    public void Initialize(Vector3 velocity_, Vector3 acceleration_, float speed_)
+    public void Initialize(Vector3 velocity_, Vector3 acceleration_, float speed_, Vector3 direction_)
     {
         this.velocity = velocity_;
         this.acceleration = acceleration_;
         this.speed = speed_;
+        this.direction = direction_;
     }
+}
+
+[Game]
+public class RandomComponent: IComponent
+{
+
 }
 
 [Game]

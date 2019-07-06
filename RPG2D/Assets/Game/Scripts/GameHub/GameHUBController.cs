@@ -20,7 +20,7 @@ public class GameHUBController : MonoBehaviour
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.W))
         {
-            SkillBubblePrison();
+            SkillBubblePrisonComponent();
         }
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.E))
@@ -44,7 +44,7 @@ public class GameHUBController : MonoBehaviour
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_BOMB);
     }
 
-    public void SkillBubblePrison()
+    public void SkillBubblePrisonComponent()
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.BUBBLE_PRISON);
     }

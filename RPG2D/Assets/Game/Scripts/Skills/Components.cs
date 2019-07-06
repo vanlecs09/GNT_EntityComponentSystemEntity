@@ -38,6 +38,11 @@ public class RadiusRangeComponent : IComponent
 }
 
 [Game, Skill]
+public class BubblePrisonComponent: IComponent
+{
+}
+
+[Game, Skill]
 public class ExplodeComponent: IComponent
 {
     

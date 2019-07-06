@@ -11,6 +11,7 @@ public class FreezeSystem : ReactiveSystem
     {
         foreach (var skillEntity in entities)
         {
+            UnityEngine.Debug.Log(" frezzee react");
             var freeze = skillEntity.Get<FreezeComponent>();
             var targets = skillEntity.GetComponent<TargetsComponent>().listEntityTarget;
             var freezeTime = freeze.timeFreeze;

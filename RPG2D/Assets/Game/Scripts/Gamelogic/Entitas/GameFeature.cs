@@ -25,23 +25,27 @@ FeatureExt
         .Add(new CollisionInputProcessingSystem())
         .Add(new CollisionExitInputProcessingSystem())
 
-        .Add(new MovementSystem())
+        
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
+        .Add(new MovementSystem())
         
         .Add(new DamageSystem())
         .Add(new HealthSystem())
 
         .Add(new WallAroundSystem())
+        .Add(new BubblePrisonSystem())
 
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))    
         .Add(new TransformSystem(contexts))
         .Add(new MoveAnimationSystem())
         .Add(new UpdateFacingSystem())
+
+        .Add(new AnimBubbleSytem())
 
         .Add(new DebugDrawCircleSystem())
         .Add(new DestroySystem());

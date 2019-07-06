@@ -6,6 +6,7 @@ public class DestroySystem : ReactiveSystem
     public DestroySystem()
     {
         monitors += Context<Game>.AllOf<DestroyComponent>().OnAdded(Process);
+        monitors += Context<Skill>.AllOf<DestroyComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)

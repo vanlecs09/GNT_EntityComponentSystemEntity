@@ -26,7 +26,7 @@ public class AreaFreezeSystem : ReactiveSystem
                 }
                 if (targets.Count > 0)
                 {
-                    GameContext.CreateFreezeEntity(targets, freeze.timeFreeze);
+                    SkillContext.CreateFreezeEntity(targets, freeze.timeFreeze);
                 }
             }
             skillEntity.Destroy();
