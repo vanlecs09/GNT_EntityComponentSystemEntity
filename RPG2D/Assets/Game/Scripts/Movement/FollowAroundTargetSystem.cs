@@ -7,10 +7,10 @@ public class FollowAroundTargetSystem: IExecuteSystem
     public void Execute()
     {
         var entities = Context<Game>.AllOf<TransformComponent, FollowAroundTargetComponent>().GetEntities();
-        foreach (var e in entities)
+        foreach (var entity in entities)
         {
-            var trans = e.Modify<TransformComponent>();
-            var followAround = e.Modify<FollowAroundTargetComponent>();
+            var trans = entity.Modify<TransformComponent>();
+            var followAround = entity.Modify<FollowAroundTargetComponent>();
 
             followAround.currentAngle += followAround.spinSpeed * Time.deltaTime;
             var direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * followAround.currentAngle), 0, Mathf.Cos(Mathf.Deg2Rad * followAround.currentAngle));

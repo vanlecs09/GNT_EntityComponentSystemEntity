@@ -1,19 +1,18 @@
 using Entitas;
 using UnityEngine;
 
-public class BubblePrisonSystem : IExecuteSystem
+public class BubblePrisonProcessingSystem : IExecuteSystem
 {
     public void Execute()
     {
         var skillEntities = Context<Skill>.AllOf<BubblePrisonComponent, CountDownComponent>().GetEntities();
-        foreach (var skillEntity in skillEntities)
+        foreach (var entity in skillEntities)
         {
-            var countdown = skillEntity.GetComponent<CountDownComponent>();
+            var countdown = entity.GetComponent<CountDownComponent>();
             countdown.currentTime += Time.deltaTime;
             if(countdown.currentTime > countdown.time)
             {
-                skillEntity.RemoveComponent<BubblePrisonComponent>();
-                // skillEntity.RemoveComponent<TargetsComponent>();
+                entity.RemoveComponent<BubblePrisonComponent>();
             }
         }
     }

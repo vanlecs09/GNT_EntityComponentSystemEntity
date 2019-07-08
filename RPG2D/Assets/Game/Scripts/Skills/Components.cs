@@ -7,6 +7,8 @@ public enum SKILL_TYPE
     FIRE_SOULS,
     FIRE_BOMB,
     BUBBLE_PRISON,
+    WATER_TSUNAMI,
+    WATER_COLD_BREATH,
     EARTH_SPIKE,
     EARTH_PRISON,
 }
@@ -23,6 +25,12 @@ public class SkillComponent : IComponent
 }
 
 public class SimpleSKill : IComponent
+{
+
+}
+
+[Game, Skill]
+public class SkillWaterColdBreath: IComponent
 {
 
 }

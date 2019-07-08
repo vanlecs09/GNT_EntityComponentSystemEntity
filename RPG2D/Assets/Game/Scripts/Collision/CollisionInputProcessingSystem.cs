@@ -25,6 +25,7 @@ public class CollisionInputProcessingSystem : ReactiveSystem
 
             if (entity1.HasComponent<SkillComponent>())
             {
+                Debug.Log("collision");
                 var skill = entity1.GetComponent<SkillComponent>();
                 switch (skill.skillType)
                 {
@@ -33,16 +34,7 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                             var damange = entity1.GetComponent<DamageComponent>();
                             var listTarget = new List<Entity>();
                             listTarget.Add(entity2);
-                            GameContext.CreateDamangeEntity(listTarget, damange.damage);
-                            entity1.AddComponent<DestroyComponent>();
-                            break;
-                        }
-                    case SKILL_TYPE.FIRE_SOULS:
-                        {
-                            var damange = entity1.Modify<DamageComponent>();
-                            var listTarget = new List<Entity>();
-                            listTarget.Add(entity2);
-                            GameContext.CreateDamangeEntity(listTarget, damange.damage);
+                            SkillContext.CreateDamangeEntity(listTarget, damange.damage);
                             entity1.AddComponent<DestroyComponent>();
                             break;
                         }
@@ -51,7 +43,7 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                             var damage = entity1.GetComponent<DamageComponent>();
                             var range = entity1.GetComponent<RadiusRangeComponent>();
                             var position = entity1.GetComponent<TransformComponent>().position;
-                            GameContext.CreateExplodeEntity(damage.damage, range.radius, position);
+                            SkillContext.CreateExplodeEntity(damage.damage, range.radius, position);
                             entity1.AddComponent<DestroyComponent>();
                             break;
                         }
@@ -63,6 +55,14 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                             SkillContext.CreateFreezeEntity(listTarget, freeze.timeFreeze);
                             SkillContext.CreatePrisonBubbleEntity(listTarget, freeze.timeFreeze);
                             entity1.AddComponent<DestroyComponent>();
+                            break;
+                        }
+                    case SKILL_TYPE.WATER_TSUNAMI:
+                        {
+                            var damange = entity1.GetComponent<DamageComponent>();
+                            var listTarget = new List<Entity>();
+                            listTarget.Add(entity2);
+                            SkillContext.CreateDamangeEntity(listTarget, damange.damage);
                             break;
                         }
                 }

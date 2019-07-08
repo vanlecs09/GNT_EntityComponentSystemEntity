@@ -27,6 +27,31 @@ public class GameHUBController : MonoBehaviour
         {
             SkillFireSouls();
         }
+
+        if(UnityEngine.Input.GetKeyDown(KeyCode.R))
+        {
+            SkillFireBomb();
+        }
+
+        if(UnityEngine.Input.GetKeyDown(KeyCode.T))
+        {
+            SkillWaterTSunami();
+        }
+
+        if(UnityEngine.Input.GetKeyDown(KeyCode.F))
+        {
+            SkillWaterColdBreath();
+        }
+
+        if(UnityEngine.Input.GetKeyUp(KeyCode.F))
+        {
+            RemoveSkillWaterColdBreath();
+        }
+    }
+
+    public void SkillWaterTSunami()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.WATER_TSUNAMI);
     }
 
     public void SimpleSkill()
@@ -39,7 +64,7 @@ public class GameHUBController : MonoBehaviour
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_SOULS);
     }
 
-    public void SkillFireBome()
+    public void SkillFireBomb()
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.FIRE_BOMB);
     }
@@ -57,6 +82,16 @@ public class GameHUBController : MonoBehaviour
     public void SkillEarchSpike()
     {
         InputContext.CreateSkillEntity(SKILL_TYPE.EARTH_SPIKE);
+    }
+
+    public void SkillWaterColdBreath()
+    {
+        InputContext.CreateSkillEntity(SKILL_TYPE.WATER_COLD_BREATH);
+    }
+
+    public void RemoveSkillWaterColdBreath()
+    {
+        GameContext.RemoveSkillWaterColdBreath();
     }
 }
 

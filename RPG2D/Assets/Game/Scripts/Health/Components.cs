@@ -40,3 +40,9 @@ public class TargetsComponent : IComponent
         listEntityTarget = targets;
     }
 }
+
+[Game, Skill]
+public class ReturnSpeedComponent: IComponent
+{
+    
+}

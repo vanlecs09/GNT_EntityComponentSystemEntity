@@ -1,7 +1,7 @@
 using Entitas;
 using System.Collections.Generic;
 using RPG.Rendering;
-public class AnimBubbleSytem : ReactiveSystem
+public class AnimBubbleSytem : ReactiveSystem, IExecuteSystem
 {
     public AnimBubbleSytem()
     {
@@ -27,9 +27,7 @@ public class AnimBubbleSytem : ReactiveSystem
     {
         foreach (var enitty in entities)
         {
-            UnityEngine.Debug.Log(("excute1"));
             var targets = enitty.GetComponent<TargetsComponent>().listEntityTarget;
-            UnityEngine.Debug.Log(("excute2"));
             foreach (var target in targets)
             {
                 if (!target.HasComponent<AnimatorComponent>()) continue;

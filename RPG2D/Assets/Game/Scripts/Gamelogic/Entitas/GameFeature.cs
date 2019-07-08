@@ -20,10 +20,13 @@ FeatureExt
         .Add(new SkillCreateSystem())
         .Add(new AreaExplodeSystem())
         .Add(new AreaFreezeSystem())
+        .Add(new DamageWhenReachTargetSystem())
         .Add(new FreezeSystem())
-        .Add(new FrozenSystem())
+        .Add(new FreezeProcessingSystem())
+        // .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
         .Add(new CollisionExitInputProcessingSystem())
+        .Add(new ColdBreathProcessingSystem())
 
         
         .Add(new MoveToTargetSystem())
@@ -32,12 +35,13 @@ FeatureExt
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
         .Add(new MovementSystem())
+        .Add(new SlowDownMoveSystem())
         
         .Add(new DamageSystem())
         .Add(new HealthSystem())
 
         .Add(new WallAroundSystem())
-        .Add(new BubblePrisonSystem())
+        .Add(new BubblePrisonProcessingSystem())
 
         // .Add(new CollisionCleanUpSystem())
         .Add(new SpriteRendererSystem(contexts))    

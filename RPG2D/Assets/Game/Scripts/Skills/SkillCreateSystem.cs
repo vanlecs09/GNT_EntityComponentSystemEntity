@@ -54,6 +54,16 @@ public class SkillCreateSystem : ReactiveSystem
                         GameContext.CreateWallEntity(playerPos, 2.0f, 5.0f);
                         break;
                     }
+                case SKILL_TYPE.WATER_TSUNAMI:
+                    {
+                        GameContext.CreateSkillWaterTsunami(playerPos, playerDir);
+                        break;
+                    }
+                case SKILL_TYPE.WATER_COLD_BREATH:
+                    {
+                        GameContext.CreaeteSkillWaterColdBreath(playerEntity, playerPos, playerDir);
+                        break;
+                    }
 
             }
             entity.Destroy();

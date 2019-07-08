@@ -6,12 +6,11 @@ public class DamageSystem : ReactiveSystem
 {
     public DamageSystem()
     {
-        monitors += Context<Damage>.AllOf<DamageComponent, TargetsComponent>().OnAdded(Process);
+        monitors += Context<Skill>.AllOf<DamageComponent, TargetsComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
-        UnityEngine.Debug.Log("damange system react");
         foreach (var entity in entities)
         {
             var listTargetEntities = entity.GetComponent<TargetsComponent>().listEntityTarget;

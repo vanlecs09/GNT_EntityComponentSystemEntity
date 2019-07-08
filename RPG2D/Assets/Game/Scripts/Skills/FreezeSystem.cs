@@ -4,29 +4,42 @@ public class FreezeSystem : ReactiveSystem
 {
     public FreezeSystem()
     {
-        monitors += Context<Skill>.AllOf<FreezeComponent, TargetsComponent>().OnAdded(Process);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetsComponent, CountDownComponent>().OnAdded(OnEnter);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetsComponent, CountDownComponent>().OnRemoved(OnExit);
     }
 
-    protected void Process(List<Entity> entities)
+    protected void OnEnter(List<Entity> entities)
     {
-        foreach (var skillEntity in entities)
+        foreach (var entity in entities)
         {
-            UnityEngine.Debug.Log(" frezzee react");
-            var freeze = skillEntity.Get<FreezeComponent>();
-            var targets = skillEntity.GetComponent<TargetsComponent>().listEntityTarget;
+            var freeze = entity.GetComponent<FreezeComponent>();
+            var targets = entity.GetComponent<TargetsComponent>().listEntityTarget;
             var freezeTime = freeze.timeFreeze;
             foreach (var targetEntity in targets)
             {
-                if (targetEntity.HasComponent<FrozenComponent>())
+                if(targetEntity.HasComponent<MoveComponent>())
                 {
-                    targetEntity.Modify<FrozenComponent>().Initialize(freezeTime);
-                }
-                else
-                {
-                    targetEntity.AddComponent<FrozenComponent>().Initialize(freezeTime);
+                    var move = targetEntity.GetComponent<MoveComponent>();
+                    move.speed = 0.0f;
                 }
             }
-            skillEntity.Destroy();
+        }
+    }
+
+    protected void OnExit(List<Entity> entities)
+    {
+        foreach (var entity in entities)
+        {
+            var targets = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            foreach (var targetEntity in targets)
+            {
+                if(targetEntity.HasComponent<MoveComponent>())
+                {
+                    var move = targetEntity.GetComponent<MoveComponent>();
+                    move.speed = move.maxSpeed;
+                }
+            }
+            entity.Destroy();
         }
     }
 }

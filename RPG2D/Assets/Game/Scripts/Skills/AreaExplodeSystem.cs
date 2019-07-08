@@ -10,27 +10,26 @@ public class AreaExplodeSystem : ReactiveSystem
 
     protected void Process(List<Entity> entities)
     {
-        UnityEngine.Debug.Log("Area explode system");
         var botEntities = Context<Game>.AllOf<BotComponent, TransformComponent>().GetEntities();
-        foreach (var skillEntity in entities)
+        foreach (var entity in entities)
         {
-            var skillPos = skillEntity.GetComponent<PositionComponent>().value;
-            var damage = skillEntity.GetComponent<DamageComponent>();
-            var radius = skillEntity.GetComponent<RadiusRangeComponent>().radius;
+            var skillPos = entity.GetComponent<PositionComponent>().value;
+            var damage = entity.GetComponent<DamageComponent>();
+            var radius = entity.GetComponent<RadiusRangeComponent>().radius;
+            var targets = new List<Entity>();
             foreach (var botEntity in botEntities)
             {
-                var targets = new List<Entity>();
                 var botPos = botEntity.Get<TransformComponent>().position;
                 if ((botPos - skillPos).sqrMagnitude < radius * radius)
                 {
                     targets.Add(botEntity);
                 }
-                if (targets.Count > 0)
-                {
-                    GameContext.CreateDamangeEntity(targets, damage.damage);
-                }
             }
-            skillEntity.Destroy();
+            if (targets.Count > 0)
+            {
+                SkillContext.CreateDamangeEntity(targets, damage.damage);
+            }
+            entity.Destroy();
         }
     }
 }

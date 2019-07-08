@@ -6,16 +6,17 @@ public class MovementSystem : IExecuteSystem
     public void Execute()
     {
         var entities = Context<Game>.AllOf<TransformComponent, MoveComponent>().GetEntities();
-        foreach (var e in entities)
+        foreach (var entity in entities)
         {
-            if(e.Has<FrozenComponent>()) continue;
-            var trans = e.Modify<TransformComponent>();
-            var move = e.Modify<MoveComponent>();
+            // if(entity.Has<FrozenComponent>()) continue;
+            var trans = entity.Modify<TransformComponent>();
+            var move = entity.Modify<MoveComponent>();
+            move.speed = Mathf.Clamp(move.speed, 0.0f, move.maxSpeed);
             move.velocity = move.direction.normalized * move.speed;
             trans.position += move.velocity * Time.smoothDeltaTime;
-            if(e.HasComponent<DirectionComponent>() == true && (move.direction.sqrMagnitude != 0))
+            if(entity.HasComponent<DirectionComponent>() == true && (move.direction.sqrMagnitude != 0))
             {
-                e.Modify<DirectionComponent>().value =  move.direction;
+                entity.Modify<DirectionComponent>().value =  move.direction;
             }
         }
     }

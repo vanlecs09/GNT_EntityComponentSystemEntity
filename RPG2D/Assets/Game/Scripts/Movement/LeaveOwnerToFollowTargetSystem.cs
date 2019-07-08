@@ -7,19 +7,19 @@ public class LeaveOwnerToFollowTargetSystem : IExecuteSystem
     {
         var entities = Context<Game>.AllOf<RadiusRangeComponent, FollowAroundTargetComponent>().GetEntities();
         var botEntities = Context<Game>.AllOf<BotComponent, TransformComponent>().GetEntities();
-        foreach (var skillEntity in entities)
+        foreach (var entity in entities)
         {
-            var skillPos = skillEntity.GetComponent<TransformComponent>().position;
-            var radiusRange = skillEntity.GetComponent<RadiusRangeComponent>();
+            var skillPos = entity.GetComponent<TransformComponent>().position;
+            var radiusRange = entity.GetComponent<RadiusRangeComponent>();
             var radius = radiusRange.radius;
             foreach(var bot in botEntities)
             {
                 var botPos = bot.Get<TransformComponent>().position;
                 if((botPos - skillPos).sqrMagnitude < radius * radius)
                 {
-                    skillEntity.RemoveComponent<FollowAroundTargetComponent>();
-                    skillEntity.AddComponent<MoveToTargetComponent>().Initialize(bot);
-                    skillEntity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, Vector3.zero);
+                    entity.RemoveComponent<FollowAroundTargetComponent>();
+                    entity.AddComponent<TargetComponent>().Initialize(bot);
+                    entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, Vector3.zero);
                 }
             }   
         }

@@ -5,25 +5,25 @@ public class MoveToTargetSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<TransformComponent, MoveToTargetComponent, MoveComponent>().GetEntities();
-        foreach (var e in entities)
+        var entities = Context<Game>.AllOf<TransformComponent, TargetComponent, MoveComponent>().GetEntities();
+        foreach (var entity in entities)
         {
-            var targetEntity = e.Get<MoveToTargetComponent>().targetEntity;
+            var targetEntity = entity.Get<TargetComponent>().targetEntity;
             if (targetEntity.isEnabled)
             {
-                var targetPosition = targetEntity.GetComponent<TransformComponent>().position;
-                var myTrans = e.GetComponent<TransformComponent>();
-                var move = e.GetComponent<MoveComponent>();
-                move.direction = targetPosition - myTrans.position;
-                if ((myTrans.position - targetPosition).magnitude < 0.1)
+                var targetPos = targetEntity.GetComponent<TransformComponent>().position;
+                var entityPos = entity.GetComponent<TransformComponent>().position;
+                var move = entity.GetComponent<MoveComponent>();
+                move.direction = targetPos - entityPos;
+                if ((entityPos - targetPos).magnitude < 0.2f)
                 {
-                    e.RemoveComponent<MoveToTargetComponent>();
-                    e.RemoveComponent<MoveComponent>();
+                    entity.RemoveComponent<TargetComponent>();
+                    entity.RemoveComponent<MoveComponent>();
                 }
             }
             else
             {
-                e.AddComponent<DestroyComponent>();
+                entity.AddComponent<DestroyComponent>();
             }
 
         }

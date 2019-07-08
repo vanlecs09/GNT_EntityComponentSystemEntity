@@ -11,12 +11,14 @@ public class MoveComponent : IComponent
     public Vector3 velocity;
     public Vector3 acceleration;
     public float speed;
+    public float maxSpeed;
 
     public void Initialize(Vector3 velocity_, Vector3 acceleration_, float speed_, Vector3 direction_)
     {
         this.velocity = velocity_;
         this.acceleration = acceleration_;
         this.speed = speed_;
+        this.maxSpeed = speed_;
         this.direction = direction_;
     }
 }
@@ -42,6 +44,17 @@ public class RandomMoveComponent : IComponent
 
 
 [Game]
+public class OwnerComponent: IComponent
+{
+    public Entity value;
+    public void Initialize(Entity owner_)
+    {
+        this.value = owner_;
+    }
+}
+
+
+[Game]
 public class FollowTargetComponent: IComponent
 {
     public Entity targetEntity;
@@ -55,7 +68,19 @@ public class FollowTargetComponent: IComponent
 }
 
 [Game]
-public class MoveToTargetComponent: IComponent
+public class SlowDownMoveComponent: IComponent
+{
+    public float currentTime;
+    public float limitTime;
+    public void Initialize(float limitTime_)
+    {
+        this.currentTime = 0.0f;
+        this.limitTime = limitTime_;
+    }
+}
+
+[Game]
+public class TargetComponent: IComponent
 {
     public Entity targetEntity;
     public void Initialize(Entity targetEntity_)
