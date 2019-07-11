@@ -17,12 +17,10 @@ public class MoveAnimationSystem : ReactiveSystem
             if (move.velocity.sqrMagnitude > 0)
             {
                 animator.value.SetFloat("speed", 19.0f);
-                UnityEngine.Debug.Log("animation run ");
             }
             else
             {
                 animator.value.SetFloat("speed", 0);
-                UnityEngine.Debug.Log("animation stop ");
             }
         }
     }

@@ -58,25 +58,23 @@ public static class GameContext
 
     public static void CreaeteSkillWaterColdBreath(Entity targetEntity, Vector3 position_, Vector3 direction_)
     {
-        Debug.Log("create skill");
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<FollowTargetComponent>().Initialize(targetEntity, Vector3.zero);
         entity.AddComponent<OwnerComponent>().Initialize(targetEntity);
         entity.AddComponent<RadiusRangeComponent>().Initialize(2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_COLD_BREATH);
-        entity.AddComponent<SkillWaterColdBreath>();
-        entity.AddComponent<TargetComponent>();
+        entity.AddComponent<SlowDownMoveComponent>().Initialize(5.0f);
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
     }
 
     public static void RemoveSkillWaterColdBreath()
     {
         Debug.Log("remove");
-        var entities = Context<Game>.AllOf<SkillWaterColdBreath>().GetEntities();
+        var entities = Context<Game>.AllOf<SlowDownMoveComponent>().GetEntities();
         foreach(var entity in entities)
         {
-            entity.RemoveComponent<SkillWaterColdBreath>();
+            entity.RemoveComponent<SlowDownMoveComponent>();
         }
     }
 

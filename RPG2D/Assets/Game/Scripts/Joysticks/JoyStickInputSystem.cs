@@ -21,15 +21,10 @@ public class JoyStickInputSystem : ReactiveSystem
         {
             var move = player.Modify<MoveComponent>();
             move.direction = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
-
-            // if (joyStickDirection.x != 0 && joyStickDirection.y != 0)
-            // {
-            //     var dir = player.Modify<DirectionComponent>();
-            //     dir.value = new Vector3(joyStickDirection.x, 0, joyStickDirection.y);
-            //     dir.value.Normalize();
-            // }
-
         };
-        e.Destroy();
+        foreach(var entity in entities)
+        {
+            entity.Destroy();
+        }
     }
 }

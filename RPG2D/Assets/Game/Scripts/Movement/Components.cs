@@ -80,6 +80,34 @@ public class SlowDownMoveComponent: IComponent
 }
 
 [Game]
+public class BeExTraSlowDownMoveComponent: IComponent
+{
+    public float currentTime;
+    public float limitTime;
+    public void Initialize(float limitTime_)
+    {
+        this.currentTime = 0.0f;
+        this.limitTime = limitTime_;
+    }
+}
+
+[Game]
+public class BeSlowDownMoveComponent: IComponent
+{
+    public float rate;
+    public float extraTime;
+    public float currentTime;
+    public float limitTime;
+    public void Initialize(float limitTime_, float extraTime_)
+    {
+        this.currentTime = 0.0f;
+        this.limitTime = limitTime_;
+        this.extraTime = extraTime_;
+        this.rate = 0.0f;
+    }
+}
+
+[Game]
 public class TargetComponent: IComponent
 {
     public Entity targetEntity;

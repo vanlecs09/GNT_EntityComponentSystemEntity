@@ -15,13 +15,13 @@ public class DamageSystem : ReactiveSystem
         {
             var listTargetEntities = entity.GetComponent<TargetsComponent>().listEntityTarget;
             var damange = entity.GetComponent<DamageComponent>().damage;
+             var gameContext = Contexts.sharedInstance.GetContext<Game>();
             foreach (var targetEntity in listTargetEntities)
             {
-                if (targetEntity.Has<HealthComponent>())
+                if (gameContext.GetEntity(targetEntity.creationIndex) != null && targetEntity.Has<HealthComponent>())
                 {
                     if (targetEntity.Has<SpriteRendererComponent>())
                     {
-                        UnityEngine.Debug.Log("asdlkjasdlkjsad");
                         targetEntity.Get<SpriteRendererComponent>().ActionDamange();
                     }
                     var health = targetEntity.Modify<HealthComponent>();
@@ -29,6 +29,7 @@ public class DamageSystem : ReactiveSystem
                 }
             }
             listTargetEntities.Clear();
+            entity.Destroy();
         }
     }
 }

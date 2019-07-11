@@ -43,4 +43,12 @@ public class SkillContext
         entity.AddComponent<TargetsComponent>().Initialize(targets);
         entity.AddComponent<ReturnSpeedComponent>();
     }
+
+    public static void CreateSlowDownEntity(List<Entity> listTargets, float time)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
+        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<SlowDownMoveComponent>();
+        entity.AddComponent<TargetsComponent>().Initialize(listTargets);
+    }
 }

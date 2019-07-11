@@ -5,10 +5,10 @@ public class AreaExplodeSystem : ReactiveSystem
 {
     public AreaExplodeSystem()
     {
-        monitors += Context<Skill>.AllOf<DamageComponent, ExplodeComponent, RadiusRangeComponent, PositionComponent>().OnAdded(Process);
+        monitors += Context<Skill>.AllOf<DamageComponent, ExplodeComponent, RadiusRangeComponent, PositionComponent>().OnAdded(OnEnter);
     }
 
-    protected void Process(List<Entity> entities)
+    protected void OnEnter(List<Entity> entities)
     {
         var botEntities = Context<Game>.AllOf<BotComponent, TransformComponent>().GetEntities();
         foreach (var entity in entities)

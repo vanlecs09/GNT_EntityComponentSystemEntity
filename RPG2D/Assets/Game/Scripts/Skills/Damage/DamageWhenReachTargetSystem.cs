@@ -6,11 +6,12 @@ public class DamageWhenReachTargetSystem : IExecuteSystem
     public void Execute()
     {
         var entities = Context<Game>.AllOf<TargetComponent, TransformComponent, DamageComponent>().GetEntities();
+        var gameContext = Contexts.sharedInstance.GetContext<Game>();
         foreach(var entity in entities)
         {
             var pos = entity.GetComponent<TransformComponent>().position;
             var targetEntity = entity.GetComponent<TargetComponent>().targetEntity;
-            if(targetEntity == null)
+            if(gameContext.GetEntity(targetEntity.creationIndex) == null)
             {
                 entity.AddComponent<DestroyComponent>();
                 continue;

@@ -25,9 +25,11 @@ FeatureExt
         .Add(new FreezeProcessingSystem())
         // .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
-        .Add(new CollisionExitInputProcessingSystem())
-        .Add(new ColdBreathProcessingSystem())
-
+        // .Add(new CollisionExitInputProcessingSystem())
+        .Add(new AreaSlowMoveProcessingSystem())
+        .Add(new SlowDownMoveSystem())
+        .Add(new SlowDownMoveProcessingSystem())
+        .Add(new ExtraSlowProcessingSystem())
         
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
@@ -35,7 +37,7 @@ FeatureExt
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
         .Add(new MovementSystem())
-        .Add(new SlowDownMoveSystem())
+        
         
         .Add(new DamageSystem())
         .Add(new HealthSystem())
@@ -44,13 +46,14 @@ FeatureExt
         .Add(new BubblePrisonProcessingSystem())
 
         // .Add(new CollisionCleanUpSystem())
+        // rendering system
         .Add(new SpriteRendererSystem(contexts))    
         .Add(new TransformSystem(contexts))
         .Add(new MoveAnimationSystem())
         .Add(new UpdateFacingSystem())
-
         .Add(new AnimBubbleSytem())
 
+        .Add(new RemoveObjectWhenOutOfMapSystem())
         .Add(new DebugDrawCircleSystem())
         .Add(new DestroySystem());
         // .Add(new CameraSystem());
