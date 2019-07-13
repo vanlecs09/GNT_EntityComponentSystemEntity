@@ -16,19 +16,13 @@ public class AreaFreezeSystem : ReactiveSystem
             var skillPos = entity.GetComponent<TransformComponent>().position;
             var freeze = entity.GetComponent<FreezeComponent>();
             var radius = entity.GetComponent<RadiusRangeComponent>().radius;
-            var targets = new List<Entity>();
             foreach (var botEntity in botEntities)
             {
-
                 var botPos = botEntity.Get<TransformComponent>().position;
                 if ((botPos - skillPos).sqrMagnitude < radius * radius)
                 {
-                    targets.Add(botEntity);
+                    SkillContext.CreateFreezeEntity(botEntity, freeze.timeFreeze);
                 }
-            }
-            if (targets.Count > 0)
-            {
-                SkillContext.CreateFreezeEntity(targets, freeze.timeFreeze);
             }
             entity.Destroy();
         }

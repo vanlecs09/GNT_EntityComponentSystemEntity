@@ -24,7 +24,7 @@ public class MoveComponent : IComponent
 }
 
 [Game]
-public class RandomComponent: IComponent
+public class RandomComponent : IComponent
 {
 
 }
@@ -43,8 +43,8 @@ public class RandomMoveComponent : IComponent
 }
 
 
-[Game]
-public class OwnerComponent: IComponent
+[Game, Skill]
+public class OwnerComponent : IComponent
 {
     public Entity value;
     public void Initialize(Entity owner_)
@@ -54,8 +54,8 @@ public class OwnerComponent: IComponent
 }
 
 
-[Game]
-public class FollowTargetComponent: IComponent
+[Game, Skill]
+public class FollowTargetComponent : IComponent
 {
     public Entity targetEntity;
     public Vector3 offset;
@@ -67,8 +67,42 @@ public class FollowTargetComponent: IComponent
     }
 }
 
+[Game, Skill]
+public class AreaSlowComponent : IComponent
+{
+    public float radius; 
+    public float currentTime;
+    public float limitTime;
+    public void Initialize(float limitTime_, float radius_)
+    {
+        this.currentTime = 0.0f;
+        this.limitTime = limitTime_;
+        this.radius = radius_;
+    }
+}
+
+[Game, Skill]
+public class SlowMoveComponent : IComponent
+{
+
+}
+
+[Game, Skill]
+public class SlowDownMoveComponent : IComponent
+{
+    public float rate;
+    public float currentTime;
+    public float limitTime;
+    public void Initialize(float limitTime_)
+    {
+        this.currentTime = 0.0f;
+        this.limitTime = limitTime_;
+        this.rate = 0.0f;
+    }
+}
+
 [Game]
-public class SlowDownMoveComponent: IComponent
+public class TakeExTraSlowDownMoveComponent : IComponent
 {
     public float currentTime;
     public float limitTime;
@@ -80,19 +114,7 @@ public class SlowDownMoveComponent: IComponent
 }
 
 [Game]
-public class BeExTraSlowDownMoveComponent: IComponent
-{
-    public float currentTime;
-    public float limitTime;
-    public void Initialize(float limitTime_)
-    {
-        this.currentTime = 0.0f;
-        this.limitTime = limitTime_;
-    }
-}
-
-[Game]
-public class BeSlowDownMoveComponent: IComponent
+public class TakeSlowDownMoveComponent : IComponent
 {
     public float rate;
     public float extraTime;
@@ -107,18 +129,10 @@ public class BeSlowDownMoveComponent: IComponent
     }
 }
 
-[Game]
-public class TargetComponent: IComponent
-{
-    public Entity targetEntity;
-    public void Initialize(Entity targetEntity_)
-    {
-        this.targetEntity = targetEntity_;
-    }
-}
+
 
 [Game]
-public class FollowAroundTargetComponent: IComponent
+public class FollowAroundTargetComponent : IComponent
 {
     [JsonIgnore]
     public Entity targetEntity;

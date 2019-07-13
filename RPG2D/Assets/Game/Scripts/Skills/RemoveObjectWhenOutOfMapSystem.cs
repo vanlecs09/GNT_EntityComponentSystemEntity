@@ -8,8 +8,9 @@ public class RemoveObjectWhenOutOfMapSystem : IExecuteSystem
         var entities = Context<Game>.AllOf<TransformComponent>().GetEntities();
         foreach (var e in entities)
         {
+            if(e.HasComponent<PlayerComponent>()) continue;
             var pos = e.GetComponent<TransformComponent>().position;
-            if(pos.x < -5 || pos.x > 5 || pos.z > 5 || pos.z < -5)
+            if(pos.x < -10 || pos.x > 10 || pos.z > 10 || pos.z < -10)
                 e.AddComponent<DestroyComponent>();
         }
     }

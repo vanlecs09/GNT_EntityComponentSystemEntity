@@ -20,11 +20,11 @@ public class GameHUBController : MonoBehaviour
         {
             //execute code here.
             yield return new WaitForSeconds(2.0f);
-            for (var i = 0; i < 20; i++)
+            for (var i = 0; i < 10; i++)
             {
                 Entity bot  = _entitySaveLoader.MakeEntityFromtemplate("bot", Contexts.sharedInstance) as Entity;
                 var offset = new Vector3(-2,0,-2);
-                bot.Modify<TransformComponent>().position = new Vector3(Random.Range(-1, 1) + 3, 0, Random.Range(-1, 1) + 3);
+                bot.Modify<TransformComponent>().position = new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3);
             }
         }
     }
@@ -114,6 +114,6 @@ public class GameHUBController : MonoBehaviour
 
     public void RemoveSkillWaterColdBreath()
     {
-        GameContext.RemoveSkillWaterColdBreath();
+        SkillContext.RemoveSkillWaterColdBreath();
     }
 }

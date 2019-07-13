@@ -18,7 +18,7 @@ FeatureExt
 
         .Add(new ViewSystem(contexts))
         .Add(new SkillCreateSystem())
-        .Add(new AreaExplodeSystem())
+        .Add(new AreaDamageSystem())
         .Add(new AreaFreezeSystem())
         .Add(new DamageWhenReachTargetSystem())
         .Add(new FreezeSystem())
@@ -27,9 +27,9 @@ FeatureExt
         .Add(new CollisionInputProcessingSystem())
         // .Add(new CollisionExitInputProcessingSystem())
         .Add(new AreaSlowMoveProcessingSystem())
-        .Add(new SlowDownMoveSystem())
+        // .Add(new SlowDownMoveSystem())
         .Add(new SlowDownMoveProcessingSystem())
-        .Add(new ExtraSlowProcessingSystem())
+        .Add(new SlowProcessingSystem())
         
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())

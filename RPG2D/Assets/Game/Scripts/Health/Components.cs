@@ -30,6 +30,19 @@ public class DamageComponent : IComponent
     }
 }
 
+[Game, Skill]
+public class AreaDamageComponent: IComponent
+{
+    public float damage;
+    public float radius;
+    public void Initialize(float damage_, float radius_)
+    {
+        this.damage = damage_;
+        this.radius = radius_;
+    }
+}
+
+
 [Damage, Skill]
 public class TargetsComponent : IComponent
 {
@@ -38,6 +51,17 @@ public class TargetsComponent : IComponent
     public void Initialize(List<Entity> targets)
     {
         listEntityTarget = targets;
+    }
+}
+
+[Game, Skill]
+public class TargetComponent: IComponent
+{
+    [JsonIgnore]
+    public Entity targetEntity;
+    public void Initialize(Entity targetEntity_)
+    {
+        this.targetEntity = targetEntity_;
     }
 }
 

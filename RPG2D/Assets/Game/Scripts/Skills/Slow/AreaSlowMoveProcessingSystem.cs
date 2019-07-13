@@ -1,41 +1,40 @@
 using Entitas;
 using UnityEngine;
 using RPG.View;
+using System.Linq;
 public class AreaSlowMoveProcessingSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<RadiusRangeComponent, SlowDownMoveComponent>().GetEntities();
+        var entities = Context<Skill>.AllOf<AreaSlowComponent, TargetsComponent, OwnerComponent>().GetEntities();
+        
         var botEntities = Context<Game>.AllOf<BotComponent>();
         foreach (var entity in entities)
         {
-            // Debug.Log("AreaSlowMoveProcessingSystem process");
-            // var owner = entity.GetComponent<OwnerComponent>().value;
-            var radius = entity.GetComponent<RadiusRangeComponent>().radius;
-            // var direction = owner.GetComponent<DirectionComponent>().value;
+            Debug.Log("processing slowdown area");
+            var owner  = entity.GetComponent<OwnerComponent>().value;
+            var ownerPos = owner.GetComponent<TransformComponent>().position;
+            entity.GetComponent<TransformComponent>().position = ownerPos;
+
+            var radius = entity.GetComponent<AreaSlowComponent>().radius;
             var pos = entity.GetComponent<TransformComponent>().position;
-            var slowDown = entity.GetComponent<SlowDownMoveComponent>();
+            var areaslowDown = entity.GetComponent<AreaSlowComponent>();
+            var listTargets = entity.GetComponent<TargetsComponent>().listEntityTarget;
             foreach (var botEntity in botEntities)
             {
                 var botPos = botEntity.GetComponent<TransformComponent>().position;
                 var botMove = botEntity.GetComponent<MoveComponent>();
                 if ((botPos - pos).sqrMagnitude < radius * radius)
                 {
-                    if (botEntity.HasComponent<BeSlowDownMoveComponent>())
-                    {
-                    }
-                    else
-                    {
-                        botEntity.AddComponent<BeSlowDownMoveComponent>().Initialize(4.0f, 1.0f);
-                    }
+                    if (listTargets.Find(x => x == botEntity) == null)
+                        continue;
+                    listTargets.Add(botEntity);
+                    SkillContext.CreateSlowDownEntity(botEntity, 2.0f);
                 }
                 else
                 {
-                    if (botEntity.HasComponent<BeSlowDownMoveComponent>())
-                    {
-                        botEntity.RemoveComponent<BeSlowDownMoveComponent>();
-                        botEntity.AddComponent<BeExTraSlowDownMoveComponent>().Initialize(2.0f);
-                    }
+                    listTargets.Remove(botEntity);
+                    SkillContext.CreateSlowDownEntity(botEntity, 2.0f);
                 }
             }
         }

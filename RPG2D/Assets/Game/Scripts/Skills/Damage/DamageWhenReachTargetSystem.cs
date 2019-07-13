@@ -20,9 +20,7 @@ public class DamageWhenReachTargetSystem : IExecuteSystem
             var targetPos = targetEntity.GetComponent<TransformComponent>().position;
             if((pos - targetPos).sqrMagnitude < 0.2f)
             {
-                List<Entity> listTarget = new List<Entity>();
-                listTarget.Add(targetEntity);
-                SkillContext.CreateDamangeEntity(listTarget, damage.damage);
+                SkillContext.CreateDamangeEntity(targetEntity, damage.damage);
                 entity.AddComponent<DestroyComponent>();
             }
         }

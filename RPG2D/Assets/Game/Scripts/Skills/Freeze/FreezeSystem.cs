@@ -4,8 +4,8 @@ public class FreezeSystem : ReactiveSystem
 {
     public FreezeSystem()
     {
-        monitors += Context<Skill>.AllOf<FreezeComponent, TargetsComponent, CountDownComponent>().OnAdded(OnEnter);
-        monitors += Context<Skill>.AllOf<FreezeComponent, TargetsComponent, CountDownComponent>().OnRemoved(OnExit);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CountDownComponent>().OnAdded(OnEnter);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CountDownComponent>().OnRemoved(OnExit);
     }
 
     protected void OnEnter(List<Entity> entities)
@@ -13,16 +13,16 @@ public class FreezeSystem : ReactiveSystem
         foreach (var entity in entities)
         {
             var freeze = entity.GetComponent<FreezeComponent>();
-            var targets = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            var targetEntity = entity.GetComponent<TargetComponent>().targetEntity;
             var freezeTime = freeze.timeFreeze;
-            foreach (var targetEntity in targets)
-            {
+            // foreach (var targetEntity in targets)
+            // {
                 if(targetEntity.HasComponent<MoveComponent>())
                 {
                     var move = targetEntity.GetComponent<MoveComponent>();
                     move.speed = 0.0f;
                 }
-            }
+            // }
         }
     }
 

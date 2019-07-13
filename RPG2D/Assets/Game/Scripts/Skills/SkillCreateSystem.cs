@@ -61,7 +61,7 @@ public class SkillCreateSystem : ReactiveSystem
                     }
                 case SKILL_TYPE.WATER_COLD_BREATH:
                     {
-                        GameContext.CreaeteSkillWaterColdBreath(playerEntity, playerPos, playerDir);
+                        SkillContext.CreaeteSkillWaterColdBreath(playerEntity, playerPos, playerDir);
                         break;
                     }
 

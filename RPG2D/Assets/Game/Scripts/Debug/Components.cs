@@ -1,6 +1,6 @@
 using Entitas;
 using UnityEngine;
-[Game]
+[Game, Skill]
 public class DebugDrawCircleComponent : IComponent
 {
     public float radius;

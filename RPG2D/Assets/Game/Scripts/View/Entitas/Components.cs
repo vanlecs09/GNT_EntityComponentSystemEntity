@@ -11,7 +11,7 @@ namespace RPG.View
         public ITransform transform;
     }
 
-    [Game]
+    [Game, Skill]
     public class TransformComponent : IComponent
     {
         public Vector3 position = Vector3.zero;

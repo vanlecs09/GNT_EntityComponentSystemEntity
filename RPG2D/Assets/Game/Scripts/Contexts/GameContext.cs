@@ -24,7 +24,7 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2.0f, direction_);
-        entity.AddComponent<DamageComponent>().Initialize(10);
+        // entity.AddComponent<DamageComponent>().Initialize(10);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.SIMPLE);
     }
 
@@ -56,36 +56,15 @@ public static class GameContext
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_TSUNAMI);
     }
 
-    public static void CreaeteSkillWaterColdBreath(Entity targetEntity, Vector3 position_, Vector3 direction_)
-    {
-        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<FollowTargetComponent>().Initialize(targetEntity, Vector3.zero);
-        entity.AddComponent<OwnerComponent>().Initialize(targetEntity);
-        entity.AddComponent<RadiusRangeComponent>().Initialize(2.0f);
-        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_COLD_BREATH);
-        entity.AddComponent<SlowDownMoveComponent>().Initialize(5.0f);
-        entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
-    }
-
-    public static void RemoveSkillWaterColdBreath()
-    {
-        Debug.Log("remove");
-        var entities = Context<Game>.AllOf<SlowDownMoveComponent>().GetEntities();
-        foreach(var entity in entities)
-        {
-            entity.RemoveComponent<SlowDownMoveComponent>();
-        }
-    }
+  
 
     public static void CreateSkillFireBombEntity(Vector3 position_, Vector3 direction_)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
-        entity.AddComponent<RadiusRangeComponent>().Initialize(2.0f);
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, direction_);
-        entity.AddComponent<DamageComponent>().Initialize(10.0f);
+        entity.AddComponent<AreaDamageComponent>().Initialize(10.0f, 2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_BOMB);
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
     }

@@ -6,21 +6,27 @@ public class SlowDownMoveProcessingSystem : IExecuteSystem
 {
     void IExecuteSystem.Execute()
     {
-        var entities = Context<Game>.AllOf<BeSlowDownMoveComponent, MoveComponent>().GetEntities();
+        var entities = Context<Skill>.AllOf<SlowDownMoveComponent, TargetComponent>().GetEntities();
         foreach (var entity in entities)
         {
-            var beSlow = entity.GetComponent<BeSlowDownMoveComponent>();
-            var move = entity.GetComponent<MoveComponent>();
+            var targeEntity = entity.GetComponent<TargetComponent>().targetEntity;
+            var beSlow = entity.GetComponent<SlowDownMoveComponent>();
+            var move = targeEntity.GetComponent<MoveComponent>();
             beSlow.currentTime += Time.deltaTime;
             if (beSlow.currentTime < beSlow.limitTime)
             {
                 beSlow.rate = beSlow.currentTime / beSlow.limitTime;
             }
+            else
+            {
+                entity.Destroy();
+                SkillContext.CreateSlowDownEntity(targeEntity, 2.0f);
+            }
             
             move.speed = move.maxSpeed - beSlow.rate * move.maxSpeed;
-            if(entity.HasComponent<SpriteRendererComponent>())
+            if(targeEntity.HasComponent<SpriteRendererComponent>())
             {
-                var spriteRender = entity.GetComponent<SpriteRendererComponent>().spriteRenderer;
+                var spriteRender = targeEntity.GetComponent<SpriteRendererComponent>().spriteRenderer;
                 spriteRender.Color = Color.Lerp(Color.white, Color.blue, beSlow.rate);
             }
         }

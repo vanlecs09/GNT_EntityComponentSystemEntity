@@ -6,29 +6,26 @@ public class DamageSystem : ReactiveSystem
 {
     public DamageSystem()
     {
-        monitors += Context<Skill>.AllOf<DamageComponent, TargetsComponent>().OnAdded(Process);
+        monitors += Context<Skill>.AllOf<DamageComponent, TargetComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
         foreach (var entity in entities)
         {
-            var listTargetEntities = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            var targetEntity = entity.GetComponent<TargetComponent>().targetEntity;
             var damange = entity.GetComponent<DamageComponent>().damage;
-             var gameContext = Contexts.sharedInstance.GetContext<Game>();
-            foreach (var targetEntity in listTargetEntities)
+            var gameContext = Contexts.sharedInstance.GetContext<Game>();
+
+            if (gameContext.GetEntity(targetEntity.creationIndex) != null && targetEntity.Has<HealthComponent>())
             {
-                if (gameContext.GetEntity(targetEntity.creationIndex) != null && targetEntity.Has<HealthComponent>())
+                if (targetEntity.Has<SpriteRendererComponent>())
                 {
-                    if (targetEntity.Has<SpriteRendererComponent>())
-                    {
-                        targetEntity.Get<SpriteRendererComponent>().ActionDamange();
-                    }
-                    var health = targetEntity.Modify<HealthComponent>();
-                    health.current -= damange;
+                    targetEntity.Get<SpriteRendererComponent>().ActionDamange();
                 }
+                var health = targetEntity.Modify<HealthComponent>();
+                health.current -= damange;
             }
-            listTargetEntities.Clear();
             entity.Destroy();
         }
     }
