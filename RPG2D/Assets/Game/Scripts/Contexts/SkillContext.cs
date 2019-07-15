@@ -53,13 +53,20 @@ public class SkillContext
         entity.AddComponent<TargetComponent>().Initialize(target);
     }
 
-    public static void CreateSlowEntity(Entity target, float time)
+    public static void CreateKeepSpeedEntity(Entity target, float time)
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
         entity.AddComponent<CountDownComponent>().Initialize(time);
-        entity.AddComponent<SlowMoveComponent>();
+        entity.AddComponent<KeepSpeedComponent>();
         entity.AddComponent<TargetComponent>().Initialize(target);
+    }
+
+    public static void CreateSlowEntity(Entity target, float time, float speedReduce)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
         entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<SlowMoveComponent>().Initialize(speedReduce);
+        entity.AddComponent<TargetComponent>().Initialize(target);
     }
 
     public static void CreaeteSkillWaterColdBreath(Entity ownerEntity, Vector3 position_, Vector3 direction_)
@@ -75,11 +82,11 @@ public class SkillContext
 
     public static void RemoveSkillWaterColdBreath()
     {
-        Debug.Log("remove");
         var entities = Context<Skill>.AllOf<SlowDownMoveComponent>().GetEntities();
         foreach (var entity in entities)
         {
             entity.RemoveComponent<SlowDownMoveComponent>();
+            entity.Destroy();
         }
     }
 

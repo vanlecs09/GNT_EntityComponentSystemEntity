@@ -65,6 +65,11 @@ public class AssetSystem : ReactiveSystem
                         }
                 }
 
+                if(entity.HasComponent<PlayerComponent>() || entity.HasComponent<BotComponent>())
+                {
+                    entity.AddComponent<CacheSkillEffectComponnet>().Initialize();
+                }
+            
                 if (layerMask != -1)
                 {
                     gameObject.layer = layerMask;

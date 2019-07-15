@@ -17,7 +17,7 @@ public class DestroySystem : ReactiveSystem
             {
                 entity.GetComponent<ViewComponent>().transform.Destroy();
             }
-            UnityEngine.Debug.Log("destroy eneity " + entity.creationIndex);
+            // UnityEngine.Debug.Log("destroy eneity " + entity.creationIndex);
             entity.Destroy();
         }
     }

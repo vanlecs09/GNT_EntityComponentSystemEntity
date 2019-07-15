@@ -7,12 +7,11 @@ public class AreaSlowMoveProcessingSystem : IExecuteSystem
     public void Execute()
     {
         var entities = Context<Skill>.AllOf<AreaSlowComponent, TargetsComponent, OwnerComponent>().GetEntities();
-        
+
         var botEntities = Context<Game>.AllOf<BotComponent>();
         foreach (var entity in entities)
         {
-            Debug.Log("processing slowdown area");
-            var owner  = entity.GetComponent<OwnerComponent>().value;
+            var owner = entity.GetComponent<OwnerComponent>().value;
             var ownerPos = owner.GetComponent<TransformComponent>().position;
             entity.GetComponent<TransformComponent>().position = ownerPos;
 
@@ -20,6 +19,8 @@ public class AreaSlowMoveProcessingSystem : IExecuteSystem
             var pos = entity.GetComponent<TransformComponent>().position;
             var areaslowDown = entity.GetComponent<AreaSlowComponent>();
             var listTargets = entity.GetComponent<TargetsComponent>().listEntityTarget;
+            var slowDownEntities = Context<Skill>.AllOf<SlowDownMoveComponent>();
+            var slowEntities = Context<Skill>.AllOf<KeepSpeedComponent>();
             foreach (var botEntity in botEntities)
             {
                 var botPos = botEntity.GetComponent<TransformComponent>().position;
@@ -27,14 +28,42 @@ public class AreaSlowMoveProcessingSystem : IExecuteSystem
                 if ((botPos - pos).sqrMagnitude < radius * radius)
                 {
                     if (listTargets.Find(x => x == botEntity) == null)
-                        continue;
-                    listTargets.Add(botEntity);
-                    SkillContext.CreateSlowDownEntity(botEntity, 2.0f);
+                    {
+                        listTargets.Add(botEntity);
+                        foreach (var slowEnity in slowEntities.ToList())
+                        {
+                            if (slowEnity.GetComponent<TargetComponent>().targetEntity == botEntity)
+                            {
+                                slowEnity.Destroy();
+                            }
+                        }
+                        SkillContext.CreateSlowDownEntity(botEntity, 2.0f);
+                    }
                 }
                 else
                 {
-                    listTargets.Remove(botEntity);
-                    SkillContext.CreateSlowDownEntity(botEntity, 2.0f);
+                    if (listTargets.Find(x => x == botEntity) != null)
+                    {
+                        foreach (var slowdownEntity in slowDownEntities.ToList())
+                        {
+                            if (slowdownEntity.GetComponent<TargetComponent>().targetEntity == botEntity)
+                            {
+                                slowdownEntity.Destroy();
+                            }
+                        }
+
+                        listTargets.Remove(botEntity);
+                        SkillContext.CreateKeepSpeedEntity(botEntity, 2.0f);
+                    }
+                }
+
+                // remove all null component
+                foreach (var target in listTargets)
+                {
+                    if (target == null)
+                    {
+                        listTargets.Remove(target);
+                    }
                 }
             }
         }

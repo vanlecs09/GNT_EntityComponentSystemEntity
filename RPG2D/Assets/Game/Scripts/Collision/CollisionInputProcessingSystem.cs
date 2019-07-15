@@ -18,10 +18,10 @@ public class CollisionInputProcessingSystem : ReactiveSystem
             if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>())
                 return;
 
-            if (entity1.HasComponent<WallAroundComponent>() && entity2.HasComponent<BotComponent>())
-            {
-                entity2.AddComponent<FrozenComponent>().Initialize(entity1.GetComponent<CountDownComponent>().time);
-            }
+            // if (entity1.HasComponent<WallAroundComponent>() && entity2.HasComponent<BotComponent>())
+            // {
+            //     entity2.AddComponent<FrozenComponent>().Initialize(entity1.GetComponent<CountDownComponent>().time);
+            // }
 
 
             if(entity1.HasComponent<DamageComponent>())
@@ -37,9 +37,12 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                 SkillContext.CreateAreaDamageEntity(areaDamage.damage, areaDamage.radius, pos);
             }
 
-            if(entity1.HasComponent<SlowDownMoveComponent>())
+
+            if(entity1.HasComponent<SlowMoveComponent>())
             {
-                
+                 var slow = entity1.GetComponent<SlowMoveComponent>();
+                var coutDown = entity1.GetComponent<CountDownComponent>();
+                SkillContext.CreateSlowEntity(entity2, coutDown.time, slow.speedToReduce);
             }
 
             if(entity1.HasComponent<FreezeComponent>())

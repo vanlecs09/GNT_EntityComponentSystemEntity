@@ -64,6 +64,11 @@ public class SkillCreateSystem : ReactiveSystem
                         SkillContext.CreaeteSkillWaterColdBreath(playerEntity, playerPos, playerDir);
                         break;
                     }
+                case SKILL_TYPE.DRAW_DANGER_SLOW:
+                    {
+                        GameContext.CreateSkillSlowEntity(playerPos, playerDir);
+                        break;
+                    }
 
             }
             entity.Destroy();

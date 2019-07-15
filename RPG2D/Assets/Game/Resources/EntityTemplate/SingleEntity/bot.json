@@ -1,7 +1,7 @@
 {
   "Name": "bot",
   "Context": "Game",
-  "Tags": "RPG.GameEntity.Bot,Random,",
+  "Tags": "RPG.GameEntity.Bot,",
   "Components": {
     "Asset": {
       "assetName": "Prefabs/Characters/Bot",
@@ -34,8 +34,8 @@
         "y": 0.0,
         "z": 0.0
       },
-      "speed": 2.0,
-      "maxSpeed": 2.0
+      "speed": 3.0,
+      "maxSpeed": 3.0
     },
     "RPG.Rendering.Animator": {},
     "RPG.Rendering.SpriteRenderer": {

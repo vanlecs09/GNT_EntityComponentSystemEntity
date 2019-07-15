@@ -10,17 +10,17 @@ public class SlowDownMoveProcessingSystem : IExecuteSystem
         foreach (var entity in entities)
         {
             var targeEntity = entity.GetComponent<TargetComponent>().targetEntity;
+            if(GameContext.IsEntityAlive(targeEntity) == false) 
+            {
+                entity.Destroy();
+                continue;
+            }
             var beSlow = entity.GetComponent<SlowDownMoveComponent>();
             var move = targeEntity.GetComponent<MoveComponent>();
             beSlow.currentTime += Time.deltaTime;
             if (beSlow.currentTime < beSlow.limitTime)
             {
                 beSlow.rate = beSlow.currentTime / beSlow.limitTime;
-            }
-            else
-            {
-                entity.Destroy();
-                SkillContext.CreateSlowDownEntity(targeEntity, 2.0f);
             }
             
             move.speed = move.maxSpeed - beSlow.rate * move.maxSpeed;

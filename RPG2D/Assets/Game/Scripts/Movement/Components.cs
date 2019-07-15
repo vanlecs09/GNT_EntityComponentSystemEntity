@@ -67,6 +67,7 @@ public class FollowTargetComponent : IComponent
     }
 }
 
+
 [Game, Skill]
 public class AreaSlowComponent : IComponent
 {
@@ -82,7 +83,7 @@ public class AreaSlowComponent : IComponent
 }
 
 [Game, Skill]
-public class SlowMoveComponent : IComponent
+public class KeepSpeedComponent : IComponent
 {
 
 }
@@ -97,34 +98,6 @@ public class SlowDownMoveComponent : IComponent
     {
         this.currentTime = 0.0f;
         this.limitTime = limitTime_;
-        this.rate = 0.0f;
-    }
-}
-
-[Game]
-public class TakeExTraSlowDownMoveComponent : IComponent
-{
-    public float currentTime;
-    public float limitTime;
-    public void Initialize(float limitTime_)
-    {
-        this.currentTime = 0.0f;
-        this.limitTime = limitTime_;
-    }
-}
-
-[Game]
-public class TakeSlowDownMoveComponent : IComponent
-{
-    public float rate;
-    public float extraTime;
-    public float currentTime;
-    public float limitTime;
-    public void Initialize(float limitTime_, float extraTime_)
-    {
-        this.currentTime = 0.0f;
-        this.limitTime = limitTime_;
-        this.extraTime = extraTime_;
         this.rate = 0.0f;
     }
 }

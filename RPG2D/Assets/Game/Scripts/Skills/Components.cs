@@ -11,6 +11,9 @@ public enum SKILL_TYPE
     WATER_COLD_BREATH,
     EARTH_SPIKE,
     EARTH_PRISON,
+
+
+    DRAW_DANGER_SLOW,
 }
 
 [Game, Input]
@@ -89,24 +92,6 @@ public class FreezeComponent : IComponent
 }
 
 [Game]
-public class StunComponent : IComponent
-{
-
-}
-
-[Game]
-public class FrozenComponent : IComponent
-{
-    public float currentTime;
-    public float timeFreeze;
-    public void Initialize(float timeFreeze_)
-    {
-        this.timeFreeze = timeFreeze_;
-        this.currentTime = 0;
-    }
-}
-
-[Game]
 public class DataComponent : IComponent
 {
     Dictionary<string, int> intDict;
@@ -145,14 +130,105 @@ public class DataComponent : IComponent
         double result = 0.0;
         if (this.doubleDict.TryGetValue(name, out result) == false)
         {
-            
+
         }
         return result;
     }
 }
 
+[Game, Skill]
+public class RepeatEffect : IComponent
+{
+
+}
+
+[Game, Skill]
+public class SlowMoveComponent : IComponent
+{
+    public float speedToReduce;
+    public void Initialize(float speedToReduce_)
+    {
+        this.speedToReduce = speedToReduce_;
+    }
+}
 
 
+[Game, Skill]
+public class IntervalEffect : IComponent
+{
+    public float interval;
+    public float currentTime;
+    public void Initialize(float interval_, float currentTime_)
+    {
+        this.interval = interval_;
+        this.currentTime = currentTime_;
+    }
+}
+
+[Game, Skill]
+public class AreaEffect : IComponent
+{
+    public float radius;
+    public void Initialize(float radius_)
+    {
+        this.radius = radius_;
+    }
+}
+
+
+[Game, Skill]
+public class CacheSkillEffectComponnet : IComponent
+{
+    public Dictionary<Type, int> value;
+    public void Initialize()
+    {
+        this.value = new Dictionary<Type, int>();
+    }
+
+    public void AddSkillEntity(Type type)
+    {
+        if (this.value.ContainsKey(type))
+        {
+            this.value[type] += 1;
+        }
+        else
+        {
+            this.value.Add(type, 1);
+        }
+        UnityEngine.Debug.Log("add  " +  this.value[type]);
+    }
+
+    public void RemoveSkillEntity(Type type)
+    {
+        if(this.value.ContainsKey(type))
+        {
+            this.value[type] -= 1;
+            this.value[type] = this.value[type] < 0 ? 0 : this.value[type];
+            UnityEngine.Debug.Log("remove  " +  this.value[type]);
+        }
+    }
+    public void SkillType()
+    {
+
+    }
+
+    public bool HasSkillEffect(Type type)
+    {
+        int result = 0;
+        if (this.value.TryGetValue(type, out result))
+        {
+            return result > 0;
+        }
+        return false;
+    }
+}
+
+
+[Game, Skill]
+public class StackSkillComponent : IComponent
+{
+    public int stackNumber;
+}
 
 
 

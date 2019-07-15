@@ -26,10 +26,14 @@ FeatureExt
         // .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
         // .Add(new CollisionExitInputProcessingSystem())
+        .Add(new AreaSlowDownMoveSystem())
         .Add(new AreaSlowMoveProcessingSystem())
         // .Add(new SlowDownMoveSystem())
         .Add(new SlowDownMoveProcessingSystem())
-        .Add(new SlowProcessingSystem())
+
+        .Add(new SlowMoveSystem())
+        .Add(new SlowMovePeriodOfTimeProcessingSystem())
+        .Add(new KeepSpeedProcessingSystem())
         
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())

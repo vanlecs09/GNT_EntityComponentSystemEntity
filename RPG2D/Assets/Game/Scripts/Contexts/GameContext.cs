@@ -28,13 +28,24 @@ public static class GameContext
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.SIMPLE);
     }
 
+    public static void CreateSkillSlowEntity(Vector3 position, Vector3 direction_)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/fire", LayerMask.NameToLayer("PlayerSkill"));
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, direction_);
+        entity.AddComponent<SlowMoveComponent>().Initialize(2.0f);
+        entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.DRAW_DANGER_SLOW);
+        entity.AddComponent<CountDownComponent>().Initialize(2.0f);
+    }
+
     public static void CreateSkillFireSoulsEntity(Entity targetEntity_, Vector3 offsetToTarget_)
     {
         var numerEntity = 3;
         for (var i = 0; i < numerEntity; i++)
         {
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_2", LayerMask.NameToLayer("PlayerSkill"));
+            entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/fire", LayerMask.NameToLayer("PlayerSkill"));
             entity.AddComponent<RadiusRangeComponent>().Initialize(3.0f);
             FollowAroundTargetComponent followAround = entity.AddComponent<FollowAroundTargetComponent>();
             followAround.Initialize(targetEntity_, offsetToTarget_, 50.0f, 360.0f / numerEntity * i);
@@ -56,7 +67,7 @@ public static class GameContext
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_TSUNAMI);
     }
 
-  
+
 
     public static void CreateSkillFireBombEntity(Vector3 position_, Vector3 direction_)
     {
@@ -97,19 +108,26 @@ public static class GameContext
             var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
             entity.AddComponent<AssetComponent>().Initialize("Prefabs/uls/skill_earth_prison", LayerMask.NameToLayer("PlayerSkill"));
             Vector2 dir2D = Utils.Math.DegreeToVector2(360.0f / 20.0f * (i + 1));
-            // Vector2 dir2DPer = Vector2.Perpendicular(dir2D);
-            // float angleY = Vector2.Angle(new Vector2(1,0), dir2DPer);
             Vector3 dir3D = new Vector3(dir2D.x, 0, dir2D.y);
             var position = position_ + dir3D * radius_;
             entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
-            //Quaternion.AngleAxis(angleY, new Vector3(0,1,0)));
             entity.AddComponent<WallAroundComponent>();
             entity.AddComponent<CountDownComponent>().Initialize(countDown);
         }
     }
 
+    public static void CreateArrowSlowEntity(Vector3 position_)
+    {
+    }
+
+
     public static void CreateBotEntity()
     {
 
+    }
+
+    public static bool IsEntityAlive(Entity entity)
+    {
+        return Contexts.sharedInstance.GetContext<Game>().GetEntity(entity.creationIndex) != null;
     }
 }
