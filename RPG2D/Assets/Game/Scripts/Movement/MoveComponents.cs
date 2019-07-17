@@ -24,23 +24,23 @@ public class MoveComponent : IComponent
 }
 
 [Game]
-public class RandomComponent : IComponent
-{
-
-}
-
-[Game]
 public class RandomMoveComponent : IComponent
 {
-    public Vector3 velocity;
-    public Vector3 acceleration;
 
-    public void Initialize(Vector3 velocity_, Vector3 acceleration_)
-    {
-        this.velocity = velocity_;
-        this.acceleration = acceleration_;
-    }
 }
+
+// [Game]
+// public class RandomMoveComponent : IComponent
+// {
+//     public Vector3 velocity;
+//     public Vector3 acceleration;
+
+//     public void Initialize(Vector3 velocity_, Vector3 acceleration_)
+//     {
+//         this.velocity = velocity_;
+//         this.acceleration = acceleration_;
+//     }
+// }
 
 
 [Game, Skill]

@@ -5,7 +5,7 @@ public class RandomMoveSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<TransformComponent, MoveComponent, RandomComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<TransformComponent, MoveComponent, RandomMoveComponent>().GetEntities();
         foreach (var e in entities)
         {
             var trans = e.Modify<TransformComponent>();

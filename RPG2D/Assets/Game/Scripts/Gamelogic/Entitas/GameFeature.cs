@@ -26,6 +26,9 @@ FeatureExt
         // .Add(new FrozenSystem())
         .Add(new CollisionInputProcessingSystem())
         // .Add(new CollisionExitInputProcessingSystem())
+        .Add(new PushBackSystem())
+        .Add(new PushBackProcessingSystem())
+        
         .Add(new AreaSlowDownMoveSystem())
         .Add(new AreaSlowMoveProcessingSystem())
         // .Add(new SlowDownMoveSystem())

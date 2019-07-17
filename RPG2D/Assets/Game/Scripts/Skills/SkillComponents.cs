@@ -230,5 +230,9 @@ public class StackSkillComponent : IComponent
     public int stackNumber;
 }
 
-
+[Game, Skill]
+public class PushBackComponent: IComponent
+{
+    
+}
 
