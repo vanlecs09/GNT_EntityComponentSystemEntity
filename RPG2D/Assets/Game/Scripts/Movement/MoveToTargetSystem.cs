@@ -9,23 +9,19 @@ public class MoveToTargetSystem : IExecuteSystem
         foreach (var entity in entities)
         {
             var targetEntity = entity.Get<TargetComponent>().targetEntity;
-            if (targetEntity.isEnabled)
+            if (targetEntity.isEnabled == false)
             {
-                var targetPos = targetEntity.GetComponent<TransformComponent>().position;
-                var entityPos = entity.GetComponent<TransformComponent>().position;
-                var move = entity.GetComponent<MoveComponent>();
-                move.direction = targetPos - entityPos;
-                if ((entityPos - targetPos).magnitude < 0.2f)
-                {
-                    entity.RemoveComponent<TargetComponent>();
-                    entity.RemoveComponent<MoveComponent>();
-                }
-            }
-            else
-            {
+                // var targetPos = targetEntity.GetComponent<TransformComponent>().position;
+                // var entityPos = entity.GetComponent<TransformComponent>().position;
+                // var move = entity.GetComponent<MoveComponent>();
+                // move.direction = targetPos - entityPos;
+                // if ((entityPos - targetPos).magnitude < 0.2f)
+                // {
+                //     entity.RemoveComponent<TargetComponent>();
+                //     entity.RemoveComponent<MoveComponent>();
+                // }
                 entity.AddComponent<DestroyComponent>();
             }
-
         }
     }
 }

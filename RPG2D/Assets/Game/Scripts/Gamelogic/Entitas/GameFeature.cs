@@ -38,12 +38,14 @@ FeatureExt
         .Add(new SlowMovePeriodOfTimeProcessingSystem())
         .Add(new KeepSpeedProcessingSystem())
         
+        .Add(new ApplyForceSystem())
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
-        .Add(new MovementSystem())
+        // .Add(new MovementSystem())
+        .Add(new MoveSteeringSystem())
         
         
         .Add(new DamageSystem())

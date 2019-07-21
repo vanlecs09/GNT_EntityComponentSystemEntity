@@ -46,6 +46,13 @@ public class AssetSystem : ReactiveSystem
                     }
                 }
 
+
+                if(entity.HasComponent<SteeringBehaviorComponent>())
+                {
+                    var steering = entity.GetComponent<SteeringBehaviorComponent>();
+                    steering.SeekOn();
+                }
+
                 if (entity.Has<HealthComponent>() && entity.Has<PlayerComponent>())
                 {
                     var healthSlider = GameObject.Find("health_bar").GetComponent<Slider>();

@@ -18,6 +18,12 @@ public class LeaveOwnerToFollowTargetSystem : IExecuteSystem
                 if((botPos - skillPos).sqrMagnitude < radius * radius)
                 {
                     entity.RemoveComponent<FollowAroundTargetComponent>();
+                    if(entity.HasComponent<SteeringBehaviorComponent>() == false)
+                    {
+                        entity.AddComponent<SteeringBehaviorComponent>();
+                    }
+                    var steering = entity.GetComponent<SteeringBehaviorComponent>();
+                    steering.PursuitOn(bot);
                     entity.AddComponent<TargetComponent>().Initialize(bot);
                     entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, Vector3.zero);
                 }
