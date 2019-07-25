@@ -5,6 +5,7 @@ using Entitas.Unity;
 using RPG.View;
 using RPG.Rendering;
 using UnityEngine.UI;
+using CleverCrow.Fluid.BTs.Trees;
 public class AssetSystem : ReactiveSystem
 {
     Context _gameContext;
@@ -80,6 +81,20 @@ public class AssetSystem : ReactiveSystem
                 if (layerMask != -1)
                 {
                     gameObject.layer = layerMask;
+                }
+
+                if(entity.HasComponent<AIComponent>())
+                {
+                    var tree = new BehaviorTreeBuilder(gameObject)
+                    .Sequence("move forever")
+                        // .RepeatForever("move")
+                            .ActionGoToPoint()
+                            .ActionGoToPoint()
+                        // .End()
+                    .Build();
+
+                    var ai = entity.GetComponent<AIComponent>();
+                    ai.brain = tree;
                 }
             }
             else

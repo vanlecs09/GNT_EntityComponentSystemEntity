@@ -16,7 +16,8 @@ FeatureExt
         .Add(new JoyStickInputSystem())
 
 
-        .Add(new ViewSystem(contexts))
+        .Add(new AIProcessingSystem())
+        
         .Add(new SkillCreateSystem())
         .Add(new AreaDamageSystem())
         .Add(new AreaFreezeSystem())
@@ -61,6 +62,7 @@ FeatureExt
         .Add(new MoveAnimationSystem())
         .Add(new UpdateFacingSystem())
         .Add(new AnimBubbleSytem())
+        .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
         .Add(new DebugDrawCircleSystem())

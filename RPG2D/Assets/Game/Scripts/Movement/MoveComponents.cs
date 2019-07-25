@@ -25,6 +25,13 @@ public class SteeringBehaviorComponent : IComponent
         flock = 0x08000,
         offset_pursuit = 0x10000,
     };
+
+    public Vector3 steeringForce;
+    public Vector3 vTarget;
+
+    [JsonIgnore]
+    public Entity targetEntity;
+    public int Flag;
     public bool On(BehaviorTypes bt) { return (this.Flag & (int)bt) == (int)bt; }
     public void FleeOn() { this.Flag |= (int)BehaviorTypes.flee; }
     public void SeekOn() { this.Flag |= (int)BehaviorTypes.seek; }
@@ -76,11 +83,6 @@ public class SteeringBehaviorComponent : IComponent
     public bool isInterposeOn() { return On(BehaviorTypes.interpose); }
     public bool isHideOn() { return On(BehaviorTypes.hide); }
     public bool isOffsetPursuitOn() { return On(BehaviorTypes.offset_pursuit); }
-    public Vector3 steeringForce;
-    public Vector3 vTarget;
-
-    public Entity targetEntity;
-    public int Flag;
 }
 
 [Game]
