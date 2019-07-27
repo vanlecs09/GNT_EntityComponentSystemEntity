@@ -13,7 +13,7 @@ public class MoveSteeringSystem : IExecuteSystem
             var move = entity.Modify<MoveComponent>();
             var trans = entity.Modify<TransformComponent>();
             var steeringForce = SteeringService.Calculate(steering, entity);
-            move.acceleration = steeringForce * 3.0f;
+            move.acceleration = steeringForce;
             move.velocity += move.acceleration * deltaTime;
             Vector3.ClampMagnitude(move.velocity, move.maxSpeed);
             trans.position += move.velocity * deltaTime;

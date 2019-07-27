@@ -40,18 +40,20 @@ public class AssetSystem : ReactiveSystem
                         spriteRendererComp.color = Color.white;
                     }
 
-                    if(unityCompoenntCache.HasAnimator())
+                    if (unityCompoenntCache.HasAnimator())
                     {
                         var animatorComp = entity.Add<AnimatorComponent>();
-                        animatorComp.value = unityCompoenntCache.GetAnimator(); 
+                        animatorComp.value = unityCompoenntCache.GetAnimator();
                     }
                 }
 
 
-                if(entity.HasComponent<SteeringBehaviorComponent>())
+                if (entity.HasComponent<SteeringBehaviorComponent>())
                 {
                     var steering = entity.GetComponent<SteeringBehaviorComponent>();
-                    steering.SeekOn();
+                    steering.Initialize();
+                    if(entity.HasComponent<PlayerComponent>())
+                        steering.SeekOn();
                 }
 
                 if (entity.Has<HealthComponent>() && entity.Has<PlayerComponent>())
@@ -73,24 +75,41 @@ public class AssetSystem : ReactiveSystem
                         }
                 }
 
-                if(entity.HasComponent<PlayerComponent>() || entity.HasComponent<BotComponent>())
+                if (entity.HasComponent<PlayerComponent>() || entity.HasComponent<BotComponent>())
                 {
                     entity.AddComponent<CacheSkillEffectComponnet>().Initialize();
                 }
-            
+
                 if (layerMask != -1)
                 {
                     gameObject.layer = layerMask;
                 }
 
-                if(entity.HasComponent<AIComponent>())
+                if (entity.HasComponent<AIComponent>())
                 {
+                    // var tree = new BehaviorTreeBuilder(gameObject)
+                    // .Sequence("move forever")
+                    //     // .RepeatForever("move")
+                    //         .ConditionPlayerInRange()
+                    //         .ActionGoToPoint()
+                    //         .ActionGoToPoint()
+                    //     // .End()
+                    // .Build();
+
+
                     var tree = new BehaviorTreeBuilder(gameObject)
-                    .Sequence("move forever")
-                        // .RepeatForever("move")
-                            .ActionGoToPoint()
-                            .ActionGoToPoint()
-                        // .End()
+                    .Sequence("evade")
+                        .ConditionPlayerInRange()
+                        .ActionEvade()
+                    .End()
+                    
+                    // .Selector("selector")
+                    //     .Sequence("attack player")
+                    //         .ConditionPlayerInRange()
+                    //     .End()
+                    //     .Sequence("move around")
+                    //     .End()
+                    // .End()
                     .Build();
 
                     var ai = entity.GetComponent<AIComponent>();

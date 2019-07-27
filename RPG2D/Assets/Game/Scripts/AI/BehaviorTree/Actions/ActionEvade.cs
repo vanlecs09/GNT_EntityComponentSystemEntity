@@ -8,10 +8,10 @@ using RPG.View;
 using CleverCrow.Fluid.BTs.Trees;
 
 
-public class ActionGoToPoint : ActionBase
+public class ActionEvade : ActionBase
 {
     Entity _entity;
-    Vector3 _targetPos;
+    Entity _target;
     protected override void OnInit()
     {
         _entity = Owner.GetEntityLink().entity as Entity;
@@ -21,38 +21,30 @@ public class ActionGoToPoint : ActionBase
     protected override void OnStart()
     {
         var steering = _entity.GetComponent<SteeringBehaviorComponent>();
-        steering.SeekOn();
-        steering.vTarget = new Vector3(Random.Range(-1, 1) * 3, 0, Random.Range(-1, 1) * 3);
-        Debug.Log(" go to point " + steering.vTarget);
-        _targetPos = steering.vTarget;
+        var playerEntities = Context<Game>.AllOf<PlayerComponent>().GetEntities();
+        var playerEntity = playerEntities[0];
+        steering.EvadeOn(playerEntity);
+        _target = playerEntity;
+        Debug.Log("evade enter");
     }
 
     // Triggers every time `Tick()` is called on the tree and this node is run
     protected override TaskStatus OnUpdate()
     {
-        // Points to the GameObject of whoever owns the behavior tree
-        // Debug.Log(Owner.name);
+        var targetPos = _target.GetComponent<TransformComponent>().position;
         var position = _entity.GetComponent<TransformComponent>().position;
-        if((position - _targetPos).sqrMagnitude < 0.2f * 0.2f)
+        if((position - targetPos).sqrMagnitude < 10.0f * 10.0f)
         {
-            Debug.Log("success");
-            return TaskStatus.Success;
+            return TaskStatus.Continue;
         }
-        return TaskStatus.Continue;
+        return TaskStatus.Success;
     }
 
     // Triggers whenever this node exits after running
     protected override void OnExit()
     {
-    }
-}
-
-
-
-public static class BehaviorTreeBuilderExtensions {
-    public static BehaviorTreeBuilder ActionGoToPoint (this BehaviorTreeBuilder builder, string name = "ActionGoToPoint") {
-        return builder.AddNode(new ActionGoToPoint {
-            Name = name,
-        });
+        var steering = _entity.GetComponent<SteeringBehaviorComponent>();
+        steering.EvadeOff();
+        Debug.Log("evade exit");
     }
 }

@@ -39,7 +39,7 @@ public class SteeringBehaviorComponent : IComponent
     public void WanderOn() { this.Flag |= (int)BehaviorTypes.wander; }
     public bool IsSeekOn() { return On(BehaviorTypes.seek); }
     public void PursuitOn(Entity targetEntity_) { this.Flag |= (int)BehaviorTypes.pursuit; targetEntity = targetEntity_; }
-    // public void EvadeOn(MovingEntity v) { this.Flag |= (int)BehaviorTypes.evade; m_pTargetAgent1 = v; }
+    public void EvadeOn(Entity v) { this.Flag |= (int)BehaviorTypes.evade; targetEntity = v; }
     // public void CohesionOn() { this.Flag |= (int)BehaviorTypes.cohesion; }
     // public void SeparationOn() { this.Flag |= (int)BehaviorTypes.separation; }
     // public void AlignmentOn() { this.Flag |= (int)BehaviorTypes.allignment; }
@@ -56,7 +56,7 @@ public class SteeringBehaviorComponent : IComponent
     // public void ArriveOff() { if (On(BehaviorTypes.arrive)) this.Flag ^= (int)BehaviorTypes.arrive; }
     // public void WanderOff() { if (On(BehaviorTypes.wander)) this.Flag ^= (int)BehaviorTypes.wander; }
     public void PursuitOff() { if (On(BehaviorTypes.pursuit)) this.Flag ^= (int)BehaviorTypes.pursuit; }
-    // public void EvadeOff() { if (On(BehaviorTypes.evade)) this.Flag ^= (int)BehaviorTypes.evade; }
+    public void EvadeOff() { if (On(BehaviorTypes.evade)) this.Flag ^= (int)BehaviorTypes.evade; }
     // public void CohesionOff() { if (On(BehaviorTypes.cohesion)) this.Flag ^= (int)BehaviorTypes.cohesion; }
     // public void SeparationOff() { if (On(BehaviorTypes.separation)) this.Flag ^= (int)BehaviorTypes.separation; }
     // public void AlignmentOff() { if (On(BehaviorTypes.allignment)) this.Flag ^= (int)BehaviorTypes.allignment; }
@@ -83,6 +83,13 @@ public class SteeringBehaviorComponent : IComponent
     public bool isInterposeOn() { return On(BehaviorTypes.interpose); }
     public bool isHideOn() { return On(BehaviorTypes.hide); }
     public bool isOffsetPursuitOn() { return On(BehaviorTypes.offset_pursuit); }
+
+    public void Initialize()
+    {
+        this.Flag = 0;
+        this.vTarget = Vector3.zero;
+        this.targetEntity = null;
+    }
 }
 
 [Game]
