@@ -7,6 +7,9 @@
       "assetName": "Prefabs/Characters/Player",
       "layerMask": -1
     },
+    "CacheSkillEffectComponnet": {
+      "value": {}
+    },
     "Direction": {
       "value": {
         "x": 0.99821794,
@@ -35,7 +38,7 @@
         "z": 0.0
       },
       "speed": 3.0,
-      "maxSpeed": 3.0
+      "maxSpeed": 5.0
     },
     "RPG.Rendering.Animator": {},
     "RPG.Rendering.SpriteRenderer": {
@@ -50,9 +53,9 @@
     },
     "RPG.View.Transform": {
       "position": {
-        "x": 1.78315675,
+        "x": 0.0,
         "y": 0.0,
-        "z": 0.597676039
+        "z": 0.0
       },
       "scale": {
         "x": 1.0,
@@ -71,6 +74,20 @@
         }
       }
     },
-    "RPG.View.View": {}
+    "RPG.View.View": {},
+    "SteeringBehavior": {
+      "steeringForce": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "vTarget": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "eTarget": null,
+      "Flag": 2
+    }
   }
 }

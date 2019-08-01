@@ -5,14 +5,16 @@ public class MovementSystem : IExecuteSystem
 {
     public void Execute()
     {
+        var deltaTime = Time.deltaTime;
         var entities = Context<Game>.AllOf<TransformComponent, MoveComponent>().GetEntities();
         foreach (var entity in entities)
         {
             var trans = entity.Modify<TransformComponent>();
             var move = entity.Modify<MoveComponent>();
             move.speed = Mathf.Clamp(move.speed, 0.0f, move.maxSpeed);
-            move.velocity = move.direction.normalized * move.speed;
-            trans.position += move.velocity * Time.smoothDeltaTime;
+            move.velocity = move.direction.normalized * move.speed + move.acceleration * deltaTime;
+            Vector3.ClampMagnitude(move.velocity, move.speed);
+            trans.position += move.velocity * deltaTime;
             if(entity.HasComponent<DirectionComponent>() == true && (move.direction.sqrMagnitude != 0))
             {
                 entity.Modify<DirectionComponent>().value =  move.direction;

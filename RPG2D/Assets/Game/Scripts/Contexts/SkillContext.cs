@@ -80,6 +80,16 @@ public class SkillContext
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
     }
 
+    public static void CreateSkillPushBackEntity(Entity ownerEntity, float countDown_)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
+        entity.AddComponent<OwnerComponent>().Initialize(ownerEntity);
+        entity.AddComponent<PushBackComponent>();
+        entity.AddComponent<CountDownComponent>().Initialize(countDown_);
+        entity.AddComponent<RadiusRangeComponent>().Initialize(3.0f);
+        entity.AddComponent<DebugDrawCircleComponent>().Initialize(3.0f, Color.green);
+    }
+
     public static void RemoveSkillWaterColdBreath()
     {
         var entities = Context<Skill>.AllOf<SlowDownMoveComponent>().GetEntities();

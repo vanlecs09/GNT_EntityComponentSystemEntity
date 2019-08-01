@@ -1,10 +1,19 @@
 using Entitas;
-
-public class AIComponent: IComponent
+using CleverCrow.Fluid.BTs.Trees;
+using Newtonsoft.Json;
+[Game]
+public class AIComponent : IComponent
 {
-    public GoalThink brain;
-    public void Initialize(Entity onwer, int type)
+    [JsonIgnore]
+    public BehaviorTree brain;
+    public void Initiazlize(BehaviorTree brain_)
     {
-        brain = new GoalThink(onwer, type);
+        this.brain = brain_;
     }
+}
+
+
+public class BotAIComponent: IComponent
+{
+    
 }

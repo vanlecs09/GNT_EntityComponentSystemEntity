@@ -3,15 +3,19 @@
   "Context": "Game",
   "Tags": "RPG.GameEntity.Bot,",
   "Components": {
+    "AI": {},
     "Asset": {
       "assetName": "Prefabs/Characters/Bot",
       "layerMask": -1
     },
+    "CacheSkillEffectComponnet": {
+      "value": {}
+    },
     "Direction": {
       "value": {
-        "x": 0.0,
+        "x": -0.9926234,
         "y": 0.0,
-        "z": 0.0
+        "z": -0.1212392
       }
     },
     "Health": {
@@ -20,19 +24,19 @@
     },
     "Move": {
       "direction": {
-        "x": 0.0,
+        "x": -0.9926234,
         "y": 0.0,
-        "z": -1.0
+        "z": -0.1212392
       },
       "velocity": {
-        "x": 0.0,
+        "x": -0.284261853,
         "y": 0.0,
-        "z": -1.0
+        "z": -0.034719795
       },
       "acceleration": {
-        "x": 0.0,
+        "x": -8.626932,
         "y": 0.0,
-        "z": 0.0
+        "z": -1.05337834
       },
       "speed": 3.0,
       "maxSpeed": 3.0
@@ -50,9 +54,9 @@
     },
     "RPG.View.Transform": {
       "position": {
-        "x": 0.0,
+        "x": -2.99744773,
         "y": 0.0,
-        "z": 0.0
+        "z": -2.99968863
       },
       "scale": {
         "x": 1.0,
@@ -71,6 +75,19 @@
         }
       }
     },
-    "RPG.View.View": {}
+    "RPG.View.View": {},
+    "SteeringBehavior": {
+      "steeringForce": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "vTarget": {
+        "x": -3.0,
+        "y": 0.0,
+        "z": -3.0
+      },
+      "Flag": 2
+    }
   }
 }

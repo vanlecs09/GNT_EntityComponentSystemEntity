@@ -50,9 +50,20 @@ public class GameHUBController : MonoBehaviour
         //     _entitySaveLoader.MakeEntityFromtemplate("bot", Contexts.sharedInstance);
         // }
 
-        if(UnityEngine.Input.GetKeyDown(KeyCode.T))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.T))
         {
             InputContext.CreateSkillEntity(SKILL_TYPE.DRAW_DANGER_SLOW);
+        }
+
+
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Y))
+        {
+            var playerEntities = Context<Game>.AllOf<PlayerComponent>().GetEntities();
+            var playerEntity = playerEntities[0];
+            var playerPos = playerEntity.Get<TransformComponent>().position;
+            var playerDir = playerEntity.Get<DirectionComponent>().value;
+            SkillContext.CreateSkillPushBackEntity(playerEntity, 0.5f);
         }
     }
 

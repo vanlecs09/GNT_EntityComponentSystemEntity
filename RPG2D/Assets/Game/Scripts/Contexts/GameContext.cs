@@ -34,6 +34,8 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/fire", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, direction_);
+        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        steering.LinearOn();
         entity.AddComponent<SlowMoveComponent>().Initialize(2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.DRAW_DANGER_SLOW);
         entity.AddComponent<CountDownComponent>().Initialize(2.0f);
@@ -63,6 +65,8 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, direction_);
+        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        steering.LinearOn();
         entity.AddComponent<DamageComponent>().Initialize(10.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_TSUNAMI);
     }
@@ -75,6 +79,8 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, direction_);
+        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        steering.LinearOn();
         entity.AddComponent<AreaDamageComponent>().Initialize(10.0f, 2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_BOMB);
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(2.0f, Color.red);
@@ -86,6 +92,8 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction_);
+        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        steering.LinearOn();
         entity.AddComponent<FreezeComponent>().Initialize(3.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.BUBBLE_PRISON);
     }

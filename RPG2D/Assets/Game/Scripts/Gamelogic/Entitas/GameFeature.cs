@@ -16,7 +16,8 @@ FeatureExt
         .Add(new JoyStickInputSystem())
 
 
-        .Add(new ViewSystem(contexts))
+        .Add(new AIProcessingSystem())
+        
         .Add(new SkillCreateSystem())
         .Add(new AreaDamageSystem())
         .Add(new AreaFreezeSystem())
@@ -38,12 +39,14 @@ FeatureExt
         .Add(new SlowMovePeriodOfTimeProcessingSystem())
         .Add(new KeepSpeedProcessingSystem())
         
+        .Add(new ApplyForceSystem())
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
-        .Add(new MovementSystem())
+        // .Add(new MovementSystem())
+        .Add(new MoveSteeringSystem())
         
         
         .Add(new DamageSystem())
@@ -59,6 +62,7 @@ FeatureExt
         .Add(new MoveAnimationSystem())
         .Add(new UpdateFacingSystem())
         .Add(new AnimBubbleSytem())
+        .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
         .Add(new DebugDrawCircleSystem())
