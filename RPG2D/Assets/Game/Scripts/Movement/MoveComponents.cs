@@ -24,6 +24,7 @@ public class SteeringBehaviorComponent : IComponent
         hide = 0x04000,
         flock = 0x08000,
         offset_pursuit = 0x10000,
+        linear = 0x10002,
     };
 
     public Vector3 steeringForce;
@@ -51,6 +52,8 @@ public class SteeringBehaviorComponent : IComponent
     // // public void OffsetPursuitOn(MovingEntity v1, Vector3 offset) { this.Flag |= (int)BehaviorTypes.offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1; }
     // // void FlockingOn(){CohesionOn(); AlignmentOn(); SeparationOn(); WanderOn();}
 
+    public void LinearOn() { this.Flag |= (int)BehaviorTypes.linear; }
+
     // public void FleeOff() { if (On(BehaviorTypes.flee)) this.Flag ^= (int)BehaviorTypes.flee; }
     public void SeekOff() { if (On(BehaviorTypes.seek)) this.Flag ^= (int)BehaviorTypes.seek; }
     // public void ArriveOff() { if (On(BehaviorTypes.arrive)) this.Flag ^= (int)BehaviorTypes.arrive; }
@@ -67,6 +70,7 @@ public class SteeringBehaviorComponent : IComponent
     // public void HideOff() { if (On(BehaviorTypes.hide)) this.Flag ^= (int)BehaviorTypes.hide; }
     // public void OffsetPursuitOff() { if (On(BehaviorTypes.offset_pursuit)) this.Flag ^= (int)BehaviorTypes.offset_pursuit; }
     // public void FlockingOff() { CohesionOff(); AlignmentOff(); SeparationOff(); WanderOff(); }
+    public void LinearOff()  { if (On(BehaviorTypes.linear)) this.Flag ^= (int)BehaviorTypes.linear; }
 
     public bool isFleeOn() { return On(BehaviorTypes.flee); }
 
@@ -83,6 +87,7 @@ public class SteeringBehaviorComponent : IComponent
     public bool isInterposeOn() { return On(BehaviorTypes.interpose); }
     public bool isHideOn() { return On(BehaviorTypes.hide); }
     public bool isOffsetPursuitOn() { return On(BehaviorTypes.offset_pursuit); }
+    public bool isLinearOn() { return On(BehaviorTypes.linear);}
 
     public void Initialize()
     {

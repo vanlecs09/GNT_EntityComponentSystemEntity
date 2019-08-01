@@ -8,6 +8,11 @@ public class SteeringService
         Vector3 steeringForce = Vector3.zero;
         var ownerPos = owner.GetComponent<TransformComponent>().position;
         var move = owner.GetComponent<MoveComponent>();
+        if (steering.isLinearOn())
+        {
+            steeringForce += Linear(move) * 100.0f;
+        }
+
         if (steering.IsSeekOn())
         {
             steeringForce += Seek(ownerPos, move, steering.vTarget) * 3.0f;
@@ -27,6 +32,11 @@ public class SteeringService
         }
         return steeringForce;
     }
+    public static Vector3 Linear(MoveComponent move)
+    {
+        return move.direction *  move.maxSpeed;
+    }
+
     public static Vector3 Seek(Vector3 ownerPos, MoveComponent move, Vector3 targetPos)
     {
         Vector3 desiredVelocity = (targetPos - ownerPos).normalized * move.maxSpeed;
