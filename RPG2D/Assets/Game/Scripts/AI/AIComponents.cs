@@ -1,6 +1,7 @@
 using Entitas;
 using CleverCrow.Fluid.BTs.Trees;
 using Newtonsoft.Json;
+using SWS;
 [Game]
 public class AIComponent : IComponent
 {
@@ -12,8 +13,14 @@ public class AIComponent : IComponent
     }
 }
 
-
-public class BotAIComponent: IComponent
+[Game]
+public class PathComponent : IComponent
 {
-    
+    [JsonIgnore]
+    public PathManager value;
+    public string name;
+    public void Initiazlize(PathManager pathMgr_)
+    {
+        this.value = pathMgr_;
+    }
 }

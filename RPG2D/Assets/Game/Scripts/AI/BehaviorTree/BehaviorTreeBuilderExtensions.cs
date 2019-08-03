@@ -24,4 +24,12 @@ public static class BehaviorTreeBuilderExtensions
             Name = name,
         });
     }
+
+    public static BehaviorTreeBuilder ActionFollowPath(this BehaviorTreeBuilder builder, string name = "ActionFollowPath")
+    {
+        return builder.AddNode(new ActionFollowPath
+        {
+            Name = name
+        });
+    }
 }
