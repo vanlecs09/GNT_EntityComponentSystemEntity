@@ -28,7 +28,19 @@ public class PathComponent : IComponent
 }
 
 [Game]
-public class QueuePointCompnent: IComponent
+public class QueuePointCompnent : IComponent
 {
     public Queue<Vector3> value;
+}
+
+[Game]
+public class VisionTargetComponent : IComponent
+{
+    public float limitAngle;
+    public float visionRange;
+    public List<Entity> targets;
+    public void Initiazlize(List<Entity> targets_)
+    {
+        this.targets = targets_;
+    }
 }

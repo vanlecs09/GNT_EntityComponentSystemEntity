@@ -10,6 +10,5 @@ public class AIProcessingSystem : IExecuteSystem
             var ai = entity.GetComponent<AIComponent>();
             ai.brain.Tick();
         }
-        // var enities = 
     }
 }

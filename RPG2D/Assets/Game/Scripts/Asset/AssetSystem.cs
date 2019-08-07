@@ -127,6 +127,12 @@ public class AssetSystem : ReactiveSystem
                     var ai = entity.GetComponent<AIComponent>();
                     ai.brain = tree;
                 }
+
+                if (entity.HasComponent<VisionTargetComponent>())
+                {
+                    var vision = entity.GetComponent<VisionTargetComponent>();
+                    entity.AddComponent<DebugVisionComponent>().Initialize(vision.visionRange, vision.limitAngle);
+                }
             }
             else
             {

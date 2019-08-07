@@ -65,7 +65,7 @@ FeatureExt
         .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
-        .Add(new DebugDrawCircleSystem())
+        .Add(new DebugDrawSystem())
         .Add(new DestroySystem());
         // .Add(new CameraSystem());
     }
