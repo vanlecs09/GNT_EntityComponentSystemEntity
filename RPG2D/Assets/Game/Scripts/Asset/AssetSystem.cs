@@ -6,6 +6,7 @@ using RPG.View;
 using RPG.Rendering;
 using UnityEngine.UI;
 using CleverCrow.Fluid.BTs.Trees;
+using SWS;
 public class AssetSystem : ReactiveSystem
 {
     Context _gameContext;
@@ -52,7 +53,7 @@ public class AssetSystem : ReactiveSystem
                 {
                     var steering = entity.GetComponent<SteeringBehaviorComponent>();
                     steering.Initialize();
-                    if(entity.HasComponent<PlayerComponent>())
+                    if (entity.HasComponent<PlayerComponent>())
                         steering.SeekOn();
                 }
 
@@ -97,12 +98,12 @@ public class AssetSystem : ReactiveSystem
                     // .Build();
 
 
-                    var tree = new BehaviorTreeBuilder(gameObject)
-                    .Sequence("evade")
-                        .ConditionPlayerInRange()
-                        .ActionEvade()
-                    .End()
-                    
+                    // var tree = new BehaviorTreeBuilder(gameObject)
+                    // .Sequence("evade")
+                    //     .ConditionPlayerInRange()
+                    //     .ActionEvade()
+                    // .End()
+
                     // .Selector("selector")
                     //     .Sequence("attack player")
                     //         .ConditionPlayerInRange()
@@ -110,8 +111,19 @@ public class AssetSystem : ReactiveSystem
                     //     .Sequence("move around")
                     //     .End()
                     // .End()
-                    .Build();
-
+                    // .Build();
+                    var tree = new BehaviorTreeBuilder(gameObject).Build();
+                    if (entity.HasComponent<PathComponent>())
+                    {
+                        var pathName = entity.GetComponent<PathComponent>().name;
+                        entity.GetComponent<PathComponent>().Initiazlize(GameObject.Find("Waypoint Manager/" + pathName).GetComponent<PathManager>());
+                        gameObject.AddComponent<ActionFollowPath>();
+                        // tree = new BehaviorTreeBuilder(gameObject)
+                        //     // .Sequence("FollowPath")
+                        //     .ActionFollowPath()
+                        //     .End()
+                        // .Build();
+                    }
                     var ai = entity.GetComponent<AIComponent>();
                     ai.brain = tree;
                 }

@@ -14,7 +14,6 @@ public class TestSceneInitSystem : IInitializeSystem
 
     public void Initialize()
     {
-        Debug.Log("TestSceneInitSystem");
         var entity = _assetLibrary.CreateGameEntity("player");
         if (entity != null) Debug.Log("Create player");
     }

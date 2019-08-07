@@ -195,7 +195,7 @@ public class CacheSkillEffectComponnet : IComponent
         {
             this.value.Add(type, 1);
         }
-        UnityEngine.Debug.Log("add  " +  this.value[type]);
+        // UnityEngine.Debug.Log("add  " +  this.value[type]);
     }
 
     public void RemoveSkillEntity(Type type)
@@ -204,7 +204,7 @@ public class CacheSkillEffectComponnet : IComponent
         {
             this.value[type] -= 1;
             this.value[type] = this.value[type] < 0 ? 0 : this.value[type];
-            UnityEngine.Debug.Log("remove  " +  this.value[type]);
+            // UnityEngine.Debug.Log("remove  " +  this.value[type]);
         }
     }
     public void SkillType()

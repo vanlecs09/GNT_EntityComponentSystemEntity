@@ -18,7 +18,6 @@ public class UnityRigidbody : MonoBehaviour, IRigidbody
         set
         {
             _rigidbody.velocity = value;
-            Debug.Log("veloity " + _rigidbody.velocity);
         }
     }
 

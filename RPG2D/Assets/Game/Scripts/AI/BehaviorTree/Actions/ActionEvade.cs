@@ -17,7 +17,6 @@ public class ActionEvade : ActionBase
         _entity = Owner.GetEntityLink().entity as Entity;
     }
 
-    // Triggers every time this node starts running. Does not trigger if TaskStatus.Continue was last returned by this node
     protected override void OnStart()
     {
         var steering = _entity.GetComponent<SteeringBehaviorComponent>();
@@ -25,10 +24,8 @@ public class ActionEvade : ActionBase
         var playerEntity = playerEntities[0];
         steering.EvadeOn(playerEntity);
         _target = playerEntity;
-        Debug.Log("evade enter");
     }
 
-    // Triggers every time `Tick()` is called on the tree and this node is run
     protected override TaskStatus OnUpdate()
     {
         var targetPos = _target.GetComponent<TransformComponent>().position;
@@ -40,11 +37,9 @@ public class ActionEvade : ActionBase
         return TaskStatus.Success;
     }
 
-    // Triggers whenever this node exits after running
     protected override void OnExit()
     {
         var steering = _entity.GetComponent<SteeringBehaviorComponent>();
         steering.EvadeOff();
-        Debug.Log("evade exit");
     }
 }
