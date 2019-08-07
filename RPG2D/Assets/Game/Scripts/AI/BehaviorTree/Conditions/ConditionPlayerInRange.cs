@@ -17,7 +17,6 @@ public class ConditionPlayerInRange : ConditionBase
 
         if ((pos - playerPos).sqrMagnitude < 3.0f * 3.0f)
         {
-            UnityEngine.Debug.Log(" player is in range");
             return true;
         }
         return false;

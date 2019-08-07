@@ -31,6 +31,8 @@ public class App : MonoBehaviour
 
     private void Start()
     {
+        // Application.debu
+        Debug.unityLogger.logEnabled = true;
         Application.targetFrameRate = 60;
         // QualitySettings.vSyncCount = 0;
 #if UNITY_EDITOR

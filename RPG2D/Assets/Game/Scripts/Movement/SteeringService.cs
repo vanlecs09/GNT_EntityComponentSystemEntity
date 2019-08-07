@@ -16,7 +16,6 @@ public class SteeringService
         if (steering.IsSeekOn())
         {
             steeringForce += Seek(ownerPos, move, steering.vTarget) * 3.0f;
-            Debug.Log("Seek at " + steeringForce);
         }
 
         if (steering.isPursuitOn())
@@ -28,7 +27,6 @@ public class SteeringService
         if(steering.isEvadeOn())
         {
             steeringForce += Evade(steering, owner) * 5.0f;
-            Debug.Log("evade  at " + steeringForce);
         }
         return steeringForce;
     }

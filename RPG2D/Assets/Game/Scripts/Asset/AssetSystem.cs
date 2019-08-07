@@ -117,11 +117,12 @@ public class AssetSystem : ReactiveSystem
                     {
                         var pathName = entity.GetComponent<PathComponent>().name;
                         entity.GetComponent<PathComponent>().Initiazlize(GameObject.Find("Waypoint Manager/" + pathName).GetComponent<PathManager>());
-                        tree = new BehaviorTreeBuilder(gameObject)
-                            // .Sequence("FollowPath")
-                            .ActionFollowPath()
-                            .End()
-                        .Build();
+                        gameObject.AddComponent<ActionFollowPath>();
+                        // tree = new BehaviorTreeBuilder(gameObject)
+                        //     // .Sequence("FollowPath")
+                        //     .ActionFollowPath()
+                        //     .End()
+                        // .Build();
                     }
                     var ai = entity.GetComponent<AIComponent>();
                     ai.brain = tree;

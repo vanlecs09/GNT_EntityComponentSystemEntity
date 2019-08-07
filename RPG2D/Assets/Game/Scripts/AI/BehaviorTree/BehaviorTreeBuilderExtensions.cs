@@ -1,4 +1,6 @@
 using CleverCrow.Fluid.BTs.Trees;
+using UnityEngine;
+
 public static class BehaviorTreeBuilderExtensions
 {
     public static BehaviorTreeBuilder ConditionPlayerInRange(this BehaviorTreeBuilder builder, string name = "ConditionPlayerInRange")
@@ -9,7 +11,7 @@ public static class BehaviorTreeBuilderExtensions
         });
     }
 
-     public static BehaviorTreeBuilder ActionEvade(this BehaviorTreeBuilder builder, string name = "ActionEvade")
+    public static BehaviorTreeBuilder ActionEvade(this BehaviorTreeBuilder builder, string name = "ActionEvade")
     {
         return builder.AddNode(new ActionEvade
         {
@@ -25,9 +27,17 @@ public static class BehaviorTreeBuilderExtensions
         });
     }
 
-    public static BehaviorTreeBuilder ActionFollowPath(this BehaviorTreeBuilder builder, string name = "ActionFollowPath")
+    public static BehaviorTreeBuilder ConditionFinishWayPoint(this BehaviorTreeBuilder builder, string name = "ConditionFinishWayPoint")
     {
-        return builder.AddNode(new ActionFollowPath
+        return builder.AddNode(new ConditionFinishWayPoint
+        {
+            Name = name
+        });
+    }
+
+    public static BehaviorTreeBuilder ActionFindNextWayPoint(this BehaviorTreeBuilder builder, string name = "ActionFindNextWayPoint")
+    {
+        return builder.AddNode(new ActionFindNextWayPoint
         {
             Name = name
         });

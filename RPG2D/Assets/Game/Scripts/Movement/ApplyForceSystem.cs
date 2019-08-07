@@ -11,7 +11,6 @@ public class ApplyForceSystem : IExecuteSystem
             var force = entity.GetComponent<ApplyForceComponent>();
             var move = entity.GetComponent<MoveComponent>();
             move.acceleration = force.value;
-            Debug.Log(move.acceleration);
         }
     }
 }

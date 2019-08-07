@@ -1,7 +1,9 @@
 using Entitas;
 using CleverCrow.Fluid.BTs.Trees;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using SWS;
+using UnityEngine;
 [Game]
 public class AIComponent : IComponent
 {
@@ -23,4 +25,10 @@ public class PathComponent : IComponent
     {
         this.value = pathMgr_;
     }
+}
+
+[Game]
+public class QueuePointCompnent: IComponent
+{
+    public Queue<Vector3> value;
 }
