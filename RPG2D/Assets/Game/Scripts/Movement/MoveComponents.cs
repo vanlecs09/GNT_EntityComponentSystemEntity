@@ -89,11 +89,18 @@ public class SteeringBehaviorComponent : IComponent
     public bool isOffsetPursuitOn() { return On(BehaviorTypes.offset_pursuit); }
     public bool isLinearOn() { return On(BehaviorTypes.linear);}
 
-    public void Initialize()
-    {
+    public void Reset() {
         this.Flag = 0;
         this.vTarget = Vector3.zero;
         this.targetEntity = null;
+    }
+
+    public void Initialize()
+    {
+        this.Reset();
+        // this.Flag = 0;
+        // this.vTarget = Vector3.zero;
+        // this.targetEntity = null;
     }
 }
 

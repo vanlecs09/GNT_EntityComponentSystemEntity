@@ -39,8 +39,21 @@ public class VisionTargetComponent : IComponent
     public float limitAngle;
     public float visionRange;
     public List<Entity> targets;
-    public void Initiazlize(List<Entity> targets_)
+    public void Initiazlize()
     {
-        this.targets = targets_;
+        // this.targets = targets_;
+        this.targets = new List<Entity>();
     }
+}
+
+public enum TEAM_TYPE
+{
+    A,
+    B,
+}
+
+[Game]
+public class TeamComponent: IComponent
+{
+    public TEAM_TYPE value;
 }

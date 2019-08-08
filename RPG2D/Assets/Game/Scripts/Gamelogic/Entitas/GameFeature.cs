@@ -17,6 +17,7 @@ FeatureExt
 
 
         .Add(new AIProcessingSystem())
+        .Add(new VisionTargetSystem())
         
         .Add(new SkillCreateSystem())
         .Add(new AreaDamageSystem())

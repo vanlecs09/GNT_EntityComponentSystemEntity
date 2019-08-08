@@ -1073,16 +1073,16 @@ public static class DebugExtension
         Gizmos.color = oldColor;
     }
 
-	public static void DrawVision(Vector3 position, Vector3 forward, Color color, float radius = 1.0f, float limitAngle = 40.0f)
+	public static void DebugVision(Vector3 position, Vector3 forward, Color color, float radius = 1.0f, float limitAngle = 40.0f)
 	{
-		DrawVision(position, Vector3.up, forward, color, radius, limitAngle);
+		DebugVision(position, Vector3.up, forward, color, radius, limitAngle);
 	}
     
 
-    public static void DrawVision(Vector3 position, Vector3 up, Vector3 forward, Color color, float radius = 1.0f, float limitAngle = 40.0f)
+    public static void DebugVision(Vector3 position, Vector3 up, Vector3 forward, Color color, float radius = 1.0f, float limitAngle = 40.0f)
     {
         up = ((up == Vector3.zero) ? Vector3.up : up).normalized * radius;
-        Vector3 _right = forward;
+        Vector3 _right = forward * radius;
         Vector3 _forward = Vector3.Cross(up, _right).normalized * radius;
         
 
@@ -1101,8 +1101,15 @@ public static class DebugExtension
         matrix[10] = _forward.z;
 
         var amountAngle = 91 * (limitAngle / 2) / 360.0f;
-		Vector3 _lastPoint = position + matrix.MultiplyPoint3x4(new Vector3(Mathf.Cos(-amountAngle * 4  * Mathf.Deg2Rad), 0, Mathf.Sin(-amountAngle * 4  * Mathf.Deg2Rad)));
-        Vector3 _nextPoint = Vector3.zero;
+        Vector3 _nextPoint = position + matrix.MultiplyPoint3x4(new Vector3(Mathf.Cos(-amountAngle * 4  * Mathf.Deg2Rad), 0, Mathf.Sin(-amountAngle * 4  * Mathf.Deg2Rad)));
+        Vector3 _lastPoint = position;
+         Debug.DrawLine(_lastPoint, _nextPoint);
+
+        
+		_lastPoint = position + matrix.MultiplyPoint3x4(new Vector3(Mathf.Cos(-amountAngle * 4  * Mathf.Deg2Rad), 0, Mathf.Sin(-amountAngle * 4  * Mathf.Deg2Rad)));
+        _nextPoint = Vector3.zero;
+
+        
 
         Color oldColor = Gizmos.color;
         Gizmos.color = (color == default(Color)) ? Color.red : color;
@@ -1118,6 +1125,9 @@ public static class DebugExtension
             Debug.DrawLine(_lastPoint, _nextPoint);
             _lastPoint = _nextPoint;
         }
+
+        _nextPoint = position;
+        Debug.DrawLine(_lastPoint, _nextPoint);
 
         Gizmos.color = oldColor;
     }

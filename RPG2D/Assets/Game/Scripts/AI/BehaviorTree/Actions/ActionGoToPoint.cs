@@ -32,6 +32,7 @@ public class ActionGoToPoint : ActionBase
     protected override TaskStatus OnUpdate()
     {
         var steering = _entity.GetComponent<SteeringBehaviorComponent>();
+        steering.Reset();
         steering.SeekOn();
         steering.vTarget = _pointsQueue.Peek();
         return TaskStatus.Success;

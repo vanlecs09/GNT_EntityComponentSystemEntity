@@ -42,4 +42,20 @@ public static class BehaviorTreeBuilderExtensions
             Name = name
         });
     }
+
+    public static BehaviorTreeBuilder ActionTargetInVision(this BehaviorTreeBuilder builder, string name = "ActionTargetInVision")
+    {
+        return builder.AddNode(new ActionTargetInVision
+        {
+            Name = name
+        });
+    }
+
+    public static BehaviorTreeBuilder ActionPursuit(this BehaviorTreeBuilder builder, string name = "ActionPursuit")
+    {
+        return builder.AddNode(new ActionPursuit
+        {
+            Name = name
+        });
+    }
 }

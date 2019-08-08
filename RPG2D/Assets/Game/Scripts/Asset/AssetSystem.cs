@@ -131,6 +131,7 @@ public class AssetSystem : ReactiveSystem
                 if (entity.HasComponent<VisionTargetComponent>())
                 {
                     var vision = entity.GetComponent<VisionTargetComponent>();
+                    vision.Initiazlize();
                     entity.AddComponent<DebugVisionComponent>().Initialize(vision.visionRange, vision.limitAngle);
                 }
             }
