@@ -27,35 +27,35 @@ public static class BehaviorTreeBuilderExtensions
         });
     }
 
-    public static BehaviorTreeBuilder ConditionFinishWayPoint(this BehaviorTreeBuilder builder, string name = "ConditionFinishWayPoint")
-    {
-        return builder.AddNode(new ConditionFinishWayPoint
-        {
-            Name = name
-        });
-    }
+    // public static BehaviorTreeBuilder ConditionFinishWayPoint(this BehaviorTreeBuilder builder, string name = "ConditionFinishWayPoint")
+    // {
+    //     return builder.AddNode(new ConditionFinishWayPoint
+    //     {
+    //         Name = name
+    //     });
+    // }
 
-    public static BehaviorTreeBuilder ActionFindNextWayPoint(this BehaviorTreeBuilder builder, string name = "ActionFindNextWayPoint")
-    {
-        return builder.AddNode(new ActionFindNextWayPoint
-        {
-            Name = name
-        });
-    }
+    // public static BehaviorTreeBuilder ActionFindNextWayPoint(this BehaviorTreeBuilder builder, string name = "ActionFindNextWayPoint")
+    // {
+    //     return builder.AddNode(new ActionFindNextWayPoint
+    //     {
+    //         Name = name
+    //     });
+    // }
 
-    public static BehaviorTreeBuilder ActionTargetInVision(this BehaviorTreeBuilder builder, string name = "ActionTargetInVision")
-    {
-        return builder.AddNode(new ActionTargetInVision
-        {
-            Name = name
-        });
-    }
+    // public static BehaviorTreeBuilder ActionTargetInVision(this BehaviorTreeBuilder builder, string name = "ActionTargetInVision")
+    // {
+    //     return builder.AddNode(new ActionTargetInVision
+    //     {
+    //         Name = name
+    //     });
+    // }
 
-    public static BehaviorTreeBuilder ActionPursuit(this BehaviorTreeBuilder builder, string name = "ActionPursuit")
-    {
-        return builder.AddNode(new ActionPursuit
-        {
-            Name = name
-        });
-    }
+    // public static BehaviorTreeBuilder ActionPursuit(this BehaviorTreeBuilder builder, string name = "ActionPursuit")
+    // {
+    //     return builder.AddNode(new ActionPursuit
+    //     {
+    //         Name = name
+    //     });
+    // }
 }

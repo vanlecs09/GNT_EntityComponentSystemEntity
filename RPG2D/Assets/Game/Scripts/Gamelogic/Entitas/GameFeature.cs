@@ -11,13 +11,15 @@ FeatureExt
 {
     public GameFeature(Contexts contexts) : base("GameFeature")
     {
-        Add(new AssetSystem(contexts))
+        // Add(new AssetSystem(contexts))
+        Add(new BotLoaderSystem(contexts))
         // .Add(new InitializeLevelSystem())
         .Add(new JoyStickInputSystem())
 
 
         .Add(new AIProcessingSystem())
-        .Add(new VisionTargetSystem())
+        .Add(new VisionSystem())
+        // .Add(new VisionTargetSystem())
         
         .Add(new SkillCreateSystem())
         .Add(new AreaDamageSystem())
@@ -46,12 +48,12 @@ FeatureExt
         .Add(new FollowAroundTargetSystem())
         .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
-        // .Add(new MovementSystem())
+        .Add(new MovementSystem())
         .Add(new MoveSteeringSystem())
         
         
         .Add(new DamageSystem())
-        .Add(new HealthSystem())
+        .Add(new HealthRenderSystem())
 
         .Add(new WallAroundSystem())
         .Add(new BubblePrisonProcessingSystem())
@@ -66,7 +68,7 @@ FeatureExt
         .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
-        .Add(new DebugDrawSystem())
+        // .Add(new DebugDrawSystem())
         .Add(new DestroySystem());
         // .Add(new CameraSystem());
     }

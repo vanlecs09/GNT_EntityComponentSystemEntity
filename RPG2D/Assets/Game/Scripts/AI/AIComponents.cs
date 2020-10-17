@@ -2,7 +2,7 @@ using Entitas;
 using CleverCrow.Fluid.BTs.Trees;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using SWS;
+// using SWS;
 using UnityEngine;
 [Game]
 public class AIComponent : IComponent
@@ -15,17 +15,17 @@ public class AIComponent : IComponent
     }
 }
 
-[Game]
-public class PathComponent : IComponent
-{
-    [JsonIgnore]
-    public PathManager value;
-    public string name;
-    public void Initiazlize(PathManager pathMgr_)
-    {
-        this.value = pathMgr_;
-    }
-}
+// [Game]
+// public class PathComponent : IComponent
+// {
+//     [JsonIgnore]
+//     public PathManager value;
+//     public string name;
+//     public void Initiazlize(PathManager pathMgr_)
+//     {
+//         this.value = pathMgr_;
+//     }
+// }
 
 [Game]
 public class QueuePointCompnent : IComponent
@@ -34,26 +34,32 @@ public class QueuePointCompnent : IComponent
 }
 
 [Game]
-public class VisionTargetComponent : IComponent
+public class VisionComponent : IComponent
 {
     public float limitAngle;
-    public float visionRange;
-    public List<Entity> targets;
-    public void Initiazlize()
+    public float range;
+    public HashSet<Entity> targets;
+    public void Initiazlize(float range)
     {
+        this.range = range;
         // this.targets = targets_;
-        this.targets = new List<Entity>();
+        this.targets = new HashSet<Entity>();
     }
 }
 
-public enum TEAM_TYPE
+public enum TEAM
 {
     A,
     B,
 }
 
 [Game]
-public class TeamComponent: IComponent
+public class TeamComponent : IComponent
 {
-    public TEAM_TYPE value;
+    public TEAM value;
+
+    public void Initiazlize(TEAM value)
+    {
+        this.value = value;
+    }
 }

@@ -1,21 +1,24 @@
 using Entitas;
 using System.Collections.Generic;
-public class HealthSystem : ReactiveSystem
+using UnityEngine;
+
+public class HealthRenderSystem : ReactiveSystem
 {
-    public HealthSystem()
+    public HealthRenderSystem()
     {
-        monitors += Context<Game>.AllOf<HealthComponent>().OnAdded(Process);
+        monitors += Context<Game>.AllOf<HealthComponent, HeathViewComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
+        Debug.Log("update health render");
         foreach (var entity in entities)
         {
             var health = entity.GetComponent<HealthComponent>();
+            var healthView = entity.GetComponent<HeathViewComponent>();
             if (health.current > 0)
             {
-                if (health.Slider != null)
-                    health.Slider.Value = health.current / health.max;
+                healthView.Slider.Value = health.current / health.max;
             }
             else
             {

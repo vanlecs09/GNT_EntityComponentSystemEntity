@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace RPG.View
 {
-    // [ViewFeatureAttribute]
     public class TransformSystem : ReactiveSystem
     {
         public TransformSystem(Contexts contexts)

@@ -3,6 +3,36 @@ using UnityEngine;
 using RPG.View;
 public static class GameContext
 {
+    public static void CreateSimpleEntity()
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/Bot2", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.right);
+        entity.AddComponent<TransformComponent>().Initialize(new Vector3(-2,0,0), new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initiazlize(TEAM.A);
+        var heatth = entity.AddComponent<HealthComponent>();
+        heatth.current = 10;
+        heatth.max = 10;
+        entity.AddComponent<BotComponent>();
+        entity.AddComponent<VisionComponent>();
+    }
+
+
+     public static void CreateSimpleEntity2()
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/Bot2", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.left);
+        entity.AddComponent<TransformComponent>().Initialize(new Vector3(2,0,0), new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initiazlize(TEAM.B);
+        var heatth = entity.AddComponent<HealthComponent>();
+        heatth.current = 10;
+        heatth.max = 10;
+        entity.AddComponent<BotComponent>();
+        entity.AddComponent<VisionComponent>().Initiazlize(2);
+    }
+
+
     public static void CreateMovingEntity()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
@@ -34,7 +64,7 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/fire", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, direction_);
-        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        var steering = entity.AddComponent<SteeringBehaviorComponent>();
         steering.LinearOn();
         entity.AddComponent<SlowMoveComponent>().Initialize(2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.DRAW_DANGER_SLOW);
@@ -65,7 +95,7 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 5.0f, direction_);
-        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        var steering = entity.AddComponent<SteeringBehaviorComponent>();
         steering.LinearOn();
         entity.AddComponent<DamageComponent>().Initialize(10.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.WATER_TSUNAMI);
@@ -79,7 +109,7 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, direction_);
-        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        var steering = entity.AddComponent<SteeringBehaviorComponent>();
         steering.LinearOn();
         entity.AddComponent<AreaDamageComponent>().Initialize(10.0f, 2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.FIRE_BOMB);
@@ -92,7 +122,7 @@ public static class GameContext
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/Skill_1", LayerMask.NameToLayer("PlayerSkill"));
         entity.AddComponent<TransformComponent>().Initialize(position_, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction_);
-        var steering  = entity.AddComponent<SteeringBehaviorComponent>();
+        var steering = entity.AddComponent<SteeringBehaviorComponent>();
         steering.LinearOn();
         entity.AddComponent<FreezeComponent>().Initialize(3.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.BUBBLE_PRISON);

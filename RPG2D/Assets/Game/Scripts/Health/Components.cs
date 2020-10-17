@@ -5,10 +5,15 @@ using Newtonsoft.Json;
 [Game]
 public class HealthComponent : IComponent
 {
-    [JsonIgnore, NonSerialized]
-    public ISlider Slider;
     public float current;
     public float max;
+}
+
+[Game]
+public class HeathViewComponent : IComponent
+{
+    [JsonIgnore, NonSerialized]
+    public ISlider Slider;
 }
 
 [Game]
@@ -31,7 +36,7 @@ public class DamageComponent : IComponent
 }
 
 [Game, Skill]
-public class AreaDamageComponent: IComponent
+public class AreaDamageComponent : IComponent
 {
     public float damage;
     public float radius;
@@ -55,18 +60,18 @@ public class TargetsComponent : IComponent
 }
 
 [Game, Skill]
-public class TargetComponent: IComponent
+public class TargetComponent : IComponent
 {
     [JsonIgnore]
     public Entity targetEntity;
     public void Initialize(Entity targetEntity_)
-    {
+{
         this.targetEntity = targetEntity_;
     }
 }
 
 [Game, Skill]
-public class ReturnSpeedComponent: IComponent
+public class ReturnSpeedComponent : IComponent
 {
-    
+
 }

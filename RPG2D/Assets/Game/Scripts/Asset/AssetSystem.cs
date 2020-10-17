@@ -4,9 +4,10 @@ using UnityEngine;
 using Entitas.Unity;
 using RPG.View;
 using RPG.Rendering;
-using UnityEngine.UI;
 using CleverCrow.Fluid.BTs.Trees;
-using SWS;
+using UnityEngine.UI;
+
+// using SWS;
 public class AssetSystem : ReactiveSystem
 {
     Context _gameContext;
@@ -61,7 +62,7 @@ public class AssetSystem : ReactiveSystem
                 {
                     var healthSlider = GameObject.Find("health_bar").GetComponent<Slider>();
                     var health = entity.Modify<HealthComponent>();
-                    health.Slider = new UnitySlider(healthSlider);
+                    // health.Slider = new UnitySlider(healthSlider);
 
                 }
 
@@ -71,8 +72,12 @@ public class AssetSystem : ReactiveSystem
                     foreach (var child in children)
                         if (child.name == "fill_area")
                         {
+
+                            var healthBar = new BotHealthSlider(child);
+                            var healthView = entity.AddComponent<HeathViewComponent>();
+                            healthView.Slider = healthBar;
                             var health = entity.Modify<HealthComponent>();
-                            health.Slider = new BotHealthSlider(child);
+                            // health.Slider = new BotHealthSlider(child);
                         }
                 }
 
@@ -88,51 +93,14 @@ public class AssetSystem : ReactiveSystem
 
                 if (entity.HasComponent<AIComponent>())
                 {
-                    // var tree = new BehaviorTreeBuilder(gameObject)
-                    // .Sequence("move forever")
-                    //     // .RepeatForever("move")
-                    //         .ConditionPlayerInRange()
-                    //         .ActionGoToPoint()
-                    //         .ActionGoToPoint()
-                    //     // .End()
-                    // .Build();
 
-
-                    // var tree = new BehaviorTreeBuilder(gameObject)
-                    // .Sequence("evade")
-                    //     .ConditionPlayerInRange()
-                    //     .ActionEvade()
-                    // .End()
-
-                    // .Selector("selector")
-                    //     .Sequence("attack player")
-                    //         .ConditionPlayerInRange()
-                    //     .End()
-                    //     .Sequence("move around")
-                    //     .End()
-                    // .End()
-                    // .Build();
-                    var tree = new BehaviorTreeBuilder(gameObject).Build();
-                    if (entity.HasComponent<PathComponent>())
-                    {
-                        var pathName = entity.GetComponent<PathComponent>().name;
-                        entity.GetComponent<PathComponent>().Initiazlize(GameObject.Find("Waypoint Manager/" + pathName).GetComponent<PathManager>());
-                        gameObject.AddComponent<ActionFollowPath>();
-                        // tree = new BehaviorTreeBuilder(gameObject)
-                        //     // .Sequence("FollowPath")
-                        //     .ActionFollowPath()
-                        //     .End()
-                        // .Build();
-                    }
-                    var ai = entity.GetComponent<AIComponent>();
-                    ai.brain = tree;
                 }
 
-                if (entity.HasComponent<VisionTargetComponent>())
+                if (entity.HasComponent<VisionComponent>())
                 {
-                    var vision = entity.GetComponent<VisionTargetComponent>();
-                    vision.Initiazlize();
-                    entity.AddComponent<DebugVisionComponent>().Initialize(vision.visionRange, vision.limitAngle);
+                    var vision = entity.GetComponent<VisionComponent>();
+                    vision.Initiazlize(10);
+                    entity.AddComponent<DebugVisionComponent>().Initialize(vision.range, vision.limitAngle);
                 }
             }
             else
