@@ -14,6 +14,12 @@ public class CollisionInputComponent: IComponent
     }
 }
 
+[Game]
+public class ImmunityCollision: IComponent
+{
+
+}
+
 [Input]
 public class CollisionExitInputComponent: IComponent
 {

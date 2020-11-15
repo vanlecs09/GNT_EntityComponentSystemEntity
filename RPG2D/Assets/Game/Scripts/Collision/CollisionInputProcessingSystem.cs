@@ -13,103 +13,71 @@ public class CollisionInputProcessingSystem : ReactiveSystem
     {
         foreach (var colliEntity in entities)
         {
+
             var entity1 = colliEntity.GetComponent<CollisionInputComponent>().from;
             var entity2 = colliEntity.GetComponent<CollisionInputComponent>().to;
+            colliEntity.Destroy();
+            var team1 = entity1.GetComponent<TeamComponent>().value;
+            var team2 = entity2.GetComponent<TeamComponent>().value;
+            if (team1 == team2) return;
             if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>())
                 return;
-
+            Debug.Log("input processing");
             // if (entity1.HasComponent<WallAroundComponent>() && entity2.HasComponent<BotComponent>())
             // {
             //     entity2.AddComponent<FrozenComponent>().Initialize(entity1.GetComponent<CountDownComponent>().time);
             // }
 
-
-            if(entity1.HasComponent<DamageComponent>())
+            if (entity1.HasComponent<ProjectileAttackComponent>())
             {
-                var damage = entity1.GetComponent<DamageComponent>();
-                SkillContext.CreateDamangeEntity(entity2, damage.damage);
+                var attack = entity1.GetComponent<ProjectileAttackComponent>();
+                foreach (var debuff in attack.debuffs)
+                {
+                    if (debuff is IntervalDamageComponent)
+                    {
+                        var debuff2 = debuff as IntervalDamageComponent;
+                        entity2.AddComponent<IntervalDamageComponent>().Initialize(debuff2.damage, debuff2.times, debuff2.intervalTime);
+                    }
+                }
+
+                SkillContext.CreateDamangeEntity(entity2, attack.damage);
             }
 
-            if(entity1.HasComponent<AreaDamageComponent>())
-            {
-                var pos = entity1.GetComponent<TransformComponent>().position;
-                var areaDamage = entity1.GetComponent<AreaDamageComponent>();
-                SkillContext.CreateAreaDamageEntity(areaDamage.damage, areaDamage.radius, pos);
-            }
-
-
-            if(entity1.HasComponent<SlowMoveComponent>())
-            {
-                 var slow = entity1.GetComponent<SlowMoveComponent>();
-                var coutDown = entity1.GetComponent<CountDownComponent>();
-                SkillContext.CreateSlowEntity(entity2, coutDown.time, slow.speedToReduce);
-            }
-
-            if(entity1.HasComponent<FreezeComponent>())
-            {
-                var freeze = entity1.GetComponent<FreezeComponent>();
-                SkillContext.CreateFreezeEntity(entity2, freeze.timeFreeze);
-            }
-
-            if(entity1.HasComponent<BubblePrisonComponent>())
-            {
-                var bublePrison = entity1.GetComponent<BubblePrisonComponent>();
-                SkillContext.CreatePrisonBubbleEntity(entity2, bublePrison.time);
-            }
-
-            entity1.AddComponent<DestroyComponent>();
-
-            // if(entity1.HasComponent<)
-
-            // if (entity1.HasComponent<SkillComponent>())
+            // if (entity1.HasComponent<DamagebleComponent>())
             // {
-            //     Debug.Log("collision");
-            //     var skill = entity1.GetComponent<SkillComponent>();
-            //     switch (skill.skillType)
-            //     {
-            //         case SKILL_TYPE.SIMPLE:
-            //             {
-            //                 // var damange = entity1.GetComponent<DamageComponent>();
-            //                 // entity2.AddComponent<>();
-            //                 // entity2.Modify<HealthComponent>() -= 10.0f;
-            //                 entity1.AddComponent<DestroyComponent>();
-            //                 // GameContext.createnoentity();
-            //                 break;
-            //             }
-            //         case SKILL_TYPE.FIRE_BOMB:
-            //             {
-            //                 var damage = entity1.GetComponent<DamageComponent>();
-            //                 var range = entity1.GetComponent<RadiusRangeComponent>();
-            //                 var position = entity1.GetComponent<TransformComponent>().position;
-            //                 SkillContext.CreateExplodeEntity(damage.damage, range.radius, position);
-            //                 entity1.AddComponent<DestroyComponent>();
-            //                 break;
-            //             }
-            //         case SKILL_TYPE.BUBBLE_PRISON:
-            //             {
-            //                 var freeze = entity1.GetComponent<FreezeComponent>();
-            //                 var listTarget = new List<Entity>();
-            //                 listTarget.Add(entity2);
-            //                 SkillContext.CreateFreezeEntity(listTarget, freeze.timeFreeze);
-            //                 SkillContext.CreatePrisonBubbleEntity(listTarget, freeze.timeFreeze);
-            //                 entity1.AddComponent<DestroyComponent>();
-            //                 break;
-            //             }
-            //         case SKILL_TYPE.WATER_TSUNAMI:
-            //             {
-            //                 var damange = entity1.GetComponent<DamageComponent>();
-            //                 var listTarget = new List<Entity>();
-            //                 listTarget.Add(entity2);
-            //                 SkillContext.CreateDamangeEntity(listTarget, damange.damage);
-            //                 break;
-            //             }
-            //         case SKILL_TYPE: 
-            //         {
-            //             break;
-            //         }
-            //     }
+            //     var damage = entity1.GetComponent<DamagebleComponent>();
+            //     SkillContext.CreateDamangeEntity(entity2, damage.damage);
             // }
-            colliEntity.Destroy();
+
+            // if (entity1.HasComponent<AreaDamageComponent>())
+            // {
+            //     var pos = entity1.GetComponent<TransformComponent>().position;
+            //     var areaDamage = entity1.GetComponent<AreaDamageComponent>();
+            //     SkillContext.CreateAreaDamageEntity(areaDamage.damage, areaDamage.radius, pos);
+            // }
+
+
+            // if (entity1.HasComponent<SlowMoveComponent>())
+            // {
+            //     var slow = entity1.GetComponent<SlowMoveComponent>();
+            //     var coutDown = entity1.GetComponent<CountDownComponent>();
+            //     SkillContext.CreateSlowEntity(entity2, coutDown.time, slow.speedToReduce);
+            // }
+
+            // if (entity1.HasComponent<FreezeComponent>())
+            // {
+            //     var freeze = entity1.GetComponent<FreezeComponent>();
+            //     SkillContext.CreateFreezeEntity(entity2, freeze.timeFreeze);
+            // }
+
+            // if (entity1.HasComponent<BubblePrisonComponent>())
+            // {
+            //     var bublePrison = entity1.GetComponent<BubblePrisonComponent>();
+            //     SkillContext.CreatePrisonBubbleEntity(entity2, bublePrison.time);
+            // }
+            if (entity1.GetComponent<ImmunityCollision>() == null)
+                entity1.AddComponent<DestroyComponent>();
+            // colliEntity.Destroy();
         }
     }
 }

@@ -99,8 +99,8 @@ public class AssetSystem : ReactiveSystem
                 if (entity.HasComponent<VisionComponent>())
                 {
                     var vision = entity.GetComponent<VisionComponent>();
-                    vision.Initiazlize(10);
-                    entity.AddComponent<DebugVisionComponent>().Initialize(vision.range, vision.limitAngle);
+                    vision.Initiazlize(10, 9, 1);
+                    // entity.AddComponent<DebugVisionComponent>().Initialize(vision.range, vision.limitAngle);
                 }
             }
             else

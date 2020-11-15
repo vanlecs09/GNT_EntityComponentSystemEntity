@@ -69,10 +69,10 @@ public class CountDownComponent : IComponent
 {
     public float currentTime;
     public float time;
-    public void Initialize(float time_)
+    public void Initialize(float time)
     {
-        this.time = time_;
-        currentTime = 0;
+        this.time = time;
+        currentTime = time;
     }
 }
 

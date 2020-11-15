@@ -1,9 +1,11 @@
 using Entitas;
 using System.Collections.Generic;
+using CleverCrow.Fluid.BTs.Tasks;
 using UnityEngine;
 using Entitas.Unity;
 using RPG.View;
 using RPG.Rendering;
+using CleverCrow.Fluid.BTs.Trees;
 
 public class BotLoaderSystem : ReactiveSystem
 {
@@ -39,30 +41,31 @@ public class BotLoaderSystem : ReactiveSystem
 
                 var children = gameObject.GetComponentsInChildren<Transform>();
                 foreach (var child in children)
+                {
                     if (child.name == "fill_area")
                     {
-
                         var healthBar = new BotHealthSlider(child);
                         var healthView = entity.AddComponent<HeathViewComponent>();
                         healthView.Slider = healthBar;
                         var health = entity.Modify<HealthComponent>();
                     }
+                }
+
 
                 if (layerMask != -1)
                 {
                     gameObject.layer = layerMask;
                 }
 
-                if (entity.HasComponent<AIComponent>())
-                {
+                if (entity.GetComponent<BotComponent>() != null)
+                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain(gameObject, entity));
 
-                }
+                if (entity.GetComponent<DumBassBotComponent>() != null)
+                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateDumbassBrain(gameObject, entity));
 
                 if (entity.HasComponent<VisionComponent>())
                 {
-                    var vision = entity.GetComponent<VisionComponent>();
-                    vision.Initiazlize(10);
-                    entity.AddComponent<DebugVisionComponent>().Initialize(vision.range, vision.limitAngle);
+                    entity.AddComponent<DebugVisionComponent>();
                 }
             }
             else

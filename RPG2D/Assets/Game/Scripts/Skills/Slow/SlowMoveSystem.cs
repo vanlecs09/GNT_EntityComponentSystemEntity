@@ -31,8 +31,6 @@ public class SlowMoveSystem : ReactiveSystem
                 }
             }
             cacheskil.AddSkillEntity(typeof(SlowMoveComponent));
-
-
         }
     }
 
@@ -41,7 +39,7 @@ public class SlowMoveSystem : ReactiveSystem
         foreach (var entity in entities)
         {
             var targetEntity = entity.GetComponent<TargetComponent>().targetEntity;
-            if (GameContext.IsEntityAlive(targetEntity) == false) continue;
+            if (targetEntity.isEnabled == false) continue;
 
             var cacheskil = targetEntity.GetComponent<CacheSkillEffectComponnet>();
             cacheskil.RemoveSkillEntity(typeof(SlowMoveComponent));

@@ -20,11 +20,13 @@ FeatureExt
         .Add(new AIProcessingSystem())
         .Add(new VisionSystem())
         // .Add(new VisionTargetSystem())
-        
+        .Add(new AttackSystem())
+        .Add(new ProjectileAttackSystem())
         .Add(new SkillCreateSystem())
-        .Add(new AreaDamageSystem())
-        .Add(new AreaFreezeSystem())
-        .Add(new DamageWhenReachTargetSystem())
+        .Add(new DamageIntervalSystem())
+        // .Add(new AreaDamageSystem())
+        // .Add(new AreaFreezeSystem())
+        // .Add(new DamageWhenReachTargetSystem())
         .Add(new FreezeSystem())
         .Add(new FreezeProcessingSystem())
         // .Add(new FrozenSystem())
@@ -63,13 +65,14 @@ FeatureExt
         .Add(new SpriteRendererSystem(contexts))    
         .Add(new TransformSystem(contexts))
         .Add(new MoveAnimationSystem())
-        .Add(new UpdateFacingSystem())
+        // .Add(new UpdateFacingSystem())
         .Add(new AnimBubbleSytem())
         .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
         // .Add(new DebugDrawSystem())
-        .Add(new DestroySystem());
+        .Add(new DestroySystem())
+        .Add(new DebugVisionSystem());
         // .Add(new CameraSystem());
     }
 }

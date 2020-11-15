@@ -5,8 +5,8 @@ public class VisionSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<VisionComponent, TeamComponent, TransformComponent>().GetEntities();
-        var otherEntities = Context<Game>.AllOf<BotComponent, TeamComponent, TransformComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<VisionComponent, TeamComponent, TransformComponent, HumanComponent>().GetEntities();
+        var otherEntities = Context<Game>.AllOf<TeamComponent, TransformComponent, HumanComponent>().GetEntities();
         foreach (var entity in entities)    
         {
             var vision = entity.GetComponent<VisionComponent>();
@@ -22,7 +22,9 @@ public class VisionSystem : IExecuteSystem
                 if (distanceToOtherEntity < vision.range)
                 {
                     maxDistance = distanceToOtherEntity;
-                    vision.targets.Add(otherEntity);
+                    vision.MakeRecordIfNotPresent(otherEntity);
+                    vision.UpdateVision(entity, otherEntity);
+                    vision.currentTargetEntity = otherEntity;
                 }
             }
         }

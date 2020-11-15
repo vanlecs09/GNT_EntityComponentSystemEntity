@@ -7,6 +7,11 @@ public class HealthComponent : IComponent
 {
     public float current;
     public float max;
+    public void Initialize(float max)
+    {
+        this.max = max;
+        this.current = max;
+    }
 }
 
 [Game]
@@ -65,7 +70,7 @@ public class TargetComponent : IComponent
     [JsonIgnore]
     public Entity targetEntity;
     public void Initialize(Entity targetEntity_)
-{
+    {
         this.targetEntity = targetEntity_;
     }
 }

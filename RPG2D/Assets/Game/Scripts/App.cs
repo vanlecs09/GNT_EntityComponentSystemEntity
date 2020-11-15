@@ -56,11 +56,11 @@ public class App : MonoBehaviour
         _entitySaveLoader = new EntitySaveLoader(new TemplateLoader());
         _entitySaveLoader.ReLoadTemplets();
 
-        // StartCoroutine("RepeatingFunction");
+        StartCoroutine("RepeatingFunction");
 
 
-        GameContext.CreateSimpleEntity();
-        GameContext.CreateSimpleEntity2();
+        // GameContext.CreateDummyBotEntity();
+        GameContext.CreateCrossBowBotEntity();
     }
     private void Update()
     {
@@ -78,15 +78,13 @@ public class App : MonoBehaviour
         while (true)
         {
             //execute code here.
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(5.0f);
             if (true)
             {
                 for (var i = 0; i < 2; i++)
                 {
-                    Entity bot = _entitySaveLoader.MakeEntityFromtemplate("bot", Contexts.sharedInstance) as Entity;
-                    Debug.Log(bot);
                     var offset = new Vector3(-2, 0, -2);
-                    bot.Modify<TransformComponent>().position = new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3);
+                    GameContext.CreateDumBassBotEntity(new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3));
                 }
             }
         }

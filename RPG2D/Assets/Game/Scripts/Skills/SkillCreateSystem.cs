@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using RPG.View;
 public class SkillCreateSystem : ReactiveSystem
 {
-
     List<IComponent> _playerTarget;
     public SkillCreateSystem()
     {

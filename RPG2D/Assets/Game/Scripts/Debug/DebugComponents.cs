@@ -13,14 +13,14 @@ public class DebugDrawCircleComponent : IComponent
     }
 }
 
-[Game]
-public class DebugVisionComponent: IComponent
-{
-    public float radius;
-    public float limitAngle;
-    public void Initialize(float radius_, float angleLimit_)
-    {
-        this.radius = radius_;
-        this.limitAngle = angleLimit_;
-    }
-}
+// [Game]
+// public class DebugVisionComponent: IComponent
+// {
+//     public float radius;
+//     public float limitAngle;
+//     public void Initialize(float radius_, float angleLimit_)
+//     {
+//         this.radius = radius_;
+//         this.limitAngle = angleLimit_;
+//     }
+// }

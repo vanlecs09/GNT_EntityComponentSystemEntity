@@ -6,30 +6,92 @@ public static class GameContext
     public static void CreateSimpleEntity()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/Bot2", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.right);
-        entity.AddComponent<TransformComponent>().Initialize(new Vector3(-2,0,0), new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<TeamComponent>().Initiazlize(TEAM.A);
+        entity.AddComponent<TransformComponent>().Initialize(new Vector3(-2, 0, 2), new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(TEAM.A);
         var heatth = entity.AddComponent<HealthComponent>();
         heatth.current = 10;
         heatth.max = 10;
         entity.AddComponent<BotComponent>();
-        entity.AddComponent<VisionComponent>();
+        entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
     }
 
 
-     public static void CreateSimpleEntity2()
+    public static void CreateSimpleEntity2()
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/Bot2", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.left);
-        entity.AddComponent<TransformComponent>().Initialize(new Vector3(2,0,0), new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<TeamComponent>().Initiazlize(TEAM.B);
-        var heatth = entity.AddComponent<HealthComponent>();
-        heatth.current = 10;
-        heatth.max = 10;
+        entity.AddComponent<TransformComponent>().Initialize(new Vector3(2, 0, -2), new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(TEAM.B);
+        entity.AddComponent<HealthComponent>().Initialize(10.0f);
         entity.AddComponent<BotComponent>();
-        entity.AddComponent<VisionComponent>().Initiazlize(2);
+        entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
+    }
+
+    public static void CreateCrossBowBotEntity()
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_crossbowman", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.zero);
+        entity.AddComponent<TransformComponent>().Initialize(Vector3.zero, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(TEAM.A);
+        entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
+        entity.AddComponent<HealthComponent>().Initialize(100.0f);
+        entity.AddComponent<BotComponent>();
+        entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 12);
+        entity.AddComponent<AttackProjectileTypeComonent>();
+        entity.AddComponent<HumanComponent>();
+    }
+
+    public static void CreateEasyDummyBotEntity()
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
+    }
+
+    public static void CreateDummyBotEntity(Vector3 position)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(TEAM.B);
+        entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
+        entity.AddComponent<HealthComponent>().Initialize(10.0f);
+        entity.AddComponent<DummyBotComponent>();
+    }
+
+    public static void CreateDumBassBotEntity(Vector3 position)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(TEAM.B);
+        entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 1, Vector3.zero);
+        entity.AddComponent<HealthComponent>().Initialize(10.0f);
+         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
+        entity.AddComponent<BotComponent>();
+        entity.AddComponent<AttackMeleeTypeComponent>();
+        entity.AddComponent<HumanComponent>();
+    }
+
+    public static void CreateProjectileEntity(Vector3 position, Vector3 direction, TEAM team, ProjectileAttackComponent attack)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/electric", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(team);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction);
+        entity.AddComponent<DirectionComponent>().Initialize(direction);
+        entity.AddComponent<ProjectileAttackComponent>().Clone(attack);
+        entity.AddComponent<ImmunityCollision>();
+    }
+
+    public static void CreateSlowProjectileEntity(Vector3 position, Vector3 direction, TEAM team, ProjectileAttackComponent attack)
+    {
+
     }
 
 
