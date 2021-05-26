@@ -42,7 +42,6 @@ public static class AIBuilder
                         if (target.isEnabled == false) return TaskStatus.Continue;
                         var targetTrans = target.GetComponent<TransformComponent>();
                         entity.GetComponent<DirectionComponent>().value = (targetTrans.position - trans.position).normalized;
-                        entity.Modify<TransformComponent>().rotation = Quaternion.LookRotation(entity.GetComponent<DirectionComponent>().value, Vector3.up);
                         return TaskStatus.Continue;
                     })
                     .Do("OnEnd", () =>
@@ -59,11 +58,12 @@ public static class AIBuilder
                 })
                 .Do("chase_target", () =>
                 {
-                    var targetEntity = entity.GetComponent<VisionComponent>().currentTargetEntity;
-                    var targetTransform = targetEntity.GetComponent<TransformComponent>();
+                    var target = entity.GetComponent<VisionComponent>().currentTargetEntity;
+                    var targetTransform = target.GetComponent<TransformComponent>();
                     var trans = entity.GetComponent<TransformComponent>();
-                    var move = entity.GetComponent<MoveComponent>();
-                    move.direction = (targetTransform.position - trans.position).normalized;
+                    if (target.isEnabled == false) return TaskStatus.Continue;
+                    var targetTrans = target.GetComponent<TransformComponent>();
+                    entity.GetComponent<DirectionComponent>().value = (targetTrans.position - trans.position).normalized;
                     return TaskStatus.Success;
                 })
             .End()

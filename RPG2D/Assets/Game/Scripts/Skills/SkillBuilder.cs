@@ -16,6 +16,9 @@ public static class SkillBuilder
         var intervalDamageDebuff = new IntervalDamageComponent();
         intervalDamageDebuff.Initialize(0.2f, 10, 0.2f);
         projectileAttack.debuffs.Add(intervalDamageDebuff);
+        var slowDebuff = new SlowBuffComponent();
+        slowDebuff.Initialize(1);
+        projectileAttack.debuffs.Add(slowDebuff);
     }
 
     public static void CreateMeleeAttack(Entity entity, GameObject gameObject)

@@ -69,7 +69,7 @@ public static class GameContext
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<TeamComponent>().Initialize(TEAM.B);
         entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
-        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 1, Vector3.zero);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2, Vector3.zero);
         entity.AddComponent<HealthComponent>().Initialize(10.0f);
          entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
         entity.AddComponent<BotComponent>();
@@ -86,6 +86,7 @@ public static class GameContext
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction);
         entity.AddComponent<DirectionComponent>().Initialize(direction);
         entity.AddComponent<ProjectileAttackComponent>().Clone(attack);
+        // entity.AddComponent<SlowBuffComponent>().Initialize(1);
         entity.AddComponent<ImmunityCollision>();
     }
 

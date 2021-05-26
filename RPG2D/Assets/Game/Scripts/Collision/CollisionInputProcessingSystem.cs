@@ -38,6 +38,12 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                         var debuff2 = debuff as IntervalDamageComponent;
                         entity2.AddComponent<IntervalDamageComponent>().Initialize(debuff2.damage, debuff2.times, debuff2.intervalTime);
                     }
+
+                    if(debuff is SlowBuffComponent) 
+                    {
+                        var debuff2 = debuff as SlowBuffComponent;
+                        entity2.AddComponent<SlowModifierComponent>().Initialize(debuff2.value);
+                    }
                 }
 
                 SkillContext.CreateDamangeEntity(entity2, attack.damage);
