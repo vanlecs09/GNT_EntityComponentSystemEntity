@@ -34,9 +34,9 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                         entity2.AddComponent<IntervalDamageComponent>().Initialize(debuff2);
                     }
 
-                    if (debuff is SlowBuffComponent)
+                    if (debuff is DeBuffSlowComponent)
                     {
-                        var debuff2 = debuff as SlowBuffComponent;
+                        var debuff2 = debuff as DeBuffSlowComponent;
                         entity2.AddComponent<SlowModifierComponent>().Initialize(debuff2.value);
                     }
                 }
