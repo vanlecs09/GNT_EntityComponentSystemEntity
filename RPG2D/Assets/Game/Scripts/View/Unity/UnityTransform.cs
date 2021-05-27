@@ -3,37 +3,62 @@ using RPG.View;
 using Entitas.Unity;
 namespace RPG.View
 {
-    public class UnityTransform: ITransform {
+    public class UnityTransform : ITransform
+    {
         Transform _transform;
 
-        public UnityTransform (Transform transform) {
+        public UnityTransform(Transform transform)
+        {
             _transform = transform;
         }
 
-        public Vector3 Position {
+        public Vector3 Position
+        {
             get => _transform.position;
-            set { _transform.position = value; }
+            set
+            {
+                if (_transform != null)
+                    _transform.position = value;
+            }
         }
 
-        public Vector3 Scale {
+        public Vector3 Scale
+        {
             get => _transform.localScale;
-            set { _transform.localScale = value; }
+            set
+            {
+                if (_transform != null)
+                    _transform.localScale = value;
+            }
         }
 
-        public Quaternion Rotation {
+        public Quaternion Rotation
+        {
             get => _transform.rotation;
-            set { _transform.rotation = value; }
+            set
+            {
+                if (_transform != null)
+                    _transform.rotation = value;
+            }
         }
 
-        public void Destroy() {
+        public void Destroy()
+        {
+            if (_transform == null)
+            {
+                Debug.Log(_transform);
+                return;
+            }
             _transform.gameObject.Unlink();
             GameObject.Destroy(_transform.gameObject);
         }
     }
 }
 
-public partial class GameContextExtension {
-    public static ITransform InstantiateViewTransform () {
+public partial class GameContextExtension
+{
+    public static ITransform InstantiateViewTransform()
+    {
         return new UnityTransform(new GameObject().transform);
     }
 }

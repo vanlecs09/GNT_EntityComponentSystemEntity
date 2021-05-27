@@ -30,13 +30,13 @@ public static class GameContext
         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
     }
 
-    public static void CreateCrossBowBotEntity()
+    public static void CreateCrossBowBotEntity(Vector3 position, TEAM team)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_crossbowman", LayerMask.NameToLayer("Bot"));
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.zero);
-        entity.AddComponent<TransformComponent>().Initialize(Vector3.zero, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<TeamComponent>().Initialize(TEAM.A);
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(team);
         entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
         entity.AddComponent<HealthComponent>().Initialize(100.0f);
         entity.AddComponent<BotComponent>();
@@ -80,7 +80,7 @@ public static class GameContext
     public static void CreateProjectileEntity(Vector3 position, Vector3 direction, TEAM team, ProjectileAttackComponent attack)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/electric", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Skills/electric", LayerMask.NameToLayer("Skill"));
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<TeamComponent>().Initialize(team);
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 10.0f, direction);

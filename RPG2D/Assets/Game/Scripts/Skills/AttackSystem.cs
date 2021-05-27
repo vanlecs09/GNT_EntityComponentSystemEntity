@@ -21,6 +21,7 @@ public class AttackSystem : IExecuteSystem
                 countdown.currentTime = 0;
                 SkillContext.CreateDamangeEntity(targetEntity, attack.damage);
                 animator.value.SetTrigger("sword");
+                Debug.Log("attacck melee");
             }
         }
     }

@@ -29,4 +29,12 @@ public class IntervalDamageComponent : DebuffComponent
         this.damage = damage;
         this.intervalTime = intervalTime;
     }
+
+    public void Initialize(IntervalDamageComponent otherComponent)
+    {
+        this.currentTime = 0;
+        this.times = otherComponent.times;
+        this.damage = otherComponent.damage;
+        this.intervalTime = otherComponent.intervalTime;
+    }
 }

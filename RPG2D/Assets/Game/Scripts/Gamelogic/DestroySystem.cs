@@ -13,7 +13,7 @@ public class DestroySystem : ReactiveSystem
     {
         foreach (var entity in entities)
         {
-             if(entity.Has<ViewComponent>())
+            if (entity.Has<ViewComponent>())
             {
                 entity.GetComponent<ViewComponent>().transform.Destroy();
             }

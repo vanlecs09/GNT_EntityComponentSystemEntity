@@ -18,7 +18,6 @@ public class SlowMovementSystem : ReactiveSystem
             var move = entity.GetComponent<MoveComponent>();
             var slow = entity.GetComponent<SlowModifierComponent>();
             move.speed -= slow.value;
-            Debug.Log(move.speed);
         }
     }
 

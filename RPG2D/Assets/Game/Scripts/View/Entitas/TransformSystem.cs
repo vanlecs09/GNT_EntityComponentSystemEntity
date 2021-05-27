@@ -23,6 +23,7 @@ namespace RPG.View
             ITransform tf = null;
             foreach (var e in entities)
             {
+                if (e.Has<DestroyComponent>()) continue;
                 if (e.HasComponent<TransformComponent>() && e.HasComponent<ViewComponent>())
                 {
                     tf = e.Get<ViewComponent>().transform;

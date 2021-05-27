@@ -69,7 +69,7 @@ FeatureExt
         .Add(new MoveAnimationSystem())
         // .Add(new UpdateFacingSystem())
         .Add(new AnimBubbleSytem())
-        .Add(new ViewSystem(contexts))
+        // .Add(new ViewSystem(contexts))
 
         .Add(new RemoveObjectWhenOutOfMapSystem())
         // .Add(new DebugDrawSystem())

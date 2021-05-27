@@ -20,13 +20,8 @@ public class CollisionInputProcessingSystem : ReactiveSystem
             var team1 = entity1.GetComponent<TeamComponent>().value;
             var team2 = entity2.GetComponent<TeamComponent>().value;
             if (team1 == team2) return;
-            if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>())
-                return;
+            if (entity1.HasComponent<DestroyComponent>() || entity2.HasComponent<DestroyComponent>()) return;
             Debug.Log("input processing");
-            // if (entity1.HasComponent<WallAroundComponent>() && entity2.HasComponent<BotComponent>())
-            // {
-            //     entity2.AddComponent<FrozenComponent>().Initialize(entity1.GetComponent<CountDownComponent>().time);
-            // }
 
             if (entity1.HasComponent<ProjectileAttackComponent>())
             {
@@ -36,10 +31,10 @@ public class CollisionInputProcessingSystem : ReactiveSystem
                     if (debuff is IntervalDamageComponent)
                     {
                         var debuff2 = debuff as IntervalDamageComponent;
-                        entity2.AddComponent<IntervalDamageComponent>().Initialize(debuff2.damage, debuff2.times, debuff2.intervalTime);
+                        entity2.AddComponent<IntervalDamageComponent>().Initialize(debuff2);
                     }
 
-                    if(debuff is SlowBuffComponent) 
+                    if (debuff is SlowBuffComponent)
                     {
                         var debuff2 = debuff as SlowBuffComponent;
                         entity2.AddComponent<SlowModifierComponent>().Initialize(debuff2.value);

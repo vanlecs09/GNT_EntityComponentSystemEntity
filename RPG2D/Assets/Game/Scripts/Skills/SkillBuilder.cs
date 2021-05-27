@@ -24,7 +24,7 @@ public static class SkillBuilder
     public static void CreateMeleeAttack(Entity entity, GameObject gameObject)
     {
         entity.AddComponent<CountDownComponent>().Initialize(0.5f);
-        entity.AddComponent<MeleeAttackComponent>().Initialize(0.5f, 1.0f);
+        entity.AddComponent<MeleeAttackComponent>().Initialize(0.5f, 2.0f);
     }
 
     public static void CreateAttack(Entity entity, GameObject gameObject)
