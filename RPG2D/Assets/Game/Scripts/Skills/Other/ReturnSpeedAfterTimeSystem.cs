@@ -5,10 +5,10 @@ public class ReturnSpeedAfterTimeSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Skill>.AllOf<CountDownComponent, ReturnSpeedComponent, TargetsComponent>().GetEntities();
+        var entities = Context<Skill>.AllOf<CoolDownComponent, ReturnSpeedComponent, TargetsComponent>().GetEntities();
         foreach (var entity in entities)
         {
-            var countDown = entity.GetComponent<CountDownComponent>();
+            var countDown = entity.GetComponent<CoolDownComponent>();
             countDown.currentTime += Time.deltaTime;
             if(countDown.currentTime > countDown.time)
             {

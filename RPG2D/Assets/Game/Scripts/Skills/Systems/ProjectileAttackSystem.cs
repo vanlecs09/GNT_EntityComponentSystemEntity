@@ -7,21 +7,24 @@ public class ProjectileAttackSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var attackEntities = Context<Game>.AllOf<ProjectileAttackComponent, CountDownComponent, VisionComponent, AnimatorComponent>().GetEntities();
+        var attackEntities = Context<Game>.AllOf<ProjectileAttackComponent, VisionComponent, AnimatorComponent, StatComponent>().GetEntities();
         foreach (var entity in attackEntities)
         {
-            var countdown = entity.GetComponent<CountDownComponent>();
+            // var countdown = entity.GetComponent<CoolDownComponent>();
+            var stat = entity.GetComponent<StatComponent>();
             var attack = entity.GetComponent<ProjectileAttackComponent>();
             var targetEntity = entity.GetComponent<VisionComponent>().currentTargetEntity;
             var animator = entity.GetComponent<AnimatorComponent>();
-            countdown.currentTime += Time.deltaTime;
+            var coolDown = attack.coolDown;
+            coolDown.currentTime += Time.deltaTime;
+            coolDown.time = stat.baseAttackSpeed * stat.attackSpeedModifier;
 
-            if (countdown.currentTime > countdown.time)
+            if (coolDown.currentTime > coolDown.time)
             {
                 var transform = entity.GetComponent<TransformComponent>();
                 var direction = entity.GetComponent<DirectionComponent>();
-                countdown.currentTime = 0;
-                GameContext.CreateProjectileEntity(transform.position + attack.firePoint, direction.value, entity.GetComponent<TeamComponent>().value, attack);
+                coolDown.currentTime = 0;
+                GameContext.CreateProjectileEntity(transform.position + attack.fireTrans.position, direction.value, entity.GetComponent<TeamComponent>().value, attack);
                 animator.value.SetTrigger("crossbow");
             }
         }

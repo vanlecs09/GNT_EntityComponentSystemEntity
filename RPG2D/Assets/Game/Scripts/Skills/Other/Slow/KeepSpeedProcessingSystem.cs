@@ -5,7 +5,7 @@ public class KeepSpeedProcessingSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Skill>.AllOf<KeepSpeedComponent, TargetComponent, CountDownComponent>().GetEntities();
+        var entities = Context<Skill>.AllOf<KeepSpeedComponent, TargetComponent, CoolDownComponent>().GetEntities();
         foreach (var entity in entities)
         {
             var targetEntity = entity.GetComponent<TargetComponent>().targetEntity;
@@ -15,7 +15,7 @@ public class KeepSpeedProcessingSystem : IExecuteSystem
                 continue;
             }
             var beExtraSlow = entity.GetComponent<KeepSpeedComponent>();
-            var countDown = entity.GetComponent<CountDownComponent>();
+            var countDown = entity.GetComponent<CoolDownComponent>();
             countDown.currentTime += Time.deltaTime;
             if (targetEntity.HasComponent<SpriteRendererComponent>())
             {

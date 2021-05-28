@@ -52,13 +52,20 @@ public class BotLoaderSystem : ReactiveSystem
                 }
 
 
-                if (layerMask != -1)
-                {
-                    gameObject.layer = layerMask;
-                }
+                // if (layerMask != -1)
+                // {
+                gameObject.layer = layerMask != -1 ? layerMask : gameObject.layer;
+                // }
 
                 if (entity.GetComponent<BotComponent>() != null)
+                {
+                    if (entity.Has<ProjectileAttackComponent>())
+                    {
+                        entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
+                    }
                     entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain(gameObject, entity));
+                }
+
 
                 if (entity.GetComponent<DumBassBotComponent>() != null)
                     entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateDumbassBrain(gameObject, entity));
@@ -67,6 +74,11 @@ public class BotLoaderSystem : ReactiveSystem
                 {
                     entity.AddComponent<DebugVisionComponent>();
                 }
+
+                // if (entity.Has<ProjectileAttackComponent>())
+                // {
+                //     entity.GetComponent<ProjectileAttackComponent>().firePoint = gameObject.transform.Find("FirePoint").transform.position;
+                // }
             }
             else
             {

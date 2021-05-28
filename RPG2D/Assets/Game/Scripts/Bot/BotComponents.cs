@@ -12,11 +12,11 @@ public class BotComponent : IComponent
 }
 
 [Game]
-public class DummyBotComponent : IComponent
+public class DummyBotComponent : BotComponent
 {
 }
 
 [Game]
-public class DumBassBotComponent : IComponent
+public class DumBassBotComponent : BotComponent
 {
 }

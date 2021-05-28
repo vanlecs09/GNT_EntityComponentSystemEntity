@@ -31,7 +31,7 @@ public static class AIBuilder
                     {
                         var move = entity.GetComponent<MoveComponent>();
                         move.speed = 0;
-                        SkillBuilder.CreateAttack(entity, gameObject);
+                        // SkillBuilder.CreateAttack(entity, gameObject);
                         return TaskStatus.Success;
                     })
                     .Do("OnUpdate", () =>
@@ -46,7 +46,7 @@ public static class AIBuilder
                     })
                     .Do("OnEnd", () =>
                     {
-                        entity.RemoveComponent<ProjectileAttackComponent>();
+                        // entity.RemoveComponent<ProjectileAttackComponent>();
                         return TaskStatus.Success;
                     })
                 .End()

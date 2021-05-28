@@ -4,6 +4,7 @@ using Entitas.VisualDebugging.Unity;
 using System.Collections;
 using RPG.View;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 public class App : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class App : MonoBehaviour
 
 
         // GameContext.CreateDummyBotEntity();
-        GameContext.CreateCrossBowBotEntity(Vector3.zero, TEAM.A);
+        GameContext.CreateCrossBowBotEntity(Vector3.zero, TEAM.A, new List<BuffComponent>(), new List<DebuffComponent>());
         Debug.Log(RuntimeInformation.FrameworkDescription);
     }
     private void Update()
@@ -87,7 +88,7 @@ public class App : MonoBehaviour
                 for (var i = 0; i < 2; i++)
                 {
                     var offset = new Vector3(-2, 0, -2);
-                    GameContext.CreateDumBassBotEntity(new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3));
+                    GameContext.CreateSwordManBotEntity(new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3), TEAM.B, new List<BuffComponent>(), new List<DebuffComponent>());
                     // GameContext.CreateCrossBowBotEntity(new Vector3(Random.Range(-2, 2) + 3, 0, Random.Range(-2, 2) + 3), TEAM.B);
                 }
             }

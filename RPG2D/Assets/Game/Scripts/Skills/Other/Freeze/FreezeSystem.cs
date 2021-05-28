@@ -4,8 +4,8 @@ public class FreezeSystem : ReactiveSystem
 {
     public FreezeSystem()
     {
-        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CountDownComponent>().OnAdded(OnEnter);
-        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CountDownComponent>().OnRemoved(OnExit);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CoolDownComponent>().OnAdded(OnEnter);
+        monitors += Context<Skill>.AllOf<FreezeComponent, TargetComponent, CoolDownComponent>().OnRemoved(OnExit);
     }
 
     protected void OnEnter(List<Entity> entities)

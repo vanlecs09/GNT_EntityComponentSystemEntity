@@ -1,6 +1,8 @@
 using Entitas;
 using UnityEngine;
 using RPG.View;
+using System.Collections.Generic;
+
 public static class GameContext
 {
     public static void CreateSimpleEntity()
@@ -30,9 +32,10 @@ public static class GameContext
         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
     }
 
-    public static void CreateCrossBowBotEntity(Vector3 position, TEAM team)
+    public static void CreateCrossBowBotEntity(Vector3 position, TEAM team, List<BuffComponent> buffs, List<DebuffComponent> debuffs)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<ProjectileAttackComponent>().Initialize(5.0f, 1.0f, null, buffs, debuffs);
         entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_crossbowman", LayerMask.NameToLayer("Bot"));
         entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.zero);
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
@@ -41,9 +44,28 @@ public static class GameContext
         entity.AddComponent<HealthComponent>().Initialize(100.0f);
         entity.AddComponent<BotComponent>();
         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 12);
-        entity.AddComponent<AttackProjectileTypeComonent>();
         entity.AddComponent<HumanComponent>();
+        entity.AddComponent<StatComponent>();
+
     }
+
+
+    public static void CreateSwordManBotEntity(Vector3 position, TEAM team, List<BuffComponent> buffs, List<DebuffComponent> debuffss)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<TeamComponent>().Initialize(team);
+        entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2, Vector3.zero);
+        entity.AddComponent<HealthComponent>().Initialize(10.0f);
+        entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
+        entity.AddComponent<BotComponent>();
+        entity.AddComponent<MeleeAttackComponent>().Initialize(0.5f, 2.0f, buffs, debuffss);
+        entity.AddComponent<HumanComponent>();
+        entity.AddComponent<StatComponent>();
+    }
+
 
     public static void CreateEasyDummyBotEntity()
     {
@@ -62,20 +84,6 @@ public static class GameContext
         entity.AddComponent<DummyBotComponent>();
     }
 
-    public static void CreateDumBassBotEntity(Vector3 position)
-    {
-        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
-        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_swordman", LayerMask.NameToLayer("Bot"));
-        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
-        entity.AddComponent<TeamComponent>().Initialize(TEAM.B);
-        entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
-        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2, Vector3.zero);
-        entity.AddComponent<HealthComponent>().Initialize(10.0f);
-         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
-        entity.AddComponent<BotComponent>();
-        entity.AddComponent<AttackMeleeTypeComponent>();
-        entity.AddComponent<HumanComponent>();
-    }
 
     public static void CreateProjectileEntity(Vector3 position, Vector3 direction, TEAM team, ProjectileAttackComponent attack)
     {
@@ -131,7 +139,7 @@ public static class GameContext
         steering.LinearOn();
         entity.AddComponent<SlowMoveComponent>().Initialize(2.0f);
         entity.AddComponent<SkillComponent>().Initialize(SKILL_TYPE.DRAW_DANGER_SLOW);
-        entity.AddComponent<CountDownComponent>().Initialize(2.0f);
+        entity.AddComponent<CoolDownComponent>().Initialize(2.0f);
     }
 
     public static void CreateSkillFireSoulsEntity(Entity targetEntity_, Vector3 offsetToTarget_)
@@ -213,7 +221,7 @@ public static class GameContext
             var position = position_ + dir3D * radius_;
             entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
             entity.AddComponent<WallAroundComponent>();
-            entity.AddComponent<CountDownComponent>().Initialize(countDown);
+            entity.AddComponent<CoolDownComponent>().Initialize(countDown);
         }
     }
 

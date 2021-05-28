@@ -65,10 +65,10 @@ public class ExplodeComponent : IComponent
 }
 
 [Game, Skill]
-public class CountDownComponent : IComponent
+public class CoolDownComponent : IComponent
 {
-    public float currentTime;
-    public float time;
+    public float currentTime = 0.0f;
+    public float time = 1.0f;
     public void Initialize(float time)
     {
         this.time = time;

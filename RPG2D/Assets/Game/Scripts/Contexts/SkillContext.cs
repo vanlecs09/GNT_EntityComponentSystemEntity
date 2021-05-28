@@ -9,7 +9,7 @@ public class SkillContext
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
         entity.AddComponent<FreezeComponent>().Initialize(time);
         entity.AddComponent<TargetComponent>().Initialize(target);
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
     }
 
 
@@ -17,7 +17,7 @@ public class SkillContext
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
         entity.AddComponent<BubblePrisonComponent>();
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
         entity.AddComponent<TargetComponent>().Initialize(target);
     }
 
@@ -40,7 +40,7 @@ public class SkillContext
     public static void CreateReturnSpeedEntity(Entity target, float time)
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
         entity.AddComponent<TargetComponent>().Initialize(target);
         entity.AddComponent<ReturnSpeedComponent>();
     }
@@ -48,7 +48,7 @@ public class SkillContext
     public static void CreateSlowDownEntity(Entity target, float time)
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
         entity.AddComponent<SlowDownMoveComponent>().Initialize(time);
         entity.AddComponent<TargetComponent>().Initialize(target);
     }
@@ -56,7 +56,7 @@ public class SkillContext
     public static void CreateKeepSpeedEntity(Entity target, float time)
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
         entity.AddComponent<KeepSpeedComponent>();
         entity.AddComponent<TargetComponent>().Initialize(target);
     }
@@ -64,7 +64,7 @@ public class SkillContext
     public static void CreateSlowEntity(Entity target, float time, float speedReduce)
     {
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
-        entity.AddComponent<CountDownComponent>().Initialize(time);
+        entity.AddComponent<CoolDownComponent>().Initialize(time);
         entity.AddComponent<SlowMoveComponent>().Initialize(speedReduce);
         entity.AddComponent<TargetComponent>().Initialize(target);
     }
@@ -85,7 +85,7 @@ public class SkillContext
         var entity = Contexts.sharedInstance.GetContext<Skill>().CreateEntity();
         entity.AddComponent<OwnerComponent>().Initialize(ownerEntity);
         entity.AddComponent<PushBackComponent>();
-        entity.AddComponent<CountDownComponent>().Initialize(countDown_);
+        entity.AddComponent<CoolDownComponent>().Initialize(countDown_);
         entity.AddComponent<RadiusRangeComponent>().Initialize(3.0f);
         entity.AddComponent<DebugDrawCircleComponent>().Initialize(3.0f, Color.green);
     }
