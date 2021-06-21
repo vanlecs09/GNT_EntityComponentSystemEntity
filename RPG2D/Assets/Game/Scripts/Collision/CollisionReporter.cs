@@ -17,7 +17,6 @@ public class CollisionReporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collision with " + other);
         var thisEntity = gameObject.GetEntityLink().entity;
         var otherEntity = other.gameObject.GetEntityLink().entity;
         InputContext.CreateCollisionInputEntity((Entity)thisEntity, (Entity)otherEntity);

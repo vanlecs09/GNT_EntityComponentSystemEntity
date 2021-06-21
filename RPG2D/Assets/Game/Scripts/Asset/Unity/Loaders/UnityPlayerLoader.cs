@@ -1,11 +1,11 @@
-using Entitas;
-using RPG.GameEntity;
-using RPG.Asset;
+// using Entitas;
+// using RPG.GameEntity;
+// using RPG.Asset;
 
-public partial class GameContextExtension {
-    public static Entity LoadPlayer (IViewEntityData data) {
-        var charcter = CharacterLoader.Load(data);
-        charcter.Add<PlayerComponent>();
-        return charcter;
-    }
-}
+// public partial class GameContextExtension {
+//     public static Entity LoadPlayer (IViewEntityData data) {
+//         var charcter = CharacterLoader.Load(data);
+//         charcter.Add<PlayerComponent>();
+//         return charcter;
+//     }
+// }

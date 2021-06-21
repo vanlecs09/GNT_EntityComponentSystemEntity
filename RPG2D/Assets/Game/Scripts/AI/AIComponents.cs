@@ -88,6 +88,11 @@ public class VisionComponent : IComponent
         return currentTargetEntity != null;
     }
 
+    public void Reset()
+    {
+        mapMemory.Clear();
+    }
+
     public void UpdateVision(Entity thisEntity, Entity otherEntity)
     {
         MakeRecordIfNotPresent(otherEntity);
@@ -95,6 +100,12 @@ public class VisionComponent : IComponent
         mapMemory.TryGetValue(otherEntity, out memoryRecord);
         memoryRecord.Reset();
         var distanceToTarget = (thisEntity.GetComponent<TransformComponent>().position - otherEntity.GetComponent<TransformComponent>().position).magnitude;
+        if (!otherEntity.HasComponent<HumanComponent>())
+        {
+            memoryRecord.isAttackable = false;
+            return;
+        }
+
         if (distanceToTarget <= chaseRange)
         {
             memoryRecord.isChasable = true;

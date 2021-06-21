@@ -46,7 +46,6 @@ namespace RPG.View
         {
             if (_transform == null)
             {
-                Debug.Log(_transform);
                 return;
             }
             _transform.gameObject.Unlink();

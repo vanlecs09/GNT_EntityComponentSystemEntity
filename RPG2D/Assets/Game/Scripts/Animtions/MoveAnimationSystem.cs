@@ -1,19 +1,21 @@
 using Entitas;
 using System.Collections.Generic;
 using RPG.Rendering;
-public class MoveAnimationSystem : ReactiveSystem
+public class MoveAnimationSystem : IExecuteSystem
 {
-    public MoveAnimationSystem()
+    public void Execute()
     {
-        monitors += Context<Game>.AllOf<MoveComponent, AnimatorComponent>().OnAdded(Process);
-    }
-    public void Process(List<Entity> entities)
-    {
-        foreach (var e in entities)
+        var entities = Context<Game>.AllOf<MoveComponent, AnimatorComponent>().GetEntities();
+        foreach (var entity in entities)
         {
-            if(!e.HasComponent<AnimatorComponent>()) continue;
-            var move = e.Get<MoveComponent>();
-            var animator = e.GetComponent<AnimatorComponent>();
+            if (!entity.HasComponent<AnimatorComponent>()) continue;
+            var move = entity.Get<MoveComponent>();
+            var animator = entity.GetComponent<AnimatorComponent>();
+            if (entity.HasComponent<ForceMoveComponent>())
+            {
+                animator.value.SetFloat("speed", 0);
+                continue;
+            }
             if (move.velocity.sqrMagnitude > 0)
             {
                 animator.value.SetFloat("speed", move.velocity.magnitude);

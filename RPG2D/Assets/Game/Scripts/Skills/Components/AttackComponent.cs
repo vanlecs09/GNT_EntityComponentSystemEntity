@@ -8,4 +8,5 @@ public class AttackComponent : IComponent
     public float attackSpeed;
     public List<DebuffComponent> debuffs;
     public List<BuffComponent> buffs;
+    public bool enable = false;
 }

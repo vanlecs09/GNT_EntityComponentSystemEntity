@@ -9,11 +9,10 @@ public class MovementSystem : IExecuteSystem
         var entities = Context<Game>.AllOf<TransformComponent, MoveComponent, DirectionComponent>().GetEntities();
         foreach (var entity in entities)
         {
+            if (entity.Has<ForceMoveComponent>()) continue;
             var trans = entity.Modify<TransformComponent>();
             var move = entity.Modify<MoveComponent>();
-            var dir = entity.GetComponent<DirectionComponent>();
-            move.speed = Mathf.Clamp(move.speed, 0.0f, move.maxSpeed);
-            move.velocity = dir.value.normalized * move.speed + move.acceleration * deltaTime;
+            move.velocity = move.direction.normalized * move.speed;
             Vector3.ClampMagnitude(move.velocity, move.speed);
             trans.position += move.velocity * deltaTime;
         }

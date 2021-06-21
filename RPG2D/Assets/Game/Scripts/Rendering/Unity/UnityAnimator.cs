@@ -29,6 +29,11 @@ namespace RPG.Rendering
         {
             _animator.SetTrigger(param);
         }
+
+        public void Stop(string clip)
+        {
+            // _animator.GetCurrentAnimatorClipInfo()
+        }
     }
 
     public class UnityDummyAimator : IAnimator
@@ -54,6 +59,11 @@ namespace RPG.Rendering
         public void SetTrigger(string param)
         {
             LogError();
+        }
+
+        public void Stop(string clip)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

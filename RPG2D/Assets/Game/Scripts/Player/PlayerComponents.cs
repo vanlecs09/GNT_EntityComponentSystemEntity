@@ -3,7 +3,6 @@ using UnityEngine;
 [Game]
 public class PlayerComponent: IComponent
 {
-
 }
 
 [Game]

@@ -15,12 +15,14 @@ FeatureExt
         Add(new BotLoaderSystem(contexts))
         // .Add(new InitializeLevelSystem())
         .Add(new JoyStickInputSystem())
-
+        .Add(new ClickInputSystem())
 
         .Add(new AIProcessingSystem())
         .Add(new VisionSystem())
         // .Add(new VisionTargetSystem())
             .Add(new BuffAttackSpeedSystem())
+            .Add(new BuffHealthSystem())
+            .Add(new BuffMovementSpeedSystem())
         .Add(new MeeleeAttackSystem())
         .Add(new ProjectileAttackSystem())
         .Add(new SkillCreateSystem())
@@ -36,7 +38,7 @@ FeatureExt
         // .Add(new CollisionExitInputProcessingSystem())
         // .Add(new PushBackSystem())
         // .Add(new PushBackProcessingSystem())
-        
+
         // .Add(new AreaSlowDownMoveSystem())
         // .Add(new AreaSlowMoveProcessingSystem())
         // .Add(new SlowDownMoveSystem())
@@ -45,7 +47,7 @@ FeatureExt
         // .Add(new SlowMoveSystem())
         // .Add(new SlowMovePeriodOfTimeProcessingSystem())
         // .Add(new KeepSpeedProcessingSystem())
-        
+
         .Add(new ApplyForceSystem())
         .Add(new MoveToTargetSystem())
         .Add(new FollowTargetSystem())
@@ -55,10 +57,10 @@ FeatureExt
         .Add(new MovementSystem())
         .Add(new FaceDirectionSystem())
         // .Add(new MoveSteeringSystem())
-        
-        
+
+
         .Add(new DamageSystem())
-        .Add(new HealthRenderSystem())
+        .Add(new HealthSystem())
 
         // .Add(new WallAroundSystem())
         // .Add(new BubblePrisonProcessingSystem())

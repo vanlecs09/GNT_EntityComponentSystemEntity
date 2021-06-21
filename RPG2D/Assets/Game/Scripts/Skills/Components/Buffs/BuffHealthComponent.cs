@@ -1,12 +1,12 @@
 using Entitas;
 
 [Game]
-public class BuffAtackSpeedComponent : BuffComponent
+public class BuffHealthComponent : BuffComponent
 {
-    public float speedModifier = 2.0f;
+    public float value = 2.0f;
     public CoolDownComponent cooldown = new CoolDownComponent();
 
-    public BuffAtackSpeedComponent()
+    public BuffHealthComponent()
     {
         this.cooldown = new CoolDownComponent();
         cooldown.time = 10;

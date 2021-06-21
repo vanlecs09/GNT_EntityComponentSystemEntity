@@ -10,20 +10,26 @@ public class MeeleeAttackSystem : IExecuteSystem
         var attackEntities = Context<Game>.AllOf<MeleeAttackComponent, VisionComponent, AnimatorComponent, StatComponent>().GetEntities();
         foreach (var entity in attackEntities)
         {
-            // var countdown = entity.GetComponent<CountDownComponent>();
             var stat = entity.GetComponent<StatComponent>();
             var attack = entity.GetComponent<MeleeAttackComponent>();
+            if (!attack.enable) continue;
             var coolDown = attack.coolDown;
             var targetEntity = entity.GetComponent<VisionComponent>().currentTargetEntity;
             var animator = entity.GetComponent<AnimatorComponent>();
+            if (coolDown.currentTime == 0)
+            {
+                animator.value.SetTrigger("sword");
+                SkillContext.CreateDamangeEntity(targetEntity, attack.damage);
+            }
             coolDown.currentTime += Time.deltaTime;
-            coolDown.time = stat.baseAttackSpeed * stat.attackSpeedModifier;
-
             if (coolDown.currentTime >= coolDown.time)
             {
                 coolDown.currentTime = 0;
-                SkillContext.CreateDamangeEntity(targetEntity, attack.damage);
-                animator.value.SetTrigger("sword");
+                var vision = entity.GetComponent<VisionComponent>();
+                if (!vision.IsCurrentTargetPresent() || !vision.TargetInRangeAttack())
+                {
+                    attack.enable = false;
+                }
             }
         }
     }

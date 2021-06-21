@@ -5,22 +5,24 @@ public class MoveToTargetSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<TransformComponent, TargetComponent, MoveComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<TransformComponent, MoveTargetPosition, MoveComponent>().GetEntities();
         foreach (var entity in entities)
         {
-            var targetEntity = entity.Get<TargetComponent>().targetEntity;
-            if (targetEntity.isEnabled == false)
+            var targetPosition = entity.GetComponent<MoveTargetPosition>().value;
+            var trans = entity.GetComponent<TransformComponent>();
+            var transPoint = new Vector3(trans.position.x, targetPosition.y, trans.position.z);
+            var targetPoint = targetPosition;
+            var move = entity.GetComponent<MoveComponent>();
+            move.direction = (targetPoint - transPoint).normalized;
+            if ((targetPoint - transPoint).sqrMagnitude <= 0.5 * 0.5)
             {
-                // var targetPos = targetEntity.GetComponent<TransformComponent>().position;
-                // var entityPos = entity.GetComponent<TransformComponent>().position;
-                // var move = entity.GetComponent<MoveComponent>();
-                // move.direction = targetPos - entityPos;
-                // if ((entityPos - targetPos).magnitude < 0.2f)
-                // {
-                //     entity.RemoveComponent<TargetComponent>();
-                //     entity.RemoveComponent<MoveComponent>();
-                // }
-                entity.AddComponent<DestroyComponent>();
+                entity.RemoveComponent<MoveTargetPosition>();
+                entity.AddComponent<ForceMoveComponent>();
+            }
+            else
+            {
+                if (entity.HasComponent<ForceMoveComponent>())
+                    entity.RemoveComponent<ForceMoveComponent>();
             }
         }
     }

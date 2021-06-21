@@ -20,6 +20,7 @@ public class BotLoaderSystem : ReactiveSystem
     {
         foreach (var entity in entities)
         {
+            if(!entity.isEnabled) continue;
             var assetName = entity.GetComponent<AssetComponent>().assetName;
             var assetObject = Resources.Load<GameObject>(assetName);
             var layerMask = entity.GetComponent<AssetComponent>().layerMask;
@@ -57,13 +58,23 @@ public class BotLoaderSystem : ReactiveSystem
                 gameObject.layer = layerMask != -1 ? layerMask : gameObject.layer;
                 // }
 
-                if (entity.GetComponent<BotComponent>() != null)
+                if (entity.HasComponent<BotComponent>())
                 {
                     if (entity.Has<ProjectileAttackComponent>())
                     {
                         entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
                     }
                     entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain(gameObject, entity));
+                }
+
+                if (entity.HasComponent<PlayerComponent>())
+                {
+                    if (entity.Has<ProjectileAttackComponent>())
+                    {
+                        entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
+                    }
+
+                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain2(gameObject, entity));
                 }
 
 

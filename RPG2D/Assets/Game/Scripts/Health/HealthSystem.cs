@@ -2,16 +2,15 @@ using Entitas;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthRenderSystem : ReactiveSystem
+public class HealthSystem : ReactiveSystem
 {
-    public HealthRenderSystem()
+    public HealthSystem()
     {
         monitors += Context<Game>.AllOf<HealthComponent, HeathViewComponent>().OnAdded(Process);
     }
 
     protected void Process(List<Entity> entities)
     {
-        Debug.Log("update health render");
         foreach (var entity in entities)
         {
             var health = entity.GetComponent<HealthComponent>();

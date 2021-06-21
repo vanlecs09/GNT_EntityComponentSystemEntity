@@ -105,6 +105,12 @@ public class SteeringBehaviorComponent : IComponent
 }
 
 [Game]
+public class MoveTargetPosition: IComponent
+{
+    public Vector3 value;
+}
+
+[Game]
 public class MoveComponent : IComponent
 {
     public Vector3 direction;
@@ -112,6 +118,7 @@ public class MoveComponent : IComponent
     public Vector3 acceleration;
     public float speed;
     public float maxSpeed;
+    public Vector3 targetPosition;
 
     public void Initialize(Vector3 velocity_, Vector3 acceleration_, float speed_, Vector3 direction_)
     {
