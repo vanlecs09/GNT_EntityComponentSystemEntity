@@ -32,6 +32,35 @@ public static class GameContext
         entity.AddComponent<VisionComponent>().Initiazlize(10, 8, 1);
     }
 
+    public static void CreateMoveEntity(Vector3 position)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        // entity.AddComponent<ProjectileAttackComponent>().Initialize(5.0f, 1.0f, null, buffs, debuffs);
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_crossbowman", LayerMask.NameToLayer("Human"));
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.right);
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<RandomMoveComponent>();
+        // entity.AddComponent<TeamComponent>().Initialize(team);
+        // entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
+        // entity.AddComponent<HealthComponent>().Initialize(100.0f);
+        // entity.AddComponent<PlayerComponent>();
+        // entity.AddComponent<VisionComponent>().Initiazlize(14, 12, 10);
+        // entity.AddComponent<HumanComponent>();
+        // entity.AddComponent<StatComponent>().Initialize(1, 3.0f);
+        // entity.AddComponent<ForceMoveComponent>();
+        // var buff = entity.AddComponent<BuffAtackSpeedComponent>();
+    }
+
+    public static void CreateClickAndMoveEntity(Vector3 position)
+    {
+        var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
+        // entity.AddComponent<ProjectileAttackComponent>().Initialize(5.0f, 1.0f, null, buffs, debuffs);
+        entity.AddComponent<AssetComponent>().Initialize("Prefabs/Characters/pref_crossbowman", LayerMask.NameToLayer("Human"));
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 3.0f, Vector3.right);
+        entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
+        entity.AddComponent<PlayerComponent>();
+    }
+
     public static void CreateCrossBowHumanEntity(Vector3 position, TEAM team, List<BuffComponent> buffs, List<DebuffComponent> debuffs)
     {
         var entity = Contexts.sharedInstance.GetContext<Game>().CreateEntity();
@@ -43,10 +72,10 @@ public static class GameContext
         entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
         entity.AddComponent<HealthComponent>().Initialize(100.0f);
         entity.AddComponent<PlayerComponent>();
+        entity.AddComponent<PlayrBrainComponent>();
         entity.AddComponent<VisionComponent>().Initiazlize(14, 12, 10);
         entity.AddComponent<HumanComponent>();
         entity.AddComponent<StatComponent>().Initialize(1, 3.0f);
-        // entity.AddComponent<ForceMoveComponent>();
         var buff = entity.AddComponent<BuffAtackSpeedComponent>();
     }
 
@@ -60,7 +89,7 @@ public static class GameContext
         entity.AddComponent<TeamComponent>().Initialize(team);
         entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
         entity.AddComponent<HealthComponent>().Initialize(100.0f);
-        entity.AddComponent<BotComponent>();
+        entity.AddComponent<NormalBrainComponent>();
         entity.AddComponent<VisionComponent>().Initiazlize(14, 12, 10);
         entity.AddComponent<HumanComponent>();
         entity.AddComponent<StatComponent>().Initialize(1, 3.0f);
@@ -75,13 +104,13 @@ public static class GameContext
         entity.AddComponent<TransformComponent>().Initialize(position, new Vector3(1, 1, 1), Quaternion.identity);
         entity.AddComponent<TeamComponent>().Initialize(team);
         entity.AddComponent<DirectionComponent>().Initialize(Vector3.zero);
-        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 2, Vector3.zero);
+        entity.AddComponent<MoveComponent>().Initialize(Vector3.zero, Vector3.zero, 1, Vector3.zero);
         entity.AddComponent<HealthComponent>().Initialize(10.0f);
         entity.AddComponent<VisionComponent>().Initiazlize(15, 12, 1);
-        entity.AddComponent<BotComponent>();
+        entity.AddComponent<NormalBrainComponent>();
         entity.AddComponent<MeleeAttackComponent>().Initialize(0.5f, 2.0f, buffs, debuffss);
         entity.AddComponent<HumanComponent>();
-        entity.AddComponent<StatComponent>().Initialize(1, 2.0f);
+        entity.AddComponent<StatComponent>().Initialize(1, 1.0f);
     }
 
 

@@ -69,6 +69,17 @@ public class CoolDownComponent : IComponent
 {
     public float currentTime = 0.0f;
     public float time = 1.0f;
+    private float v;
+
+    public CoolDownComponent()
+    {
+    }
+
+    public CoolDownComponent(float v)
+    {
+        this.v = v;
+    }
+
     public void Initialize(float time)
     {
         this.time = time;

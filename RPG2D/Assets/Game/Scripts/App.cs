@@ -67,7 +67,6 @@ public class App : MonoBehaviour
         buffs.Add(new BuffAtackSpeedComponent());
         // GameContext.CreateCrossBowBotEntity(Vector3.zero, TEAM.A, buffs, new List<DebuffComponent>());
         GameContext.CreateCrossBowHumanEntity(Vector3.zero, TEAM.A, buffs, new List<DebuffComponent>());
-        Debug.Log(RuntimeInformation.FrameworkDescription);
     }
     private void Update()
     {
@@ -86,7 +85,7 @@ public class App : MonoBehaviour
         {
             if (true)
             {
-                for (var i = 0; i < 1; i++)
+                for (var i = 0; i < 2; i++)
                 {
                     var offset = new Vector3(-2, 0, -2);
                     GameContext.CreateSwordManBotEntity(new Vector3(Random.Range(-5, 5) + 3, 0,

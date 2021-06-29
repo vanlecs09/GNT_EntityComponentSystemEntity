@@ -20,7 +20,7 @@ public class BotLoaderSystem : ReactiveSystem
     {
         foreach (var entity in entities)
         {
-            if(!entity.isEnabled) continue;
+            if (!entity.isEnabled) continue;
             var assetName = entity.GetComponent<AssetComponent>().assetName;
             var assetObject = Resources.Load<GameObject>(assetName);
             var layerMask = entity.GetComponent<AssetComponent>().layerMask;
@@ -51,45 +51,18 @@ public class BotLoaderSystem : ReactiveSystem
                         var health = entity.Modify<HealthComponent>();
                     }
                 }
-
-
-                // if (layerMask != -1)
-                // {
                 gameObject.layer = layerMask != -1 ? layerMask : gameObject.layer;
-                // }
 
-                if (entity.HasComponent<BotComponent>())
+                if (entity.Has<ProjectileAttackComponent>() && entity.HasComponent<HumanComponent>())
                 {
-                    if (entity.Has<ProjectileAttackComponent>())
-                    {
-                        entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
-                    }
-                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain(gameObject, entity));
+                    entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
                 }
 
-                if (entity.HasComponent<PlayerComponent>())
-                {
-                    if (entity.Has<ProjectileAttackComponent>())
-                    {
-                        entity.GetComponent<ProjectileAttackComponent>().fireTrans = gameObject.transform.Find("FirePoint").transform;
-                    }
-
-                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateNormalBrain2(gameObject, entity));
-                }
-
-
-                if (entity.GetComponent<DumBassBotComponent>() != null)
-                    entity.AddComponent<AIComponent>().Initiazlize(AIBuilder.CreateDumbassBrain(gameObject, entity));
 
                 if (entity.HasComponent<VisionComponent>())
                 {
                     entity.AddComponent<DebugVisionComponent>();
                 }
-
-                // if (entity.Has<ProjectileAttackComponent>())
-                // {
-                //     entity.GetComponent<ProjectileAttackComponent>().firePoint = gameObject.transform.Find("FirePoint").transform.position;
-                // }
             }
             else
             {

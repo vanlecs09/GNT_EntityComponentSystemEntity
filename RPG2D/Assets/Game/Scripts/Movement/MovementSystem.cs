@@ -6,7 +6,7 @@ public class MovementSystem : IExecuteSystem
     public void Execute()
     {
         var deltaTime = Time.deltaTime;
-        var entities = Context<Game>.AllOf<TransformComponent, MoveComponent, DirectionComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<TransformComponent, MoveComponent>().GetEntities();
         foreach (var entity in entities)
         {
             if (entity.Has<ForceMoveComponent>()) continue;

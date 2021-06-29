@@ -5,7 +5,7 @@ public class BuffMovementSpeedSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<BuffMovementSpeedComponent, MoveComponent, HealthComponent, StatComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<BuffMovementSpeedComponent, MoveComponent, StatComponent>().GetEntities();
         foreach (var entity in entities)
         {
             var buffSpeed = entity.Modify<BuffMovementSpeedComponent>();

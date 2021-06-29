@@ -5,12 +5,11 @@ public class ClickInputSystem : IExecuteSystem
 {
     public void Execute()
     {
-        var entities = Context<Game>.AllOf<PlayerComponent, MoveComponent, DirectionComponent, TransformComponent>().GetEntities();
+        var entities = Context<Game>.AllOf<PlayerComponent, MoveComponent, TransformComponent>().GetEntities();
         foreach (var entity in entities)
         {
             if (UnityEngine.Input.GetMouseButtonDown(0))
             {
-
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, 100.0f))

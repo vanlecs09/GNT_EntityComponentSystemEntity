@@ -61,6 +61,7 @@ public static class AIBuilder
                     })
                     .Do("OnEnd", () =>
                     {
+                        entity.GetComponent<MoveComponent>().direction = Vector3.zero;
                         entity.Remove<ForceMoveComponent>();
                         // entity.GetComponent<MoveComponent>().speed = entity.GetComponent<MoveComponent>().
                         if (entity.Has<MeleeAttackComponent>())
@@ -93,6 +94,10 @@ public static class AIBuilder
                         return TaskStatus.Success;
                     })
                 .End()
+                 .Do("do_nothing", () =>
+                    {
+                        return TaskStatus.Success;
+                    })
             .Build();
 
         return tree;

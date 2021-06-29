@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 [Game]
 public class HealthComponent : IComponent
 {
-    public float current;
-    public float max;
+    public float current = 1;
+    public float max = 1;
     public void Initialize(float max)
     {
         this.max = max;

@@ -2,7 +2,7 @@
 using Entitas;
 
 [Game]
-public class HumanComponent: IComponent
+public class HumanComponent : IComponent
 {
 }
 
@@ -17,6 +17,17 @@ public class DummyBotComponent : BotComponent
 }
 
 [Game]
-public class DumBassBotComponent : BotComponent
+public class EasyBrainComponent : IComponent
+{
+}
+
+[Game]
+public class NormalBrainComponent: IComponent
+{
+}
+
+
+[Game]
+public class PlayrBrainComponent : IComponent
 {
 }

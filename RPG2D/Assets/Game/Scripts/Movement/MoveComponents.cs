@@ -70,7 +70,7 @@ public class SteeringBehaviorComponent : IComponent
     // public void HideOff() { if (On(BehaviorTypes.hide)) this.Flag ^= (int)BehaviorTypes.hide; }
     // public void OffsetPursuitOff() { if (On(BehaviorTypes.offset_pursuit)) this.Flag ^= (int)BehaviorTypes.offset_pursuit; }
     // public void FlockingOff() { CohesionOff(); AlignmentOff(); SeparationOff(); WanderOff(); }
-    public void LinearOff()  { if (On(BehaviorTypes.linear)) this.Flag ^= (int)BehaviorTypes.linear; }
+    public void LinearOff() { if (On(BehaviorTypes.linear)) this.Flag ^= (int)BehaviorTypes.linear; }
 
     public bool isFleeOn() { return On(BehaviorTypes.flee); }
 
@@ -87,9 +87,10 @@ public class SteeringBehaviorComponent : IComponent
     public bool isInterposeOn() { return On(BehaviorTypes.interpose); }
     public bool isHideOn() { return On(BehaviorTypes.hide); }
     public bool isOffsetPursuitOn() { return On(BehaviorTypes.offset_pursuit); }
-    public bool isLinearOn() { return On(BehaviorTypes.linear);}
+    public bool isLinearOn() { return On(BehaviorTypes.linear); }
 
-    public void Reset() {
+    public void Reset()
+    {
         this.Flag = 0;
         this.vTarget = Vector3.zero;
         this.targetEntity = null;
@@ -105,7 +106,7 @@ public class SteeringBehaviorComponent : IComponent
 }
 
 [Game]
-public class MoveTargetPosition: IComponent
+public class MoveTargetPosition : IComponent
 {
     public Vector3 value;
 }
@@ -130,6 +131,12 @@ public class MoveComponent : IComponent
     }
 }
 
+// [Game]
+// public class RandomBuffMovementSpeedComponent: IComponent
+// {
+//     public CoolDownComponent coolDown = new CoolDownComponent(5.0f);
+// }
+
 [Game]
 public class ApplyForceComponent : IComponent
 {
@@ -143,7 +150,12 @@ public class ApplyForceComponent : IComponent
 [Game]
 public class RandomMoveComponent : IComponent
 {
-
+    public CoolDownComponent coolDown;
+    public RandomMoveComponent()
+    {
+        coolDown = new CoolDownComponent();
+        coolDown.time = 1.0f;
+    }
 }
 
 // [Game]

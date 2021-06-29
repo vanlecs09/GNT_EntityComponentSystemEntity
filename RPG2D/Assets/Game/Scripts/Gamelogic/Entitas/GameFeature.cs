@@ -13,13 +13,15 @@ FeatureExt
     {
         // Add(new AssetSystem(contexts))
         Add(new BotLoaderSystem(contexts))
+        .Add(new AIInitializeSystem())
         // .Add(new InitializeLevelSystem())
-        .Add(new JoyStickInputSystem())
+        // .Add(new JoyStickInputSystem())
         .Add(new ClickInputSystem())
 
         .Add(new AIProcessingSystem())
         .Add(new VisionSystem())
         // .Add(new VisionTargetSystem())
+            // .Add(new RandomBuffMovementSpeedSystem())
             .Add(new BuffAttackSpeedSystem())
             .Add(new BuffHealthSystem())
             .Add(new BuffMovementSpeedSystem())
@@ -50,7 +52,7 @@ FeatureExt
 
         .Add(new ApplyForceSystem())
         .Add(new MoveToTargetSystem())
-        .Add(new FollowTargetSystem())
+        // .Add(new FollowTargetSystem())
         // .Add(new FollowAroundTargetSystem())
         // .Add(new LeaveOwnerToFollowTargetSystem())
         .Add(new RandomMoveSystem())
