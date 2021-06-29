@@ -1,6 +1,7 @@
 # RPG2D
 
-## commit styles
-	use + for add 
-	use ~ for update 
-	use - for delete
+Demo for GNT presentation 
+	Entity Component System : An introduction
+
+FrameWork: Entitas Lite https://github.com/rocwood/Entitas-Lite
+Game Engtine: Unity3d
